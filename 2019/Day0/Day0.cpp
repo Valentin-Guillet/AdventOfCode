@@ -1,6 +1,6 @@
 
-#include "iostream"
-#include "fstream"
+#include <iostream>
+#include <fstream>
 #include <string>
 #include <vector>
 
@@ -17,7 +17,7 @@ int main(void)
 		getline(myfile, input);
 		myfile.close();
 	} else {
-        std::cout << "Unable to open file";
+        std::cout << "Unable to open file" << std::endl;
         return 1;
     }
 

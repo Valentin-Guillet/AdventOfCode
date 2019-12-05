@@ -8,4 +8,5 @@ then
 fi
 
 mkdir "Day$day"
-cp Day0/Day0.cpp "Day$day/Day$day.cpp" 
+sed "s/Day0Input/Day"$day"Input/" Day0/Day0.cpp > "Day$day/Day$day.cpp" 
+ln -s ../Day0/main "Day$day/main"

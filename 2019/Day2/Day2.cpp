@@ -1,6 +1,6 @@
 
-#include "iostream"
-#include "fstream"
+#include <iostream>
+#include <fstream>
 #include <string>
 #include <vector>
 #include <sstream>
@@ -65,7 +65,6 @@ int main(void)
     {
         ans = run_program(tab);
     } else {
-        int result;
         bool found = false;
         
         for (int noun = 0; noun < 100; ++noun) {

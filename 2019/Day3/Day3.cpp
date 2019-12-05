@@ -1,19 +1,19 @@
 
-#include "iostream"
-#include "fstream"
+#include <iostream>
+#include <fstream>
 #include <string>
 #include <sstream>
 #include <vector>
 #include <map>
 
 
-using map = std::map<std::pair<int, int>, int>;
+using map = std::map<std::pair<int, int>, std::pair<int, int>>;
 
 void print_grid(map& grid)
 {
     int min_x = 10000, max_x = -100000;
     int min_y = 10000, max_y = -100000;
-    for (std::pair<std::pair<int, int>, int> elt : grid) {
+    for (std::pair<std::pair<int, int>, std::pair<int, int>> elt : grid) {
         if (elt.first.first < min_x)
             min_x = elt.first.first;
         if (elt.first.first > max_x)
@@ -28,10 +28,12 @@ void print_grid(map& grid)
         for (int i = min_x-1; i <= max_x+1; ++i) {
             if (i == 0 && j == 0) {
                 std::cout << '@';
-            } else if (grid[{i, j}] == 1) {
-                std::cout << '#';
-            } else if (grid[{i, j}] == 2) {
+            } else if (grid[{i, j}].first & 1 && grid[{i, j}].first & 2) {
                 std::cout << '+';
+            } else if (grid[{i, j}].first & 1) {
+                std::cout << '1';
+            } else if (grid[{i, j}].first & 2) {
+                std::cout << '2';
             } else {
                 std::cout << '.';
             }
@@ -40,7 +42,7 @@ void print_grid(map& grid)
     }
 }
 
-std::vector<std::pair<int, int>> build_wire(std::string wire, map& grid)
+std::vector<std::pair<int, int>> build_wire(std::string wire, map& grid, int id)
 {
     std::stringstream stream(wire);
     std::vector<std::string> actions;
@@ -52,9 +54,10 @@ std::vector<std::pair<int, int>> build_wire(std::string wire, map& grid)
     }
 
     std::pair<int, int> pos = {0, 0};
-    ++grid[pos];
+    ++grid[pos].first;
 
     std::vector<std::pair<int, int>> intersections;
+    int value = 1;
 
     for (std::string action : actions)
     {
@@ -79,11 +82,15 @@ std::vector<std::pair<int, int>> build_wire(std::string wire, map& grid)
                 break;
         }
 
-        for (int i = 0; i < std::stoi(action.substr(1)); ++i) {
+        for (int j = 0; j < std::stoi(action.substr(1)); ++j) {
             pos.first += x_dir;
             pos.second += y_dir;
-            ++grid[pos];
-            if (grid[pos] > 1)
+            if ((grid[pos].first & id) == 0) {
+                grid[pos].first ^= id;
+                grid[pos].second += value;
+            }
+            value++;
+            if (grid[pos].first & 1 && grid[pos].first & 2)
                 intersections.push_back(pos);
         }
     }
@@ -93,7 +100,7 @@ std::vector<std::pair<int, int>> build_wire(std::string wire, map& grid)
 
 int main(void)
 {
-    bool firstHalf = true;
+    bool firstHalf = false;
 	std::string wire1, wire2;
 	int ans = 0;
     std::vector<std::pair<int, int>> intersections;
@@ -110,15 +117,20 @@ int main(void)
         return 1;
     }
 
-    build_wire(wire1, grid);
-    intersections = build_wire(wire2, grid);
+    build_wire(wire1, grid, 1);
+    intersections = build_wire(wire2, grid, 2);
 
     // print_grid(grid);
 
     ans = 1000000000;
     for (std::pair<int, int> pos : intersections) {
-        if (abs(pos.first) + abs(pos.second) < ans)
-            ans = abs(pos.first) + abs(pos.second);
+        if (firstHalf) {
+            if (abs(pos.first) + abs(pos.second) < ans)
+                ans = abs(pos.first) + abs(pos.second);
+        } else {
+            if (grid[pos].second < ans)
+                ans = grid[pos].second;
+        }
     }
     
 	std::cout << "Answer : " << ans << std::endl;
