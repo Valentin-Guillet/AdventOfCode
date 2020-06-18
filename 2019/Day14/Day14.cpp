@@ -67,14 +67,14 @@ std::pair<std::string, unsigned long> split_stochio(std::string product)
 
 int main(void)
 {
-    bool firstHalf = false;
-	std::string input;
+    bool first_half = false;
 	unsigned long ans = 0;
     std::unordered_map<std::string, Chem*> chems;
 
 	std::ifstream myfile ("Day14Input");
-	if (myfile.is_open())
-	{
+	if (myfile.is_open()) {
+        std::string input;
+
 		while (getline(myfile, input))
         {
             unsigned long split = input.find(" => ");
@@ -109,14 +109,14 @@ int main(void)
 
             } while (split != -1);
         }
-		myfile.close();
 
+        myfile.close();
 	} else {
         std::cout << "Unable to open file" << std::endl;
         return 1;
     }
 
-    if (firstHalf) {
+    if (first_half) {
         ans = chems["FUEL"]->count(1);
     } else {
         unsigned long base = chems["FUEL"]->count(1);

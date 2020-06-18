@@ -244,14 +244,14 @@ Display init_display(std::vector<long> out)
 
 int main(void)
 {
-    bool firstHalf = false;
-	std::string input;
+    bool first_half = false;
     int ans = 0;
 	std::map<long, long> tab;
 
 	std::ifstream myfile ("Day13Input");
-	if (myfile.is_open())
-	{
+	if (myfile.is_open()) {
+        std::string input;
+
         int i = 0;
 		while (getline(myfile, input, ','))
             tab[i++] = std::stol(input);
@@ -262,7 +262,7 @@ int main(void)
         return 1;
     }
 
-    if (!firstHalf)
+    if (!first_half)
         tab[0] = 2;
 
     Program prog(tab);
@@ -271,7 +271,7 @@ int main(void)
     out = prog.run();
     Display arcade = init_display(out);
     
-    if (firstHalf) {
+    if (first_half) {
         arcade.print();
         for (unsigned long i=0; i<out.size(); i+=3) {
             if (out[i+2] == 2)

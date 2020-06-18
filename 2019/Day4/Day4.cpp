@@ -4,11 +4,11 @@
 #include <string>
 #include <vector>
 
-bool has_double(int number, double firstHalf)
+bool has_double(int number, double first_half)
 {
     std::string num = std::to_string(number);
     for (int i=0; i<5; ++i) {
-        if (firstHalf) {
+        if (first_half) {
             if (num[i] == num[i+1])
                 return true;
         } else {
@@ -33,15 +33,15 @@ bool increase(int number)
 
 int main(void)
 {
-    bool firstHalf = false;
+    bool first_half = false;
 	std::string input;
 	int ans = 0;
 	std::vector<int> tab;
 
 	std::ifstream myfile ("Day4Input");
-	if (myfile.is_open())
-	{
-		getline(myfile, input);
+	if (myfile.is_open()) {
+        getline(myfile, input);
+
 		myfile.close();
 	} else {
         std::cout << "Unable to open file" << std::endl;
@@ -54,7 +54,7 @@ int main(void)
     max = std::stoi(input.substr(pos+1));
 
     for (int number=min; number<max; ++number) {
-        if (has_double(number, firstHalf) && increase(number))
+        if (has_double(number, first_half) && increase(number))
             ++ans;
     }
 

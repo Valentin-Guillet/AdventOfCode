@@ -10,7 +10,7 @@ int main(void)
 	std::string input;
 	int ans = 0;
 	std::vector<int> tab;
-	bool firstHalf = false;
+	bool first_half = false;
 
 	std::ifstream myfile ("Day9Input");
 	if (myfile.is_open())
@@ -29,7 +29,7 @@ int main(void)
 			if (input[pos] == '{') {
 				level++;
 			} else if (input[pos] == '}') {
-				if (firstHalf) ans += level;
+				if (first_half) ans += level;
 				level--;
 			} else if (input[pos] == '<') {
 				in_garbage = true;
@@ -39,7 +39,7 @@ int main(void)
 				pos++;
 			} else if (input[pos] == '>') {
 				in_garbage = false;
-			} else if (!firstHalf) {
+			} else if (!first_half) {
 				ans++;
 			}
 		}

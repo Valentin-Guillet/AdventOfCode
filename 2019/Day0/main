@@ -1,5 +1,0 @@
-#!/bin/bash
-
-name=$(basename $(pwd))
-
-g++ -std=c++17 -Wall -Wextra -o $name $name.cpp && echo "Compilation successful !" && ./$name

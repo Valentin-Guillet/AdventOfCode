@@ -7,8 +7,8 @@
 #include <algorithm>
 #include <functional>
 
-const int SIZE = 36;
 
+const int SIZE = 36;
 
 using Coord = std::pair<int, int>;
 using Angle = std::pair<int, int>;
@@ -104,27 +104,28 @@ int main(void)
 {
     using namespace std::placeholders;
 
-    bool firstHalf = false;
-	std::string input;
+    bool first_half = false;
 	int ans = 0;
     int tab[SIZE][SIZE];
 
 	std::ifstream myfile ("Day10Input");
-	if (myfile.is_open())
-	{
+	if (myfile.is_open()) {
+        std::string input;
+
         int j = 0;
 		while (getline(myfile, input)) {
             for (int i=0; i<SIZE; ++i)
                 tab[j][i] = (int) (input[i] == '#');
             j++;
         }
+
 		myfile.close();
 	} else {
         std::cout << "Unable to open file" << std::endl;
         return 1;
     }
 
-    if (firstHalf)
+    if (first_half)
     {
         int value, posx, posy;
         for (int j=0; j<SIZE; ++j) {

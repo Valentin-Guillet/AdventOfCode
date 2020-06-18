@@ -45,22 +45,22 @@ std::vector<int> apply_phase2(std::vector<int> input)
 
 int main(void)
 {
-    bool firstHalf = false;
+    bool first_half = false;
 	std::string input;
     std::vector<int> tab;
     int ans = 0;
 
 	std::ifstream myfile ("Day16Input");
-	if (myfile.is_open())
-	{
+	if (myfile.is_open()) {
 		getline(myfile, input);
+
 		myfile.close();
 	} else {
         std::cout << "Unable to open file" << std::endl;
         return 1;
     }
 
-    if (firstHalf) {
+    if (first_half) {
         for (char c : input)
             tab.push_back(c - '0');
 

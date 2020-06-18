@@ -8,8 +8,8 @@
 int run_program(std::vector<int> tab, bool debug=false)
 {
     int pos = 0;
-    while (tab[pos] == 1 || tab[pos] == 2)
-    {
+    while (tab[pos] == 1 || tab[pos] == 2) {
+
         switch (tab[pos]) {
             case 1:
                 tab[tab[pos+3]] = tab[tab[pos+1]] + tab[tab[pos+2]];
@@ -30,8 +30,7 @@ int run_program(std::vector<int> tab, bool debug=false)
                 return 1;
         }
 
-        if (debug)
-        {
+        if (debug) {
             for (int value : tab)
                 std::cout << value << ", ";
             std::cout << std::endl;
@@ -44,14 +43,14 @@ int run_program(std::vector<int> tab, bool debug=false)
 
 int main(void)
 {
-    bool firstHalf = false;
-	std::string input;
+    bool first_half = false;
 	int ans = 0;
 	std::vector<int> tab, tab2;
 
 	std::ifstream myfile ("Day2Input");
-	if (myfile.is_open())
-	{
+	if (myfile.is_open()) {
+        std::string input;
+
 		while (getline(myfile, input, ','))
             tab.push_back(std::stoi(input));
 
@@ -61,9 +60,9 @@ int main(void)
         return 1;
     }
 
-    if (firstHalf)
-    {
+    if (first_half) {
         ans = run_program(tab);
+
     } else {
         bool found = false;
         

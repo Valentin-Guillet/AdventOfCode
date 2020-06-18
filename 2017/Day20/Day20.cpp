@@ -10,7 +10,7 @@
 int main(void)
 {
 	std::string input;
-	bool firstHalf = false;
+	bool first_half = false;
 	int ans = 1000;
 	int particules[1000][9];
 	std::vector<int> indexes;
@@ -65,7 +65,7 @@ int main(void)
 		}
 	}
 
-	if (firstHalf) {
+	if (first_half) {
 		long min = 1000000000000;
 		for (int i = 0; i < 1000; ++i) {
 			long dist = abs(particules[i][0]) + abs(particules[i][1]) + abs(particules[i][2]);

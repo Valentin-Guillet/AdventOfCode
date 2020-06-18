@@ -7,7 +7,7 @@
 
 int main(void)
 {
-	bool firstHalf = false;
+	bool first_half = false;
 	std::string input;
 	std::vector<int> tab;
 	int ans = 0;
@@ -31,7 +31,7 @@ int main(void)
 				}
 				i++;
 			}
-			if (firstHalf) {
+			if (first_half) {
 				int min = 0, max = 0;
 				min = *std::min_element(tab.begin(), tab.end());
 				max = *std::max_element(tab.begin(), tab.end());

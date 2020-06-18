@@ -49,7 +49,7 @@ int find(std::vector<Pos3D>& seen, Pos3D state, bool same)
 class Maze
 {
     private:
-        bool firstHalf;
+        bool first_half;
         int sizeX, sizeY;
         std::map<Pos, char> maze;
         std::map<Pos, Pos> warps;
@@ -139,7 +139,7 @@ class Maze
                     neighbours.push_back({neigh, state.depth, state.length+1});
                 } else if ('A' <= maze[neigh] && maze[neigh] <= 'Z') {
 
-                    if (firstHalf) {
+                    if (first_half) {
                         neighbours.push_back({warps[state.pos], state.depth, state.length+1});
 
                     } else {
@@ -182,8 +182,8 @@ class Maze
         }
 
     public:
-        Maze(std::vector<std::string> tab, bool firstHalf) {
-            firstHalf = firstHalf;
+        Maze(std::vector<std::string> tab, bool first_half) {
+            first_half = first_half;
             sizeX = tab[0].size();
             sizeY = tab.size();
 
@@ -244,14 +244,14 @@ class Maze
 
 int main(void)
 {
-    bool firstHalf = true;
-	std::string input;
+    bool first_half = true;
 	int ans = 0;
 	std::vector<std::string> tab;
 
 	std::ifstream myfile ("Day20Input");
-	if (myfile.is_open())
-	{
+	if (myfile.is_open()) {
+        std::string input;
+
 		while (getline(myfile, input))
             tab.push_back(input);
 
@@ -261,7 +261,7 @@ int main(void)
         return 1;
     }
 
-    Maze maze(tab, firstHalf);
+    Maze maze(tab, first_half);
 
     ans = maze.solve();
 

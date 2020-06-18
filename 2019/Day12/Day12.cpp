@@ -102,14 +102,14 @@ int get_period(Moon moons[4], int i)
 
 int main(void)
 {
-    bool firstHalf = false;
-	std::string input;
+    bool first_half = false;
 	long long ans = 0;
 	Moon moons[4];
 
 	std::ifstream myfile ("Day12Input");
-	if (myfile.is_open())
-	{
+	if (myfile.is_open()) {
+        std::string input;
+
         std::regex rgx("<x=(-?[0-9]+), y=(-?[0-9]+), z=(-?[0-9]+)>");
         std::smatch match;
         int i = 0;
@@ -124,13 +124,14 @@ int main(void)
             moons[i].set_pos(x, y, z);
             i++;
         }
+
 		myfile.close();
 	} else {
         std::cout << "Unable to open file" << std::endl;
         return 1;
     }
 
-    if (firstHalf)
+    if (first_half)
     {
         for (int count=0; count<1000; ++count) {
             for (int i=0; i<4; ++i) {

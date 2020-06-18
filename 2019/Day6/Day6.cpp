@@ -19,14 +19,14 @@ struct node {
 
 int main(void)
 {
-    bool firstHalf = false;
-	std::string input;
+    bool first_half = false;
 	int ans = 0;
 	std::vector<link> tab;
 
 	std::ifstream myfile ("Day6Input");
-	if (myfile.is_open())
-	{
+	if (myfile.is_open()) {
+        std::string input;
+
         while (getline(myfile, input)) {
             link my_link;
             int pos = input.find(')');
@@ -34,6 +34,7 @@ int main(void)
             my_link.child = input.substr(pos+1);
             tab.push_back(my_link);
         }
+
 		myfile.close();
 	} else {
         std::cout << "Unable to open file" << std::endl;
@@ -43,7 +44,7 @@ int main(void)
     std::queue<node> waiting;
     node current, child;
 
-    if (firstHalf)
+    if (first_half)
     {
         node root = {"COM", 0};
         waiting.push(root);

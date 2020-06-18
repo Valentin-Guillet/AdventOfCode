@@ -170,14 +170,14 @@ long find_by_dichotomy(Program prog, long target)
 
 int main(void)
 {
-    bool firstHalf = false;
-	std::string input;
+    bool first_half = false;
     int ans = 0;
 	std::unordered_map<long, long> tab;
 
 	std::ifstream myfile ("Day19Input");
-	if (myfile.is_open())
-	{
+	if (myfile.is_open()) {
+        std::string input;
+
         int i = 0;
 		while (getline(myfile, input, ','))
             tab[i++] = std::stol(input);
@@ -190,7 +190,7 @@ int main(void)
 
     Program prog(tab);
 
-    if (firstHalf) {
+    if (first_half) {
         long output;
         for (long y=0; y<50; ++y) {
             for (long x=0; x<50; ++x) {

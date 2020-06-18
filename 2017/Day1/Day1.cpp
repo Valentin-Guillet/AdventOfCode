@@ -16,18 +16,18 @@ int main(void)
 	}
 	else std::cout << "Unable to open file"; 
 
-	std::cout << "Input : " << input << std::endl;
-
 	int away = input.length() / 2;
 
-	for (int i = 0; i < input.length(); ++i)
-	{
-		int index = i+away;
-		if (index >= input.length()) {index -= input.length();}
-		if (input[i] == input[index]) {
+	for (unsigned int i=0; i<input.length(); ++i) {
+		unsigned int index = i + away;
+
+		if (index >= input.length())
+            index -= input.length();
+
+		if (input[i] == input[index])
 			ans += input[i] - '0';
-		}
 	}
+
 	std::cout << "Answer : " << ans << std::endl;
 	return 0;
 }

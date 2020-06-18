@@ -156,13 +156,13 @@ class Program
 
 int main(void)
 {
-	std::string input;
     int ans = 0;
 	std::unordered_map<long, long> tab;
 
 	std::ifstream myfile ("Day25Input");
-	if (myfile.is_open())
-	{
+	if (myfile.is_open()) {
+        std::string input;
+
         int i = 0;
 		while (getline(myfile, input, ','))
             tab[i++] = std::stol(input);

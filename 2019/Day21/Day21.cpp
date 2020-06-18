@@ -162,14 +162,14 @@ int run(std::unordered_map<long, long> tab, std::string script)
 
 int main(void)
 {
-    bool firstHalf = false;
-	std::string input;
+    bool first_half = false;
     int ans = 0;
 	std::unordered_map<long, long> tab;
 
 	std::ifstream myfile ("Day21Input");
-	if (myfile.is_open())
-	{
+	if (myfile.is_open()) {
+        std::string input;
+
         int i = 0;
 		while (getline(myfile, input, ','))
             tab[i++] = std::stol(input);
@@ -181,7 +181,7 @@ int main(void)
     }
 
 
-    if (firstHalf) {
+    if (first_half) {
         std::string script;
         script.append("NOT C J\n");
         script.append("AND D J\n");

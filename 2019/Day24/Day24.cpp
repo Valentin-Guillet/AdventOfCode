@@ -148,14 +148,14 @@ void debug(std::map<int, bool[25]>& tab) {
 
 int main(void)
 {
-    bool firstHalf = false;
-	std::string input;
+    bool first_half = false;
 	int ans = 0;
     std::map<int, bool[25]> tab;
 
 	std::ifstream myfile ("Day24Input");
-	if (myfile.is_open())
-	{
+	if (myfile.is_open()) {
+        std::string input;
+
         int i = 0;
         while (getline(myfile, input)) {
             for (char c : input) {
@@ -169,7 +169,7 @@ int main(void)
         return 1;
     }
 
-    if (firstHalf) {
+    if (first_half) {
         std::unordered_set<int> seen;
         ans = compute_biodiversity(tab);
 

@@ -100,12 +100,13 @@ tuplet run_program(std::vector<int> tab, int pos, int nb_inputs, int phase, int 
 
 int main(void)
 {
-	std::string input, ans;
+	std::string ans;
 	std::vector<int> tab;
 
 	std::ifstream myfile ("Day7Input");
-	if (myfile.is_open())
-	{
+	if (myfile.is_open()) {
+        std::string input;
+
 		while (getline(myfile, input, ','))
             tab.push_back(std::stoi(input));
 

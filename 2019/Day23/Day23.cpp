@@ -167,14 +167,14 @@ class Program
 
 int main(void)
 {
-    bool firstHalf = false;
-	std::string input;
+    bool first_half = false;
     int ans = 0;
 	std::unordered_map<long, long> tab;
 
 	std::ifstream myfile ("Day23Input");
-	if (myfile.is_open())
-	{
+	if (myfile.is_open()) {
+        std::string input;
+
         int i = 0;
 		while (getline(myfile, input, ','))
             tab[i++] = std::stol(input);
@@ -206,7 +206,7 @@ int main(void)
 
                 if (packet.dest == 255) {
 
-                    if (firstHalf) {
+                    if (first_half) {
                         ans = packet.y;
                     } else {
                         NAT = packet;

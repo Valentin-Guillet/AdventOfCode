@@ -2,20 +2,19 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include <vector>
 
 int main(void)
 {
-    bool firstHalf = false;
-	std::string input;
+    bool first_half = false;
 	int ans = 0;
 
 	std::ifstream myfile ("Day1Input");
-	if (myfile.is_open())
-	{
+	if (myfile.is_open()) {
+        std::string input;
+
         while (getline(myfile, input)) {
             int fuel = std::stoi(input) / 3 - 2;
-            if (firstHalf)
+            if (first_half)
                 ans += std::stoi(input) / 3 - 2;
             else {
                 while (fuel > 0) {

@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 
+
 const int HEIGHT = 6;
 const int WIDTH = 25;
 
@@ -45,15 +46,15 @@ int get_pixel(int image[][HEIGHT][WIDTH], int nb_layers, int h, int w)
 
 int main(void)
 {
-    bool firstHalf = false;
+    bool first_half = false;
 	std::string input;
 	int ans = 0;
 	std::vector<int> tab;
 
 	std::ifstream myfile ("Day8Input");
-	if (myfile.is_open())
-	{
+	if (myfile.is_open()) {
 		getline(myfile, input);
+
 		myfile.close();
 	} else {
         std::cout << "Unable to open file" << std::endl;
@@ -81,7 +82,7 @@ int main(void)
 
     // disp_image(image, nb_layers);
 
-    if (firstHalf) {
+    if (first_half) {
         ans = count(image[index], 1) * count(image[index], 2);
 
         std::cout << "Answer : " << ans << std::endl;

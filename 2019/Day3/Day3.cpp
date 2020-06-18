@@ -100,17 +100,18 @@ std::vector<std::pair<int, int>> build_wire(std::string wire, map& grid, int id)
 
 int main(void)
 {
-    bool firstHalf = false;
+    bool first_half = false;
 	std::string wire1, wire2;
 	int ans = 0;
     std::vector<std::pair<int, int>> intersections;
     map grid;
 
 	std::ifstream myfile ("Day3Input");
-	if (myfile.is_open())
-	{
+	if (myfile.is_open()) {
+
 		getline(myfile, wire1);
 		getline(myfile, wire2);
+
 		myfile.close();
 	} else {
         std::cout << "Unable to open file";
@@ -124,7 +125,7 @@ int main(void)
 
     ans = 1000000000;
     for (std::pair<int, int> pos : intersections) {
-        if (firstHalf) {
+        if (first_half) {
             if (abs(pos.first) + abs(pos.second) < ans)
                 ans = abs(pos.first) + abs(pos.second);
         } else {

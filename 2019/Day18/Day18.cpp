@@ -167,7 +167,7 @@ struct State
 class Maze
 {
     private:
-        bool firstHalf;
+        bool first_half;
 
         int origX, origY;
         int sizeX, sizeY;
@@ -249,7 +249,7 @@ class Maze
                 Tree *subtree = to_see.front();
                 to_see.pop();
                 // Door and key not obtained
-                if (firstHalf && 'A' <= subtree->tag && subtree->tag <= 'Z'
+                if (first_half && 'A' <= subtree->tag && subtree->tag <= 'Z'
                         && obtained_keys.find(subtree->tag+' ') == obtained_keys.end())
                     continue;
 
@@ -343,8 +343,8 @@ class Maze
             delete tree;
         }
 
-        void build(bool firstHalf) {
-            this->firstHalf = firstHalf;
+        void build(bool first_half) {
+            this->first_half = first_half;
 
             maze[{origX-1, origY}] = '#';
             maze[{origX, origY+1}] = '#';
@@ -390,7 +390,7 @@ class Maze
         }
 
         int get_shortest_path() {
-            if (firstHalf) {
+            if (first_half) {
                 return get_shortest_path(this->tree) + 2;
             } else {
                 int length = 0;
@@ -421,14 +421,14 @@ class Maze
 
 int main(void)
 {
-    bool firstHalf = false;
-	std::string input;
+    bool first_half = false;
 	int ans = 0;
 	std::vector<std::string> tab;
 
 	std::ifstream myfile ("Day18Input");
-	if (myfile.is_open())
-	{
+	if (myfile.is_open()) {
+        std::string input;
+
 		while (getline(myfile, input))
             tab.push_back(input);
 
@@ -440,7 +440,7 @@ int main(void)
 
 
     Maze maze(tab);
-    maze.build(firstHalf);
+    maze.build(first_half);
 
     // maze.display();
     // maze.display_tree();

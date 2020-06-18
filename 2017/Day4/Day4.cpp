@@ -8,7 +8,7 @@
 
 int main(void)
 {
-	bool firstHalf = true;
+	bool first_half = true;
 	std::string input;
 	std::vector<std::unordered_map<char, int>> tab;
 	int ans = 0;

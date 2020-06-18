@@ -45,15 +45,15 @@ __int128 modular_pow(int value) {
 
 int main(void)
 {
-    bool firstHalf = false;
-	std::string input;
+    bool first_half = false;
 	long long int ans = 0;
     std::vector<int> cards;
     std::vector<std::string> techniques;
 
 	std::ifstream myfile ("Day22Input");
-	if (myfile.is_open())
-	{
+	if (myfile.is_open()) {
+        std::string input;
+
 		while (getline(myfile, input))
             techniques.push_back(input);
 
@@ -63,7 +63,7 @@ int main(void)
         return 1;
     }
 
-    if (firstHalf) {
+    if (first_half) {
 
         for (int i=0; i<M; ++i) {
             cards.push_back(i);

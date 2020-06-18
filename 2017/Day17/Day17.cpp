@@ -7,10 +7,10 @@
 int main(void)
 {
 	int ans = 0;
-	bool firstHalf = false;
+	bool first_half = false;
 	std::vector<int> tab;
 
-	if (firstHalf) {
+	if (first_half) {
 		tab.push_back(0);
 		int pos = 0;
 	

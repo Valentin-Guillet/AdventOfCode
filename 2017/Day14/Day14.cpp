@@ -1,6 +1,5 @@
 
 #include "iostream"
-#include "fstream"
 #include <string>
 #include <vector>
 #include <queue>
@@ -75,7 +74,7 @@ int main(void)
 {
 	std::string input;
 	int ans = 0;
-	bool firstHalf = false;
+	bool first_half = false;
 
 	std::string grid[128];
 	for (int i = 0; i < 128; ++i) {
@@ -101,12 +100,12 @@ int main(void)
 				case 'f': bin_hash += "1111"; break;
 			}
 		}
-		if (firstHalf)
+		if (first_half)
 			ans += std::count(bin_hash.begin(), bin_hash.end(), '1');
 		grid[i] = bin_hash;
 	}
 
-	if (firstHalf) {
+	if (first_half) {
 		std::cout << "Answer : " << ans << std::endl;
 		return 0;
 	}

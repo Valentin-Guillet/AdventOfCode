@@ -19,11 +19,11 @@ int around(int tab[1000][1000], int x, int y)
 int main(void)
 {
 	int ans = 0;
-	bool firstHalf = false;
+	bool first_half = false;
 
 	int input = 368078;
 
-	if (firstHalf)
+	if (first_half)
 	{
 		int corner = ceil(sqrt(input));
 		if (corner % 2 == 0) {corner++;}

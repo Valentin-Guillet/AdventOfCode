@@ -309,14 +309,14 @@ class Program
 
 int main(void)
 {
-    bool firstHalf = false;
-	std::string input;
+    bool first_half = false;
     int ans = 0;
 	std::unordered_map<long, long> tab;
 
 	std::ifstream myfile ("Day15Input");
-	if (myfile.is_open())
-	{
+	if (myfile.is_open()) {
+        std::string input;
+
         int i = 0;
 		while (getline(myfile, input, ','))
             tab[i++] = std::stol(input);
@@ -339,7 +339,7 @@ int main(void)
     }
     std::cout << "Maze built !" << std::endl;
 
-    if (firstHalf) {
+    if (first_half) {
         ans = maze.get_dist();
     } else {
         ans = maze.get_max_dist();
