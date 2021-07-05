@@ -6,7 +6,7 @@
 #include <algorithm>
 
 
-class Nanobot { 
+class Nanobot {
     public:
         Nanobot(std::string input) {
             int id1 = input.find(',');

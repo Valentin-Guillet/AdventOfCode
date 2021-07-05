@@ -120,7 +120,7 @@ bool Unit::attack(std::vector<Unit*> enemies) {
 
         // ...and from the grid...
         grid[lowest_enemy->pos] = '.';
-        
+
         // ...and finally, free it
         delete lowest_enemy;
     }

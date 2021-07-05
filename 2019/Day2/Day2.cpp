@@ -65,7 +65,7 @@ int main(void)
 
     } else {
         bool found = false;
-        
+
         for (int noun = 0; noun < 100; ++noun) {
             for (int verb = 0; verb < 100; ++verb) {
                 tab2 = tab;

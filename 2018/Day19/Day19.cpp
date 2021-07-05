@@ -38,7 +38,7 @@ class Program {
 
             std::string line = program[id];
             std::string instr = line.substr(0, 4);
-            
+
             std::stringstream stream(line.substr(5));
             int a, b, c;
             stream >> a >> b >> c;
@@ -122,7 +122,7 @@ int main()
 
     // A short analysis of the program show that it first initializes register 2 to a value,
     // and then find all divisors of that number and sums them in register 0
-    
+
     // In first half, registers[2] == 887 which is prime, so ans = 1 + 887 = 888
     // In second half, registers[2] == 10551287 which can be written as:
     // 1 * 10551287 = 127 * 83081 = 251 * 42037 = 331 * 31877

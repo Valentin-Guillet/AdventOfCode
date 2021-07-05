@@ -159,7 +159,7 @@ class Program
                         outputs.push_back(*arg1);
                         pos += 2;
                         break;
-                    
+
                     case 5:
                         if (*arg1 != 0) {
                             pos = *arg2;
@@ -270,7 +270,7 @@ int main(void)
 
     out = prog.run();
     Display arcade = init_display(out);
-    
+
     if (first_half) {
         arcade.print();
         for (unsigned long i=0; i<out.size(); i+=3) {

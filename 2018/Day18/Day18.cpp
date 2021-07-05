@@ -97,7 +97,7 @@ int main()
 
         // The pattern started at the seen[grid]-th minute and finish now (i.e. i-th minute)
         int len_cycle = i - seen[grid];
-        
+
         // We already applied i step, so we need to substract them to the target number
         long n = 1000000000 - i;
 

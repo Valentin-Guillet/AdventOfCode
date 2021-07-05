@@ -22,7 +22,7 @@ class Chem
         unsigned long nb_prod = 0;
 
         Chem(std::pair<std::string, unsigned long> init) : name(init.first), stochio(init.second) {}
-        
+
         void reset() {
             needed = 0;
             processed_links = 0;

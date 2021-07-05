@@ -238,7 +238,7 @@ int main(void)
         if (idle_countdown > 0)
             idle_countdown--;
     }
-            
+
 	std::cout << "Answer : " << ans << std::endl;
 	return 0;
 }

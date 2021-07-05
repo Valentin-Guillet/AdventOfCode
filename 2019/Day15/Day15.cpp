@@ -256,7 +256,7 @@ class Program
                         base_ref_bck = base_ref;
                         return *arg1;
                         break;
-                    
+
                     case 5:
                         if (*arg1 != 0) {
                             pos = *arg2;

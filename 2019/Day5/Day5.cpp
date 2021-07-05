@@ -37,7 +37,7 @@ void run_program(std::vector<int> tab, bool debug=false)
                 std::cout << tab[tab[pos+1]] << std::endl;
                 pos += 2;
                 break;
-            
+
             case 5:
                 if (arg1 != 0) {
                     pos = arg2;

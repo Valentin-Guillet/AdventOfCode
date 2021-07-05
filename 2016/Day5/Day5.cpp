@@ -28,7 +28,7 @@ int main()
         }
         index++;
     }
-    
+
 	cout << "Answer : " << ans << endl;
 	return 0;
 }

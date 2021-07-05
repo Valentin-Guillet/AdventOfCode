@@ -25,7 +25,7 @@ int main()
 {
     bool first_half = false;
 	int ans = 0;
-    std::vector<int> tab; 
+    std::vector<int> tab;
 
     std::ifstream myfile ("Day1Input");
 	if (myfile.is_open()) {

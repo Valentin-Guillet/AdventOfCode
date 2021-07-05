@@ -33,7 +33,7 @@ int main(void)
 		}
 		myfile.close();
 	}
-	else std::cout << "Unable to open file"; 
+	else std::cout << "Unable to open file";
 
 	for (int i = 0; i < 1000; ++i)
 	{

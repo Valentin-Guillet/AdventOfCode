@@ -18,7 +18,7 @@ const std::set<std::pair<int, int>> SEA_MONSTER = {
         {1, 0}, {1, 5}, {1, 6}, {1, 11}, {1, 12}, {1, 17}, {1, 18}, {1, 19},
         {2, 1}, {2, 4}, {2, 7}, {2, 10}, {2, 13}, {2, 16}
 };
-/*                     # 
+/*                     #
      #    ##    ##    ###
       #  #  #  #  #  #      */
 
@@ -96,7 +96,7 @@ struct Tile {
         auto [x, y] = transform_coords(W-1, i, j, rotation, flip);
         return tile[x][y];
     }
-    
+
     bool is_corner(TileMap const& edge_values) {
         int cant_be_linked = 0;
         for (size_t i=0; i<4; ++i) {

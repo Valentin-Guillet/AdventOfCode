@@ -16,8 +16,8 @@ bool is_letter(char c) {
 
 std::vector<Pos> get_neighbours(int i, int j) {
     return {{i, j-1}, {i+1, j}, {i, j+1}, {i-1, j}};
-} 
-        
+}
+
 
 struct Tree
 {
@@ -326,7 +326,7 @@ class Maze
         Maze(std::vector<std::string> input) {
             sizeY = input.size();
             sizeX = input[0].size();
-            
+
             for (int j=0; j<sizeY; ++j) {
                 for (int i=0; i<sizeX; ++i) {
                     maze[{i, j}] = input[j][i];

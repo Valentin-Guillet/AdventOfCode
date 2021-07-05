@@ -44,7 +44,7 @@ int main(void)
 		}
 		myfile.close();
 	}
-	else std::cout << "Unable to open file"; 
+	else std::cout << "Unable to open file";
 
 	std::cout << "Answer : " << ans << std::endl;
 	return 0;

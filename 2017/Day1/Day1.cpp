@@ -14,7 +14,7 @@ int main(void)
 		getline(myfile, input);
 		myfile.close();
 	}
-	else std::cout << "Unable to open file"; 
+	else std::cout << "Unable to open file";
 
 	int away = input.length() / 2;
 

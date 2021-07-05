@@ -72,7 +72,7 @@ class Program
                             *arg1 = inputY;
                         }
                         first_coord = false;
-                        
+
                         pos += 2;
                         break;
 
@@ -80,7 +80,7 @@ class Program
                         pos += 2;
                         return *arg1;
                         break;
-                    
+
                     case 5:
                         if (*arg1 != 0) {
                             pos = *arg2;
@@ -234,7 +234,7 @@ int main(void)
             }
         }
         std::cout << "Final x = " << x << ", y = " << y << std::endl;
-        
+
         ans = 10000 * x + y;
     }
 

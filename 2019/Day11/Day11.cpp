@@ -85,7 +85,7 @@ class Program
                             return outputs;
                         }
                         break;
-                    
+
                     case 5:
                         if (*arg1 != 0) {
                             pos = *arg2;

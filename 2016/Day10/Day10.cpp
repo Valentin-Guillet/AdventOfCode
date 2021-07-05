@@ -103,7 +103,7 @@ int main()
                     outputs[high_id] = new Bot(high_id, true);
                 high = outputs[high_id];
             }
-            
+
             bots[bot_id]->set_targets(low, high);
         }
     }

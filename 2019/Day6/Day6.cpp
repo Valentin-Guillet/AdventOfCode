@@ -48,7 +48,7 @@ int main(void)
     {
         node root = {"COM", 0};
         waiting.push(root);
-        
+
         while (!waiting.empty()) {
             current = waiting.front();
             waiting.pop();

@@ -33,7 +33,7 @@ int main(void)
 		}
 		myfile.close();
 	}
-	else std::cout << "Unable to open file"; 
+	else std::cout << "Unable to open file";
 	
 	bool seen[2000] = {false};
 	while(std::find(std::begin(seen), std::end(seen), false) != std::end(seen))

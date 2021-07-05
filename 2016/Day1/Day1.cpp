@@ -38,7 +38,7 @@ int main()
         } else {
             orientation = {orientation.second, -orientation.first};
         }
-        
+
         int dist = stoi(cmd.substr(1));
         for (int i=0; i<dist; ++i) {
             x += orientation.first;

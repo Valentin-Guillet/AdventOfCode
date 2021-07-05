@@ -15,7 +15,7 @@ std::vector<int> increment(std::vector<int> cards, int value) {
     std::vector<int> new_cards;
     for (unsigned int i=0; i<cards.size(); ++i)
         new_cards.push_back(0);
-    
+
     int pos = 0;
     for (unsigned int i=0; i<cards.size(); ++i) {
         new_cards[pos] = cards[i];
@@ -84,7 +84,7 @@ int main(void)
                 cards = increment(cards, value);
             }
         }
-        
+
         for (int i=0; i<M; ++i) {
             if (cards[i] == 2019)
                 ans = i;

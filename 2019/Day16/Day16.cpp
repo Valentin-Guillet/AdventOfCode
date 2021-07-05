@@ -69,7 +69,7 @@ int main(void)
 
     } else {
 
-        int offset = std::stoi(input.substr(0, 7)); 
+        int offset = std::stoi(input.substr(0, 7));
         std::string tmp = input.substr(offset % input.size());
 
         while (tmp.size() < 10000 * input.size() - offset)
@@ -84,7 +84,7 @@ int main(void)
     }
 
     for (int i=0; i<8; ++i) {
-        ans = ans*10 + tab[i]; 
+        ans = ans*10 + tab[i];
     }
 
 	std::cout << "Answer : " << ans << std::endl;

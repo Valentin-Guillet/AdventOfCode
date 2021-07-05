@@ -10,7 +10,7 @@ using namespace std;
 
 
 class MyHasher
-{ 
+{
     private:
         string salt;
         bool first_half;
@@ -36,7 +36,7 @@ class MyHasher
 
             return hash_map[to_hash];
         }
-        
+
 };
 
 pair<bool, char> is_possible_key(string hash) {

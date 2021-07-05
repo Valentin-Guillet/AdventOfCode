@@ -32,7 +32,7 @@ class Computer {
                 int id = args.find(' ');
                 string arg1 = args.substr(0, id);
                 string arg2 = args.substr(id+1);
-                
+
                 // Execute `cpy` only if valid instr (due to `tgl`)
                 if ('a' <= arg2[0] && arg2[0] <= 'z') {
                     int value_arg1 = 0;
@@ -56,7 +56,7 @@ class Computer {
                 int id = args.find(' ');
                 string arg1 = args.substr(0, id);
                 string arg2 = args.substr(id+1);
-                
+
                 int value_arg1 = 0;
                 if (arg1.size() == 1 && 'a' <= arg1[0] && arg1[0] <= 'z') {
                     value_arg1 = registers[arg1[0]];

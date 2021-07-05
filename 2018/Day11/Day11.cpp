@@ -33,7 +33,7 @@ int main(void)
     if (first_half) {
         for (int y=0; y<298; ++y) {
             for (int x=0; x<298; ++x) {
-                int pow = power[y][x] + power[y][x+1] + power[y][x+2] 
+                int pow = power[y][x] + power[y][x+1] + power[y][x+2]
                           + power[y+1][x] + power[y+1][x+1] + power[y+1][x+2]
                           + power[y+2][x] + power[y+2][x+1] + power[y+2][x+2];
 

@@ -50,7 +50,7 @@ tuplet run_program(std::vector<int> tab, int pos, int nb_inputs, int phase, int 
             case 4:
                 return {tab, tab[tab[pos+1]], pos+2, nb_inputs};
                 break;
-            
+
             case 5:
                 if (arg1 != 0) {
                     pos = arg2;
@@ -149,7 +149,7 @@ int main(void)
 
     } while (std::next_permutation(phases, phases+5));
 
-    std::cout << "Max : " << max << std::endl; 
-    std::cout << "Answer : " << ans << std::endl; 
+    std::cout << "Max : " << max << std::endl;
+    std::cout << "Answer : " << ans << std::endl;
 	return 0;
 }

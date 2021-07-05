@@ -9,7 +9,7 @@
 long count_arrangements(std::vector<int> adapters, size_t index=1) {
     if (index == adapters.size()-1)
         return 1;
-    
+
     int ans = count_arrangements(adapters, index+1);
     if (adapters[index+1] - adapters[index-1] <= 3) {
         adapters.erase(adapters.begin()+index);

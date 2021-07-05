@@ -80,7 +80,7 @@ int main()
         int n_i = n_tot / disc.n;
         auto [u_i, v_i] = euclide(disc.n, n_i);
         int e_i = v_i * n_i;
-        
+
         ans += disc.a_i * e_i;
     }
 

@@ -143,7 +143,7 @@ int main(void)
         std::cout << "Position station : (" << posx << ", " << posy << ')' << std::endl;
     } else {
         int posx = 25, posy = 31;
-        
+
         // Map creation
         Map world;
         for (int j=0; j<SIZE; ++j) {

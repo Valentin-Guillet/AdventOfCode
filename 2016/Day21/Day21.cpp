@@ -77,7 +77,7 @@ string scramble(string instr, string password, bool unsramble) {
             ans.erase(0, n);
             ans += password.substr(0, n);
         }
-            
+
 
     } else if (regex_search(instr, match, REVERSE)) {
         int id1 = stoi(match[1]), id2 = stoi(match[2]);

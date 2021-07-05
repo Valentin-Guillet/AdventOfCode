@@ -133,7 +133,7 @@ int main(void)
                 ans = grid[pos].second;
         }
     }
-    
+
 	std::cout << "Answer : " << ans << std::endl;
 	return 0;
 }

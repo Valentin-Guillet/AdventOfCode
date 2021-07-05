@@ -86,7 +86,7 @@ class Program
                         index_bck = index;
                         return *arg1;
                         break;
-                    
+
                     case 5:
                         if (*arg1 != 0) {
                             pos = *arg2;

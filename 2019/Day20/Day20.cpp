@@ -31,7 +31,7 @@ struct Pos3D
 std::vector<Pos> get_neigh(Pos pos) {
     auto [i, j] = pos;
     return {{i, j-1}, {i+1, j}, {i, j+1}, {i-1, j}};
-        
+
 }
 
 int find(std::vector<Pos3D>& seen, Pos3D state, bool same)
@@ -188,7 +188,7 @@ class Maze
             sizeY = tab.size();
 
             for (int j=0; j<sizeY; ++j) {
-                for (int i=0; i<sizeX; ++i) { 
+                for (int i=0; i<sizeX; ++i) {
                     maze[{i, j}] = tab[j][i];
                 }
             }

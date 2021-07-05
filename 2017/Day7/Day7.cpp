@@ -126,7 +126,7 @@ int main(void)
 		myfile.close();
 	}
 
-	else std::cout << "Unable to open file"; 
+	else std::cout << "Unable to open file";
 
 
 	return 0;

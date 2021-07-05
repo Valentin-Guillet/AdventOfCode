@@ -52,7 +52,7 @@ int main(void)
 
         for (char c='A'; c<='Z'; ++c) {
             int size = reduce(remove(polymer, c)).size();
-            
+
             if (size < min_size) {
                 min_size = size;
             }

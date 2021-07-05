@@ -45,14 +45,14 @@ int main(void)
 						if (i != j && tab[i] % tab[j] == 0)
 						{
 							ans += tab[i] / tab[j];
-						} 
+						}
 					}
 				}
 			}
 		}
 		myfile.close();
 	}
-	else std::cout << "Unable to open file"; 
+	else std::cout << "Unable to open file";
 
 	std::cout << "Answer : " << ans << std::endl;
 	return 0;

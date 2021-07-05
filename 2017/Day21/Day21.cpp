@@ -61,7 +61,7 @@ int main(void)
 			++div;
 	
 		copy_grid.clear();	
-		for (int i = 0; i < size/div*(div+1); ++i) 
+		for (int i = 0; i < size/div*(div+1); ++i)
 			copy_grid.push_back(std::string (size/div*(div+1), '.'));
 
 		for (int x = 0; x < size/div; ++x) {

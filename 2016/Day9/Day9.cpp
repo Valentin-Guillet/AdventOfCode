@@ -29,7 +29,7 @@ string decompress(string input) {
             input.erase(0, id_end+nb_letters+1);
         }
     }
-    
+
     return ans;
 }
 

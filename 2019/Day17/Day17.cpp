@@ -194,7 +194,7 @@ class Program
                         index_bck = index;
                         return *arg1;
                         break;
-                    
+
                     case 5:
                         if (*arg1 != 0) {
                             pos = *arg2;
@@ -280,7 +280,7 @@ int main(void)
         view.display();
         view.disp_straight_way();
         ans = view.compute_alignment();
-                    
+
     } else {
         tab[0] = 2;
         Program prog(tab);

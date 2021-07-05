@@ -68,7 +68,7 @@ void run_program(std::unordered_map<long, long> tab, bool debug=false)
                 std::cout << *arg1 << std::endl;
                 pos += 2;
                 break;
-            
+
             case 5:
                 if (*arg1 != 0) {
                     pos = *arg2;

@@ -16,7 +16,7 @@ int main(void)
 		getline(myfile, input);
 		myfile.close();
 	}
-	else std::cout << "Unable to open file"; 
+	else std::cout << "Unable to open file";
 
 	std::cout << "Input : " << input << std::endl;
 

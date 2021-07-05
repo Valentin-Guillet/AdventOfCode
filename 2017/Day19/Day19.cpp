@@ -42,7 +42,7 @@ int main(void)
 			grid.push_back(input);
 		myfile.close();
 	}
-	else std::cout << "Unable to open file"; 
+	else std::cout << "Unable to open file";
 
 	int posx = 0, posy = grid[0].find("|");
 	Direction dir = south;

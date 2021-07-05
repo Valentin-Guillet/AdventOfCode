@@ -160,7 +160,7 @@ int main()
     std::string input;
 
     std::ifstream myfile ("Day20Input");
-	if (myfile.is_open()) { 
+	if (myfile.is_open()) {
 		getline(myfile, input);
 
 		myfile.close();

@@ -85,7 +85,7 @@ int main()
             ans += screen[i][j];
         }
     }
-    
+
     display(screen);
 
 	cout << "Answer : " << ans << endl;

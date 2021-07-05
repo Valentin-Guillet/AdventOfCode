@@ -28,7 +28,7 @@ bool aligned(const Grid& points) {
     unsigned int nb_not_grouped = 0;
     for (const auto& [pos, vel] : points) {
         auto [id, x, y] = pos;
-        
+
         bool got_neigh = false;
         for (const auto& [pos, vel] : points) {
             if ((pos.x == x+1 && pos.y == y) || (pos.x == x-1 && pos.y == y)
