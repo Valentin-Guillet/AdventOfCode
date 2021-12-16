@@ -1,5 +1,0 @@
-#!/bin/bash
-
-name=$(basename $(pwd))
-
-g++ -std=c++17 -Wall -Wextra -fdiagnostics-color=always -o $name *.cpp 2>&1 && echo "Compilation successful !" && ./$name

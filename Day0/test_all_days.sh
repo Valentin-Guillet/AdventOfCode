@@ -5,11 +5,10 @@ for i in {1..25}
 do
     echo "Day $i"
     cd ./Day$i
-    [ -f main ] || ln -s ~/Documents/project-transporter/AdventOfCode/Day0/main main
-    sed -i 's/bool first_half = false;/bool first_half = true;/' Day$i.cpp
+    [ -h Makefile ] || ln -s ../../Day0/Makefile Makefile
+    make
     ./main
-    sed -i 's/bool first_half = true;/bool first_half = false;/' Day$i.cpp
-    ./main
+    ./main -s
     echo
     cd ..
 done

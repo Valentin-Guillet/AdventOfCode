@@ -1,0 +1,51 @@
+
+Lines   5    6  16        x                 z
+0       1   10   2                   z0 = input0+2
+1       1   10   4                   z1 = 26*z0+(input1+4)
+2       1   14   8                   z2 = 26*z1+(input2+8)
+3       1   11   7                   z3 = 26*z2+(input3+7)
+4       1   14  12                   z4 = 26*z3+(input4+12)
+5      26  -14   7    input4-2       z5 = z3                         // input_5 = input_4 - 2
+6      26    0  10    input3+7       z6 = z2                         // input_6 = input_3 + 7
+7       1   10  14                   z7 = 26*z2+(input7+14)
+8      26  -10   2    input7+4       z8 = z2                         // input_8 = input_7 + 4
+9       1   13   6                   z9 = 26*z2+(input9+6)
+10     26  -12   8    input9-6       z10 = z2                        // input_10 = input_9 - 6
+11     26   -3  11    input2+5       z11 = z1                        // input_11 = input_2 + 5
+12     26  -11   5    input1-7       z12 = z0                        // input_12 = input_1 - 7
+13     26   -2  11    input0         z13 = 0                         // input_13 = input_0
+
+
+input_0 in [1; 9]
+input_1 in [8; 9]
+input_2 in [1; 4]
+input_3 in [1; 2]
+input_4 in [3; 9]
+input_7 in [1; 5]
+input_9 in [7; 9]
+
+   01234567890123
+=> 99429795993929
+=> 18113181571611
+
+inp w
+mul x 0
+add x z
+mod x 26
+add x L[6]          # x = z%26 + L[6] = A
+div z L[5]          # z /= L[5]
+
+eql x w
+eql x 0             # x = (A == input ? 0 : 1)
+
+mul y 0
+add y 25
+mul y x
+add y 1             # y = (A == input ? 1 : 26)
+mul z y             # z *= y
+
+mul y 0
+add y w
+add y L[16]
+mul y x
+add z y             # z += (input + L[16]) * (A == input ? 0 : 1)
