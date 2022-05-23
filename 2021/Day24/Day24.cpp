@@ -31,7 +31,7 @@ struct ALU {
             char dst = instr[4];
 
             if (op == "inp") {
-                print(count);
+                /* print(count); */
                 count++;
                 registers[dst] = input[index++];
                 continue;
@@ -55,7 +55,7 @@ struct ALU {
                 registers[dst] = (registers[dst] == value ? 1 : 0);
         }
 
-        print();
+        /* print(); */
         return (registers['z'] == 0);
     }
 
