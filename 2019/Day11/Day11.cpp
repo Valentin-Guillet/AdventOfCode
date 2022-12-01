@@ -180,7 +180,7 @@ int main(void)
     int ans;
 	std::unordered_map<long, long> tab;
 
-	std::ifstream myfile ("Day11Input");
+	std::ifstream myfile ("input");
 	if (myfile.is_open()) {
         std::string input;
 

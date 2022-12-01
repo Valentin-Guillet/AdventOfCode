@@ -15,7 +15,7 @@ int main(void)
 	std::regex rgx("[0-9]+ <-> (.*)");
 	std::smatch sm;
 
-	std::ifstream myfile ("Day12Input");
+	std::ifstream myfile ("input");
 	if (myfile.is_open())
 	{
 		int i = 0;

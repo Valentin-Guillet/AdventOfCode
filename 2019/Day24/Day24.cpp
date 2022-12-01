@@ -152,7 +152,7 @@ int main(void)
 	int ans = 0;
     std::map<int, bool[25]> tab;
 
-	std::ifstream myfile ("Day24Input");
+	std::ifstream myfile ("input");
 	if (myfile.is_open()) {
         std::string input;
 

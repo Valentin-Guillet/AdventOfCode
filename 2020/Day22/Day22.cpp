@@ -73,7 +73,7 @@ int main()
 	int ans = 0;
     Deck player_one, player_two;
 
-    std::ifstream myfile ("Day22Input");
+    std::ifstream myfile ("input");
 	if (myfile.is_open()) {
         std::string input;
 

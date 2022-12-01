@@ -106,7 +106,7 @@ int main(void)
     std::vector<std::pair<int, int>> intersections;
     map grid;
 
-	std::ifstream myfile ("Day3Input");
+	std::ifstream myfile ("input");
 	if (myfile.is_open()) {
 
 		getline(myfile, wire1);

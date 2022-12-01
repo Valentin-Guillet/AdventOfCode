@@ -32,7 +32,7 @@ int main(void)
 	int ans = 0;
 	std::vector<Claim> tab;
 
-	std::ifstream myfile ("Day3Input");
+	std::ifstream myfile ("input");
 	if (myfile.is_open()) {
         std::string input;
 

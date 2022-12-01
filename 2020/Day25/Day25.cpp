@@ -8,7 +8,7 @@ int main()
 	long ans = 1;
     long card_public_key, door_public_key;
 
-    std::ifstream myfile ("Day25Input");
+    std::ifstream myfile ("input");
 	if (myfile.is_open()) {
         std::string input;
 

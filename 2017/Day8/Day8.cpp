@@ -36,7 +36,7 @@ int main(void)
 	std::smatch cm;
 	std::unordered_map<std::string, int> dico;
 
-	std::ifstream myfile ("Day8Input");
+	std::ifstream myfile ("input");
 	if (myfile.is_open())
 	{
 		while (getline(myfile, input)) {

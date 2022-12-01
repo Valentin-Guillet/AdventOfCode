@@ -49,7 +49,7 @@ int main(void)
     for (char c : ALPH)
         steps.push_back(Step(c));
 
-    std::ifstream myfile ("Day7Input");
+    std::ifstream myfile ("input");
 	if (myfile.is_open()) {
         std::string input;
 

@@ -34,7 +34,7 @@ int main(void)
 	long ans = 0;
 	std::unordered_set<std::string> rules;
 
-	std::ifstream myfile ("Day12Input");
+	std::ifstream myfile ("input");
 	if (myfile.is_open())
 	{
         std::string input;

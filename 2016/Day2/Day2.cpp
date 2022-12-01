@@ -33,7 +33,7 @@ int main()
 	string ans;
 	vector<string> tab;
 
-	ifstream myfile ("Day2Input");
+	ifstream myfile ("input");
 	if (myfile.is_open())
 	{
         while (getline(myfile, input))

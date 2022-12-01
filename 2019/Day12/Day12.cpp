@@ -106,7 +106,7 @@ int main(void)
 	long long ans = 0;
 	Moon moons[4];
 
-	std::ifstream myfile ("Day12Input");
+	std::ifstream myfile ("input");
 	if (myfile.is_open()) {
         std::string input;
 

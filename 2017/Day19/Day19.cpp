@@ -35,7 +35,7 @@ int main(void)
 	int ans2 = 1;
 	std::vector<std::string> grid;
 
-	std::ifstream myfile ("Day19Input");
+	std::ifstream myfile ("input");
 	if (myfile.is_open())
 	{
 		while (getline(myfile, input))

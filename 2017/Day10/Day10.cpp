@@ -32,7 +32,7 @@ int main(void)
 	int ans = 0;
 	std::vector<int> tab;
 
-	std::ifstream myfile ("Day10Input");
+	std::ifstream myfile ("input");
 	if (myfile.is_open())
 	{
 		getline(myfile, input);

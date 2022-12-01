@@ -43,11 +43,11 @@ int main(int argc, char* argv[])
     std::string polymer;
     std::unordered_map<std::string, char> rules;
 
-    std::ifstream myfile("Day14Input");
+    std::ifstream myfile("input");
     for (int i=1; i<argc; i++) {
         std::string arg(argv[i]);
         if (arg == "-t" || arg == "--test")
-            myfile = std::ifstream("testInput");
+            myfile = std::ifstream("test_input");
 
         else if (arg == "-s" || arg == "--second")
             first_half = false;

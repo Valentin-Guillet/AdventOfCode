@@ -30,7 +30,7 @@ int main(void)
 	std::string input;
 	int ans = 0;
 
-	std::ifstream myfile ("Day7Input");
+	std::ifstream myfile ("input");
 	if (myfile.is_open())
 	{
 		std::unordered_map<std::string, node> nodes;

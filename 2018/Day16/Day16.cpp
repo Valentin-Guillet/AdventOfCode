@@ -136,7 +136,7 @@ int main()
             opcode_list[i].push_back(j);
     }
 
-    std::ifstream myfile ("Day16Input");
+    std::ifstream myfile ("input");
 	if (myfile.is_open()) {
         std::string input;
 

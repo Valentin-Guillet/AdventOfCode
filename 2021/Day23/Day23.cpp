@@ -283,11 +283,11 @@ int main(int argc, char* argv[])
     int hallway[11];
     int rooms[4][4];
 
-    std::ifstream myfile("Day23Input");
+    std::ifstream myfile("input");
     for (int i=1; i<argc; i++) {
         std::string arg(argv[i]);
         if (arg == "-t" || arg == "--test")
-            myfile = std::ifstream("testInput");
+            myfile = std::ifstream("test_input");
 
         else if (arg == "-s" || arg == "--second")
             first_half = false;

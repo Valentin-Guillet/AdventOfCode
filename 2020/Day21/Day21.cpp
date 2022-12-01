@@ -14,7 +14,7 @@ int main()
     AllergenTable allergens;
     std::map<std::string, int> ingredients;
 
-    std::ifstream myfile ("Day21Input");
+    std::ifstream myfile ("input");
 	if (myfile.is_open()) {
         std::string input;
 

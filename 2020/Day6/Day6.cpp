@@ -12,7 +12,7 @@ int main()
 	int ans = 0;
     std::vector<std::unordered_set<char>> groups;
 
-    std::ifstream myfile ("Day6Input");
+    std::ifstream myfile ("input");
 	if (myfile.is_open()) {
         std::string input;
 

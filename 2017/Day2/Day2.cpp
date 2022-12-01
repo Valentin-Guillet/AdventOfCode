@@ -12,7 +12,7 @@ int main(void)
 	std::vector<int> tab;
 	int ans = 0;
 
-	std::ifstream myfile ("Day2Input");
+	std::ifstream myfile ("input");
 	if (myfile.is_open())
 	{
 		while (getline(myfile, input)) {

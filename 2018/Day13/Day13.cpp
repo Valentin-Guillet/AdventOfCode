@@ -112,7 +112,7 @@ int main(void)
     Grid grid;
     CartMap cart_map;
 
-	std::ifstream myfile ("Day13Input");
+	std::ifstream myfile ("input");
 	if (myfile.is_open()) {
         std::string input;
 

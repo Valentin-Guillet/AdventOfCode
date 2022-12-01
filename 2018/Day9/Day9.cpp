@@ -84,7 +84,7 @@ int main(void)
 	std::string input;
 	long ans = 0;
 
-	std::ifstream myfile ("Day9Input");
+	std::ifstream myfile ("input");
 	if (myfile.is_open())
 	{
 		getline(myfile, input);

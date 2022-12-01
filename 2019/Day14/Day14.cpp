@@ -71,7 +71,7 @@ int main(void)
 	unsigned long ans = 0;
     std::unordered_map<std::string, Chem*> chems;
 
-	std::ifstream myfile ("Day14Input");
+	std::ifstream myfile ("input");
 	if (myfile.is_open()) {
         std::string input;
 

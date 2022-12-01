@@ -72,7 +72,7 @@ int main(void)
 	int ans = 0;
 	std::queue<int> tab;
 
-	std::ifstream myfile ("Day8Input");
+	std::ifstream myfile ("input");
 	if (myfile.is_open()) {
         std::string input;
 

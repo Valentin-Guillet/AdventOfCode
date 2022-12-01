@@ -89,7 +89,7 @@ int main()
 	int ans = 0;
     HexGrid hexes;
 
-    std::ifstream myfile ("Day24Input");
+    std::ifstream myfile ("input");
 	if (myfile.is_open()) {
         std::string input;
 

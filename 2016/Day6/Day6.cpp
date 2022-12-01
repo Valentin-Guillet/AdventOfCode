@@ -15,7 +15,7 @@ int main()
 	string ans = "________";
 	vector<string> tab;
 
-	ifstream myfile ("Day6Input");
+	ifstream myfile ("input");
 	if (myfile.is_open())
 	{
 		while (getline(myfile, input))

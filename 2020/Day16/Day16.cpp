@@ -85,7 +85,7 @@ int main()
     std::vector<int> my_ticket;
     std::vector<std::vector<int>> nearby_tickets;
 
-    std::ifstream myfile ("Day16Input");
+    std::ifstream myfile ("input");
 	if (myfile.is_open()) {
         std::string input;
 

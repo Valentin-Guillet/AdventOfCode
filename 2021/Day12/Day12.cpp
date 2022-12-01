@@ -41,11 +41,11 @@ int main(int argc, char* argv[])
 	int ans = 0;
     Links links;
 
-    std::ifstream myfile("Day12Input");
+    std::ifstream myfile("input");
     for (int i=1; i<argc; i++) {
         std::string arg(argv[i]);
         if (arg == "-t" || arg == "--test")
-            myfile = std::ifstream("testInput");
+            myfile = std::ifstream("test_input");
 
         else if (arg == "-s" || arg == "--second")
             first_half = false;

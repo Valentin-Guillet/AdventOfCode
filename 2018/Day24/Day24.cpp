@@ -244,7 +244,7 @@ int main()
     std::vector<Group*> groups;
 	int ans = 0;
 
-    std::ifstream myfile ("Day24Input");
+    std::ifstream myfile ("input");
 	if (myfile.is_open()) {
         std::string input;
 

@@ -73,7 +73,7 @@ int main()
 	int ans = 0;
     std::vector<std::string> instructions;
 
-    std::ifstream myfile ("Day12Input");
+    std::ifstream myfile ("input");
 	if (myfile.is_open()) {
         std::string input;
 

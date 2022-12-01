@@ -38,7 +38,7 @@ int main(void)
 	std::string input;
 	std::vector<int> tab;
 
-	std::ifstream myfile ("Day24Input");
+	std::ifstream myfile ("input");
 	if (myfile.is_open())
 	{
 		while(getline(myfile, input)) {

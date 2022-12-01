@@ -42,7 +42,7 @@ int main(void)
     std::string ans;
 	std::vector<std::string> tab;
 
-	std::ifstream myfile ("Day2Input");
+	std::ifstream myfile ("input");
 	if (myfile.is_open()) {
         std::string input;
 

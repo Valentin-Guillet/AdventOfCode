@@ -74,7 +74,7 @@ int main(void)
 	int ans = 0;
 	std::vector<Event> events;
 
-	std::ifstream myfile ("Day4Input");
+	std::ifstream myfile ("input");
 	if (myfile.is_open()) {
         std::string input;
 

@@ -69,11 +69,11 @@ int main(int argc, char* argv[])
 	int ans = 0;
     Grid grid;
 
-    std::ifstream myfile("Day25Input");
+    std::ifstream myfile("input");
     for (int i=1; i<argc; i++) {
         std::string arg(argv[i]);
         if (arg == "-t" || arg == "--test")
-            myfile = std::ifstream("testInput");
+            myfile = std::ifstream("test_input");
     }
 
 	if (myfile.is_open()) {

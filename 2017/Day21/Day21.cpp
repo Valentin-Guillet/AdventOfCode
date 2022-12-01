@@ -42,7 +42,7 @@ int main(void)
 	std::unordered_map<std::string, std::string> rules;
 	std::vector<std::string> grid = {".#.", "..#", "###"};
 
-	std::ifstream myfile ("Day21Input");
+	std::ifstream myfile ("input");
 	if (myfile.is_open())
 	{
 		while (getline(myfile, input)) {

@@ -23,7 +23,7 @@ int main(void)
 	int ans = 0;
 	std::vector<link> tab;
 
-	std::ifstream myfile ("Day6Input");
+	std::ifstream myfile ("input");
 	if (myfile.is_open()) {
         std::string input;
 

@@ -30,7 +30,7 @@ int main()
 	long ans = 0;
     std::vector<long> numbers;
 
-    std::ifstream myfile ("Day9Input");
+    std::ifstream myfile ("input");
 	if (myfile.is_open()) {
         std::string input;
 

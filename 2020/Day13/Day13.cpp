@@ -29,7 +29,7 @@ int main()
     long min_depart;
     std::vector<std::pair<long, long>> buses;
 
-    std::ifstream myfile ("Day13Input");
+    std::ifstream myfile ("input");
 	if (myfile.is_open()) {
         std::string input;
 

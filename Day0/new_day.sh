@@ -8,5 +8,5 @@ then
 fi
 
 mkdir "Day$day"
-sed "s/Day0Input/Day"$day"Input/" ../Day0/Day0.cpp > "Day$day/Day$day.cpp"
+cp ../Day0/Day0.cpp "Day$day/Day$day.cpp"
 ln -s ../../Day0/Makefile "Day$day/Makefile"

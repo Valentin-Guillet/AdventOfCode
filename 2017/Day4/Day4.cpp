@@ -13,7 +13,7 @@ int main(void)
 	std::vector<std::unordered_map<char, int>> tab;
 	int ans = 0;
 
-	std::ifstream myfile ("Day4Input");
+	std::ifstream myfile ("input");
 	if (myfile.is_open())
 	{
 		while (getline(myfile, input)) {

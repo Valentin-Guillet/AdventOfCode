@@ -12,7 +12,7 @@ int main(void)
 	std::vector<int> tab;
 	bool first_half = false;
 
-	std::ifstream myfile ("Day9Input");
+	std::ifstream myfile ("input");
 	if (myfile.is_open())
 	{
 		getline(myfile, input);

@@ -29,7 +29,7 @@ int main()
 	int ans = 0;
     int nb_rows = (first_half ? 40 : 400000);
 
-	ifstream myfile ("Day18Input");
+	ifstream myfile ("input");
 	if (myfile.is_open())
 	{
 		getline(myfile, input);

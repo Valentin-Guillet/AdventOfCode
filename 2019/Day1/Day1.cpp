@@ -8,7 +8,7 @@ int main(void)
     bool first_half = false;
 	int ans = 0;
 
-	std::ifstream myfile ("Day1Input");
+	std::ifstream myfile ("input");
 	if (myfile.is_open()) {
         std::string input;
 

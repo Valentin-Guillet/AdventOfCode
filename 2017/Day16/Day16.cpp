@@ -58,7 +58,7 @@ int main(void)
 	char letters[16] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p'};
 	char tab[16] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p'};
 
-	std::ifstream myfile ("Day16Input");
+	std::ifstream myfile ("input");
 	if (myfile.is_open())
 	{
 		getline(myfile, input);

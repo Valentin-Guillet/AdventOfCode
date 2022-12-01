@@ -57,7 +57,7 @@ int main()
 	long ans = 0;
 	vector<Range> tab;
 
-	ifstream myfile ("Day20Input");
+	ifstream myfile ("input");
 	if (myfile.is_open())
 	{
 		while (getline(myfile, input))

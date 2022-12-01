@@ -47,7 +47,7 @@ int main()
 	int ans = 0;
 	array<array<Node, 30>, 33> nodes;
 
-	ifstream myfile ("Day22Input");
+	ifstream myfile ("input");
 	if (myfile.is_open())
 	{
 		getline(myfile, input);

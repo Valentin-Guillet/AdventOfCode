@@ -26,7 +26,7 @@ int main(void)
 	int ans = 0;
 	std::unordered_map<std::string, int> grid;
 
-	std::ifstream myfile ("Day22Input");
+	std::ifstream myfile ("input");
 	if (myfile.is_open())
 	{
 		int x = 0;

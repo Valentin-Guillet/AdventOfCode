@@ -50,7 +50,7 @@ int main(void)
     std::vector<int> cards;
     std::vector<std::string> techniques;
 
-	std::ifstream myfile ("Day22Input");
+	std::ifstream myfile ("input");
 	if (myfile.is_open()) {
         std::string input;
 

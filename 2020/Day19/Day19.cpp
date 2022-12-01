@@ -53,7 +53,7 @@ int main()
     std::unordered_map<int, std::string> rules;
     std::vector<std::string> messages;
 
-    std::ifstream myfile ("Day19Input");
+    std::ifstream myfile ("input");
 	if (myfile.is_open()) {
         std::string input;
 

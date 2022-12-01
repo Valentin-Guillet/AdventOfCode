@@ -25,7 +25,7 @@ int main(void)
 	std::regex rgx("([a-z]{3}) ([0-9a-z]) ?(.*)");
 	std::smatch sm;
 
-	std::ifstream myfile ("Day23Input");
+	std::ifstream myfile ("input");
 	if (myfile.is_open())
 	{
 		while(getline(myfile, input)) {

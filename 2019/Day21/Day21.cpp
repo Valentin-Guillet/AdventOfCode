@@ -166,7 +166,7 @@ int main(void)
     int ans = 0;
 	std::unordered_map<long, long> tab;
 
-	std::ifstream myfile ("Day21Input");
+	std::ifstream myfile ("input");
 	if (myfile.is_open()) {
         std::string input;
 

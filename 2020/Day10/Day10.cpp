@@ -30,7 +30,7 @@ int main()
 	long ans = 0;
     std::vector<int> adapters = {0};
 
-    std::ifstream myfile ("Day10Input");
+    std::ifstream myfile ("input");
 	if (myfile.is_open()) {
         std::string input;
 

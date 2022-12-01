@@ -16,7 +16,7 @@ int main(void)
 	std::smatch sm;
 
 	int size = 0;
-	std::ifstream myfile ("Day13Input");
+	std::ifstream myfile ("input");
 	if (myfile.is_open())
 	{
 		while(getline(myfile, input)) {

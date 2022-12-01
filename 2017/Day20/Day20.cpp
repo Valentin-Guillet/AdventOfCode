@@ -21,7 +21,7 @@ int main(void)
 	std::regex rgx("p=<(-?[0-9]+),(-?[0-9]+),(-?[0-9]+)>, v=<(-?[0-9]+),(-?[0-9]+),(-?[0-9]+)>, a=<(-?[0-9]+),(-?[0-9]+),(-?[0-9]+)>");
 	std::smatch sm;
 
-	std::ifstream myfile ("Day20Input");
+	std::ifstream myfile ("input");
 	if (myfile.is_open())
 	{
 		int i = 0;

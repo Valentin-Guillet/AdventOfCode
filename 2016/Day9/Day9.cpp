@@ -66,7 +66,7 @@ int main()
 	long ans = 0;
 	vector<int> tab;
 
-	ifstream myfile ("Day9Input");
+	ifstream myfile ("input");
 	if (myfile.is_open()) {
 		getline(myfile, input);
 		myfile.close();

@@ -159,7 +159,7 @@ int main()
 	int ans = 0;
     std::string input;
 
-    std::ifstream myfile ("Day20Input");
+    std::ifstream myfile ("input");
 	if (myfile.is_open()) {
 		getline(myfile, input);
 

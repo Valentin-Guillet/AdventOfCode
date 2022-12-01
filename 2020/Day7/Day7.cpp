@@ -49,7 +49,7 @@ int main()
     std::vector<std::string> rules;
     std::unordered_map<std::string, Bag*> bags;
 
-    std::ifstream myfile ("Day7Input");
+    std::ifstream myfile ("input");
 	if (myfile.is_open()) {
         std::string input;
 

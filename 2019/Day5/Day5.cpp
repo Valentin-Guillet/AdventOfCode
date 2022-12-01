@@ -88,7 +88,7 @@ int main(void)
 {
 	std::vector<int> tab;
 
-	std::ifstream myfile ("Day5Input");
+	std::ifstream myfile ("input");
 	if (myfile.is_open()) {
         std::string input;
 

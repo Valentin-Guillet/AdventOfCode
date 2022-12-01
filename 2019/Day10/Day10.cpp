@@ -108,7 +108,7 @@ int main(void)
 	int ans = 0;
     int tab[SIZE][SIZE];
 
-	std::ifstream myfile ("Day10Input");
+	std::ifstream myfile ("input");
 	if (myfile.is_open()) {
         std::string input;
 

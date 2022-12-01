@@ -47,7 +47,7 @@ int main()
     std::vector<Point> stars;
 	int ans = 0;
 
-    std::ifstream myfile ("Day25Input");
+    std::ifstream myfile ("input");
 	if (myfile.is_open()) {
         std::string input;
 

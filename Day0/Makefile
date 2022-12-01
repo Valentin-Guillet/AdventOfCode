@@ -10,4 +10,4 @@ main: $(day_file)
 	@ $(CC) $(CFLAGS) -o $@ $(day_file)
 
 clean:
-	@ rm -f testInput
+	@ rm -f test_input

@@ -159,7 +159,7 @@ int main()
     int min_x = 10000, max_x = 0;
     int min_y = 10000, max_y = 0;
 
-    std::ifstream myfile ("Day17Input");
+    std::ifstream myfile ("input");
 	if (myfile.is_open()) {
         std::string input;
 

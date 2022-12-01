@@ -67,7 +67,7 @@ int main()
 
     Grid grid;
 
-    std::ifstream myfile ("Day18Input");
+    std::ifstream myfile ("input");
 	if (myfile.is_open()) {
         std::string input;
 

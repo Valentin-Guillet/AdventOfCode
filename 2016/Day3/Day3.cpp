@@ -15,7 +15,7 @@ int main()
 	int ans = 0;
 	vector<tuple<int, int, int>> tab;
 
-	ifstream myfile ("Day3Input");
+	ifstream myfile ("input");
 	if (myfile.is_open())
 	{
         int a, b, c;
