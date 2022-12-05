@@ -3,8 +3,8 @@
 
 for i in {1..25}
 do
+    cd ./Day$i 2>/dev/null || continue
     echo "Day $i"
-    cd ./Day$i
     [ -h Makefile ] || ln -s ../../Day0/Makefile Makefile
     make
     ./main
