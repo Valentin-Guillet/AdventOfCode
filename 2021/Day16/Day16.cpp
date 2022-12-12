@@ -26,7 +26,7 @@ long long int bin_to_long(std::string bin) {
 
 class Packet {
     public:
-        Packet(std::string bin_packet) : bin_packet(bin_packet) { }
+        Packet(std::string bin_packet_) : bin_packet(bin_packet_) { }
         ~Packet() {
             for (Packet* subpacket : subpackets)
                 delete subpacket;
@@ -122,47 +122,47 @@ class Packet {
         long long int value;
         std::vector<Packet*> subpackets;
 
-        int parse_litteral(std::string bin_packet) {
+        int parse_litteral(std::string bin_packet_) {
             std::string bin_value;
             size_t i = 0;
             do {
-                bin_value += bin_packet.substr(i+1, 4);
+                bin_value += bin_packet_.substr(i+1, 4);
                 i += 5;
-            } while (bin_packet[i-5] == '1');
+            } while (bin_packet_[i-5] == '1');
 
             value = bin_to_long(bin_value);
             return i;
         }
 
-        int parse_subpackets_length(std::string bin_packet) {
-            long long int length = bin_to_long(bin_packet.substr(0, 15));
-            bin_packet = bin_packet.substr(15);
+        int parse_subpackets_length(std::string bin_packet_) {
+            long long int length = bin_to_long(bin_packet_.substr(0, 15));
+            bin_packet_ = bin_packet_.substr(15);
 
             long long int curr_length = 0;
             while (curr_length < length) {
-                Packet* new_subpacket = new Packet(bin_packet);
+                Packet* new_subpacket = new Packet(bin_packet_);
                 long long int new_length = new_subpacket->parse();
                 subpackets.push_back(new_subpacket);
 
                 curr_length += new_length;
-                bin_packet = bin_packet.substr(new_length);
+                bin_packet_ = bin_packet_.substr(new_length);
             }
 
             return 15 + length;
         }
 
-        int parse_subpackets_number(std::string bin_packet) {
-            long long int nb_subpackets = bin_to_long(bin_packet.substr(0, 11));
-            bin_packet = bin_packet.substr(11);
+        int parse_subpackets_number(std::string bin_packet_) {
+            long long int nb_subpackets = bin_to_long(bin_packet_.substr(0, 11));
+            bin_packet_ = bin_packet_.substr(11);
 
             long long int length = 0;
             for (int i=0; i<nb_subpackets; i++) {
-                Packet* new_subpacket = new Packet(bin_packet);
+                Packet* new_subpacket = new Packet(bin_packet_);
                 long long int new_length = new_subpacket->parse();
                 subpackets.push_back(new_subpacket);
 
                 length += new_length;
-                bin_packet = bin_packet.substr(new_length);
+                bin_packet_ = bin_packet_.substr(new_length);
             }
 
             return 11 + length;

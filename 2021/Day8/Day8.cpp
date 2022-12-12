@@ -94,9 +94,9 @@ struct Display {
         ordered_digits.push_back(a + b + c + d + f + g);       // 9
 
         int ans = 0;
-        for (Digit d : outputs) {
+        for (Digit digit : outputs) {
             for (int i=0; i<10; i++) {
-                if (d == ordered_digits[i]) {
+                if (digit == ordered_digits[i]) {
                     ans = 10 * ans + i;
                     break;
                 }

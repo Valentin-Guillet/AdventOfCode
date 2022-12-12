@@ -2,7 +2,7 @@
 .PHONY=clean
 
 CC := g++
-CFLAGS := -std=c++2a -Wall -Wextra
+CFLAGS := -std=c++2a -Wall -Wextra -Wshadow -fsanitize=undefined
 
 day_file := $(wildcard *.cpp)
 

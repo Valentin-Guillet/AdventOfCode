@@ -7,7 +7,7 @@
 
 class Node {
     public:
-        Node(int value, int depth) : value(value), depth(depth) { }
+        Node(int value_, int depth_) : value(value_), depth(depth_) { }
         Node(std::string input, int node_depth=0) {
             size_t index = 0;
             while (input[index] == '[' || input[index] == ']') {
@@ -85,7 +85,7 @@ class Node {
             }
         }
 
-    /* private: */
+    private:
         int value;
         int depth;
 

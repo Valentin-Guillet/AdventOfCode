@@ -10,7 +10,7 @@ struct ALU {
     std::unordered_map<char, long> registers;
     std::vector<std::string> instructions;
 
-    ALU(std::vector<std::string> instructions) : instructions(instructions) {
+    ALU(std::vector<std::string> instructions_) : instructions(instructions_) {
         reset();
     }
 

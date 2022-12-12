@@ -110,8 +110,8 @@ int main(int argc, char* argv[])
     for (auto [dir, length]: movements) {
         for (int i=0; i<length; i++) {
             move_head(dir, knots[0]);
-            for (int i=1; i<rope_length; i++)
-                follow_knot(knots[i-1], knots[i]);
+            for (int j=1; j<rope_length; j++)
+                follow_knot(knots[j-1], knots[j]);
             seen_positions.insert(knots[rope_length - 1]);
         }
     }

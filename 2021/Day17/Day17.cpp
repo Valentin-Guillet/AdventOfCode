@@ -70,7 +70,7 @@ int count_speeds(int min_y, int max_y, int min_steps, int max_steps) {
         if ((min_y + steps * (steps-1) / 2) % steps == 0)
             valid_speeds.insert(lower);
 
-        if (max_steps == -1 && lower < min_y)
+        if (max_steps == -1 && (upper > -min_y + 1))
             break;
     }
     return valid_speeds.size();

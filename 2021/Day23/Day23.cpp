@@ -18,7 +18,7 @@ struct State {
     public:
         int energy = 0;
 
-        State(int nb_spaces, int hallway_spaces[11], int room_spaces[4][4]) : nb_spaces(nb_spaces) {
+        State(int nb_spaces_, int hallway_spaces[11], int room_spaces[4][4]) : nb_spaces(nb_spaces_) {
             for (int i=0; i<11; i++) hallway[i] = hallway_spaces[i];
             for (int i=0; i<4; i++) {
                 for (int j=0; j<4; j++)

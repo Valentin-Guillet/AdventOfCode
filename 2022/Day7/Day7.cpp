@@ -22,7 +22,7 @@ class Directory {
         std::vector<Directory*> subdirectories;
         Directory* parent;
 
-        Directory(std::string name, Directory* parent=nullptr) : name(name), parent(parent) {}
+        Directory(std::string name_, Directory* parent_=nullptr) : name(name_), parent(parent_) {}
 
         ~Directory() {
             for (Directory* subdir : subdirectories)
