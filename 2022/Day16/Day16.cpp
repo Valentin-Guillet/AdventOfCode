@@ -1,7 +1,6 @@
 
 #include <algorithm>
 #include <fstream>
-#include <functional>
 #include <iostream>
 #include <string>
 #include <unordered_map>
@@ -24,17 +23,7 @@ struct Valve {
     std::vector<size_t> links;
 };
 
-using Pair = std::pair<int, int>;
-
-struct hash_pair {
-    size_t operator()(Pair const& pair) const {
-        size_t hash = pair.first + 0x9e3779b9;
-        hash ^= (hash << 6) + (hash >> 2) + pair.second + 0x9e3779b9;
-        return hash;
-    }
-};
-
-using DistanceMap = std::unordered_map<Pair, int, hash_pair>;
+using DistanceMap = std::vector<std::vector<int>>;
 using HashMap = std::unordered_map<size_t, int>;
 
 void build_valves(std::vector<std::string> const& lines, std::vector<Valve>& valves,
@@ -60,10 +49,10 @@ void compute_distances(std::vector<Valve> const& valves, DistanceMap& distances)
         while (!neighbors.empty()) {
             std::vector<size_t> new_neighbors;
             for (size_t neighbor : neighbors) {
-                if (valve_id == neighbor || distances.contains({valve_id, neighbor}))
+                if (valve_id == neighbor || distances[valve_id][neighbor] != -1)
                     continue;
 
-                distances[{valve_id, neighbor}] = dist;
+                distances[valve_id][neighbor] = dist;
                 for (size_t next_neigh : valves.at(neighbor).links)
                     new_neighbors.push_back(next_neigh);
             }
@@ -75,7 +64,7 @@ void compute_distances(std::vector<Valve> const& valves, DistanceMap& distances)
 
 int _get_max_pressure(std::vector<Valve> const& valves, DistanceMap const& distances,
         size_t curr_valve, unsigned int avail_valves, int remaining_time,
-        std::unordered_map<size_t, int>& memory_state) {
+        HashMap& memory_state) {
     // If this situation has already been seen (i.e. same seen valves, same current valve and
     // same remaining time), look in the table
     size_t state_hash = (avail_valves << 12) + (curr_valve << 6) + remaining_time;
@@ -88,7 +77,7 @@ int _get_max_pressure(std::vector<Valve> const& valves, DistanceMap const& dista
         if (!(avail_valves & (1 << next_valve)))
             continue;
 
-        int new_remaining_time = remaining_time - distances.at({curr_valve, next_valve}) - 1;
+        int new_remaining_time = remaining_time - distances.at(curr_valve).at(next_valve) - 1;
         if (new_remaining_time <= 0)
             continue;
 
@@ -98,7 +87,7 @@ int _get_max_pressure(std::vector<Valve> const& valves, DistanceMap const& dista
         int pressure = valves[next_valve].flow_rate * new_remaining_time;
         if (new_avail_valves != 0)
             pressure += _get_max_pressure(valves, distances, next_valve, new_avail_valves,
-                                        new_remaining_time, memory_state);
+                                          new_remaining_time, memory_state);
 
         if (pressure > max_pressure)
             max_pressure = pressure;
@@ -122,15 +111,17 @@ int get_max_pressure(std::vector<Valve> const& valves, DistanceMap const& distan
     for (size_t i=0; i<valves.size()-1; i++)
         nb_set_split *= 2;
 
+    int max_single_pressure = _get_max_pressure(valves, distances, id_start, valve_mask, 26, memory_state);
     int max_pressure = 0;
     for (size_t i=0; i<nb_set_split; i++) {
-        if (i % 100 == 99)
-            std::cout << i + 1 << " / " << nb_set_split << "\r" << std::flush;
-
         unsigned int avail_valves_1 = i;
         unsigned int avail_valves_2 = valve_mask ^ i;
 
         int pressure_1 = _get_max_pressure(valves, distances, id_start, avail_valves_1, 26, memory_state);
+        // Abort if the best possible while being single is not enough to get more than the current max
+        if (pressure_1 + max_single_pressure <= max_pressure)
+            continue;
+
         int pressure_2 = _get_max_pressure(valves, distances, id_start, avail_valves_2, 26, memory_state);
 
         if (pressure_1 + pressure_2 > max_pressure)
@@ -176,7 +167,8 @@ int main(int argc, char* argv[])
     std::vector<Valve> all_valves;
     build_valves(lines, all_valves, name_to_id);
 
-    DistanceMap distances;
+    std::vector<int> line_distances(all_valves.size(), -1);
+    DistanceMap distances(all_valves.size(), line_distances);
     compute_distances(all_valves, distances);
 
     std::vector<Valve> non_empty_valves;
