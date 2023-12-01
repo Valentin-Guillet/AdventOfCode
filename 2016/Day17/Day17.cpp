@@ -42,7 +42,7 @@ struct Position {
 int main()
 {
     bool first_half = true;
-	string input = "mmsxrhfx";
+    string input = "mmsxrhfx";
 
     queue<Position> positions;
     Position curr_pos(input);
@@ -81,5 +81,5 @@ int main()
         cout << "Answer : " << max_length << endl;
     }
 
-	return 0;
+    return 0;
 }

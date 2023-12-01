@@ -43,15 +43,15 @@ ostream& operator<<(ostream& os, const Node& node) {
 int main()
 {
     bool first_half = false;
-	string input;
-	int ans = 0;
-	array<array<Node, 30>, 33> nodes;
+    string input;
+    int ans = 0;
+    array<array<Node, 30>, 33> nodes;
 
-	ifstream myfile ("input");
-	if (myfile.is_open())
-	{
-		getline(myfile, input);
-		getline(myfile, input);
+    ifstream myfile ("input");
+    if (myfile.is_open())
+    {
+        getline(myfile, input);
+        getline(myfile, input);
         int x = 0;
         int y = 0;
         while (getline(myfile, input)) {
@@ -63,8 +63,8 @@ int main()
             }
         }
 
-		myfile.close();
-	} else {
+        myfile.close();
+    } else {
         cout << "Unable to open file" << endl;
         return 1;
     }
@@ -107,6 +107,6 @@ int main()
         ans++; // Last movement to bring goal to (0, 0)
     }
 
-	cout << "Answer : " << ans << endl;
-	return 0;
+    cout << "Answer : " << ans << endl;
+    return 0;
 }

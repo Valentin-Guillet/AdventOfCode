@@ -57,7 +57,7 @@ void debug(Grid const& grid) {
 int main(int argc, char* argv[])
 {
     bool first_half = true;
-	int ans = 0;
+    int ans = 0;
     std::vector<Line> lines;
 
     std::ifstream myfile("input");
@@ -70,7 +70,7 @@ int main(int argc, char* argv[])
             first_half = false;
     }
 
-	if (myfile.is_open()) {
+    if (myfile.is_open()) {
         std::string input;
 
         while (getline(myfile, input)) {
@@ -86,8 +86,8 @@ int main(int argc, char* argv[])
             lines.push_back(Line{y_beg, x_beg, y_end, x_end});
         }
 
-		myfile.close();
-	} else {
+        myfile.close();
+    } else {
         std::cout << "Unable to open file" << std::endl;
         return 1;
     }
@@ -115,5 +115,5 @@ int main(int argc, char* argv[])
     }
 
     std::cout << "Answer : " << ans << std::endl;
-	return 0;
+    return 0;
 }

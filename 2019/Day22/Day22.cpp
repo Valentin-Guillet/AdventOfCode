@@ -46,19 +46,19 @@ __int128 modular_pow(int value) {
 int main(void)
 {
     bool first_half = false;
-	long long int ans = 0;
+    long long int ans = 0;
     std::vector<int> cards;
     std::vector<std::string> techniques;
 
-	std::ifstream myfile ("input");
-	if (myfile.is_open()) {
+    std::ifstream myfile ("input");
+    if (myfile.is_open()) {
         std::string input;
 
-		while (getline(myfile, input))
+        while (getline(myfile, input))
             techniques.push_back(input);
 
-		myfile.close();
-	} else {
+        myfile.close();
+    } else {
         std::cout << "Unable to open file" << std::endl;
         return 1;
     }
@@ -144,6 +144,6 @@ int main(void)
 
     }
 
-	std::cout << "Answer : " << ans << std::endl;
-	return 0;
+    std::cout << "Answer : " << ans << std::endl;
+    return 0;
 }

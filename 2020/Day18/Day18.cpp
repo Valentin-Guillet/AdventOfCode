@@ -72,19 +72,19 @@ long evaluate(std::string line, bool first_half) {
 int main()
 {
     bool first_half = false;
-	long ans = 0;
+    long ans = 0;
     std::vector<std::string> lines;
 
     std::ifstream myfile ("input");
-	if (myfile.is_open()) {
+    if (myfile.is_open()) {
         std::string input;
 
         while (getline(myfile, input)) {
             lines.push_back(input);
         }
 
-		myfile.close();
-	} else {
+        myfile.close();
+    } else {
         std::cout << "Unable to open file" << std::endl;
         return 1;
     }
@@ -93,5 +93,5 @@ int main()
         ans += evaluate(line, first_half);
 
     std::cout << "Answer : " << ans << std::endl;
-	return 0;
+    return 0;
 }

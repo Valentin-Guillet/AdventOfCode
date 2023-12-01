@@ -150,14 +150,14 @@ int main(int argc, char* argv[])
     }
 
     std::vector<Droplet> droplets;
-	if (myfile.is_open()) {
+    if (myfile.is_open()) {
         std::string input;
 
         while (getline(myfile, input))
             droplets.push_back(Droplet(input));
 
-		myfile.close();
-	} else {
+        myfile.close();
+    } else {
         std::cout << "Unable to open file" << std::endl;
         return 1;
     }
@@ -168,5 +168,5 @@ int main(int argc, char* argv[])
         ans = count_exterior_faces(droplets);
 
     std::cout << "Answer : " << ans << std::endl;
-	return 0;
+    return 0;
 }

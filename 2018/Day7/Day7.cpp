@@ -44,13 +44,13 @@ int main(void)
 {
     bool first_half = false;
     std::string ans;
-	std::vector<Step> steps;
+    std::vector<Step> steps;
 
     for (char c : ALPH)
         steps.push_back(Step(c));
 
     std::ifstream myfile ("input");
-	if (myfile.is_open()) {
+    if (myfile.is_open()) {
         std::string input;
 
         while (getline(myfile, input)) {
@@ -60,8 +60,8 @@ int main(void)
             steps[dep - 'A'].add_req(req);
         }
 
-		myfile.close();
-	} else {
+        myfile.close();
+    } else {
         std::cout << "Unable to open file" << std::endl;
         return 1;
     }
@@ -108,6 +108,6 @@ int main(void)
         ans = std::to_string(time);
     }
 
-	std::cout << "Answer : " << ans << std::endl;
-	return 0;
+    std::cout << "Answer : " << ans << std::endl;
+    return 0;
 }

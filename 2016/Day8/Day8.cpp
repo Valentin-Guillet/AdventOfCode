@@ -58,18 +58,18 @@ void display(bool const (&screen)[6][50]) {
 
 int main()
 {
-	string input;
-	int ans = 0;
-	vector<string> tab;
+    string input;
+    int ans = 0;
+    vector<string> tab;
 
-	ifstream myfile ("input");
-	if (myfile.is_open())
-	{
-		while (getline(myfile, input))
+    ifstream myfile ("input");
+    if (myfile.is_open())
+    {
+        while (getline(myfile, input))
             tab.push_back(input);
 
-		myfile.close();
-	} else {
+        myfile.close();
+    } else {
         cout << "Unable to open file" << endl;
         return 1;
     }
@@ -88,6 +88,6 @@ int main()
 
     display(screen);
 
-	cout << "Answer : " << ans << endl;
-	return 0;
+    cout << "Answer : " << ans << endl;
+    return 0;
 }

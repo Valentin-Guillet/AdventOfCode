@@ -122,24 +122,24 @@ void run_program(std::unordered_map<long, long> tab, bool debug=false)
 
 int main(void)
 {
-	std::string ans;
-	std::unordered_map<long, long> tab;
+    std::string ans;
+    std::unordered_map<long, long> tab;
 
-	std::ifstream myfile ("input");
-	if (myfile.is_open()) {
+    std::ifstream myfile ("input");
+    if (myfile.is_open()) {
         std::string input;
 
         int i = 0;
-		while (getline(myfile, input, ','))
+        while (getline(myfile, input, ','))
             tab[i++] = std::stol(input);
 
-		myfile.close();
-	} else {
+        myfile.close();
+    } else {
         std::cout << "Unable to open file";
         return 1;
     }
 
     run_program(tab, false);
 
-	return 0;
+    return 0;
 }

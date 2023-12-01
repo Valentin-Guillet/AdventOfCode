@@ -44,18 +44,18 @@ int run_program(std::vector<int> tab, bool debug=false)
 int main(void)
 {
     bool first_half = false;
-	int ans = 0;
-	std::vector<int> tab, tab2;
+    int ans = 0;
+    std::vector<int> tab, tab2;
 
-	std::ifstream myfile ("input");
-	if (myfile.is_open()) {
+    std::ifstream myfile ("input");
+    if (myfile.is_open()) {
         std::string input;
 
-		while (getline(myfile, input, ','))
+        while (getline(myfile, input, ','))
             tab.push_back(std::stoi(input));
 
-		myfile.close();
-	} else {
+        myfile.close();
+    } else {
         std::cout << "Unable to open file";
         return 1;
     }
@@ -83,5 +83,5 @@ int main(void)
     }
 
     std::cout << "Answer : " << ans << std::endl;
-	return 0;
+    return 0;
 }

@@ -27,18 +27,18 @@ bool is_valid(std::vector<long> const& numbers, int index) {
 int main()
 {
     bool first_half = false;
-	long ans = 0;
+    long ans = 0;
     std::vector<long> numbers;
 
     std::ifstream myfile ("input");
-	if (myfile.is_open()) {
+    if (myfile.is_open()) {
         std::string input;
 
-		while (getline(myfile, input))
+        while (getline(myfile, input))
             numbers.push_back(std::stol(input));
 
-		myfile.close();
-	} else {
+        myfile.close();
+    } else {
         std::cout << "Unable to open file" << std::endl;
         return 1;
     }
@@ -66,5 +66,5 @@ int main()
     }
 
     std::cout << "Answer : " << ans << std::endl;
-	return 0;
+    return 0;
 }

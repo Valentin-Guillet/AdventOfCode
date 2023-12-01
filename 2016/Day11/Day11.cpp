@@ -185,7 +185,7 @@ struct HashFunction {
 int main()
 {
     bool first_half = true;
-	int ans = 0;
+    int ans = 0;
     queue<State> states;
     unordered_set<State, HashFunction> seen;
 
@@ -222,6 +222,6 @@ int main()
     }
 
 break_out:
-	cout << "Answer : " << ans << endl;
-	return 0;
+    cout << "Answer : " << ans << endl;
+    return 0;
 }

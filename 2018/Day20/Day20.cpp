@@ -156,15 +156,15 @@ class Map {
 int main()
 {
     bool first_half = false;
-	int ans = 0;
+    int ans = 0;
     std::string input;
 
     std::ifstream myfile ("input");
-	if (myfile.is_open()) {
-		getline(myfile, input);
+    if (myfile.is_open()) {
+        getline(myfile, input);
 
-		myfile.close();
-	} else {
+        myfile.close();
+    } else {
         std::cout << "Unable to open file" << std::endl;
         return 1;
     }
@@ -179,5 +179,5 @@ int main()
     }
 
     std::cout << "Answer : " << ans << std::endl;
-	return 0;
+    return 0;
 }

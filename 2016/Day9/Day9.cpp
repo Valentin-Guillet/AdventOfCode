@@ -62,15 +62,15 @@ long get_decompress_size(string input) {
 int main()
 {
     bool first_half = false;
-	string input;
-	long ans = 0;
-	vector<int> tab;
+    string input;
+    long ans = 0;
+    vector<int> tab;
 
-	ifstream myfile ("input");
-	if (myfile.is_open()) {
-		getline(myfile, input);
-		myfile.close();
-	} else {
+    ifstream myfile ("input");
+    if (myfile.is_open()) {
+        getline(myfile, input);
+        myfile.close();
+    } else {
         cout << "Unable to open file" << endl;
         return 1;
     }
@@ -81,6 +81,6 @@ int main()
         ans = get_decompress_size(input);
     }
 
-	cout << "Answer : " << ans << endl;
-	return 0;
+    cout << "Answer : " << ans << endl;
+    return 0;
 }

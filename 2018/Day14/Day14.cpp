@@ -15,9 +15,9 @@ bool is_last_digits(const std::vector<int>& tab, std::string input) {
 int main(void)
 {
     bool first_half = false;
-	int input = 825401;
+    int input = 825401;
     long ans = 0;
-	std::vector<int> tab = {3, 7};
+    std::vector<int> tab = {3, 7};
 
     int id1 = 0, id2 = 1;
 
@@ -57,5 +57,5 @@ int main(void)
     }
 
     std::cout << "Answer : " << ans << std::endl;
-	return 0;
+    return 0;
 }

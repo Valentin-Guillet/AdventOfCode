@@ -15,7 +15,7 @@ int main()
     std::map<std::string, int> ingredients;
 
     std::ifstream myfile ("input");
-	if (myfile.is_open()) {
+    if (myfile.is_open()) {
         std::string input;
 
         while (getline(myfile, input)) {
@@ -50,8 +50,8 @@ int main()
             } while (comma_index != std::string::npos);
         }
 
-		myfile.close();
-	} else {
+        myfile.close();
+    } else {
         std::cout << "Unable to open file" << std::endl;
         return 1;
     }
@@ -99,5 +99,5 @@ int main()
 
     }
 
-	return 0;
+    return 0;
 }

@@ -172,7 +172,7 @@ class Packet {
 int main(int argc, char* argv[])
 {
     bool first_half = true;
-	long long int ans = 0;
+    long long int ans = 0;
     std::string hex_packet;
 
     std::ifstream myfile("input");
@@ -185,10 +185,10 @@ int main(int argc, char* argv[])
             first_half = false;
     }
 
-	if (myfile.is_open()) {
-		getline(myfile, hex_packet);
-		myfile.close();
-	} else {
+    if (myfile.is_open()) {
+        getline(myfile, hex_packet);
+        myfile.close();
+    } else {
         std::cout << "Unable to open file" << std::endl;
         return 1;
     }
@@ -203,5 +203,5 @@ int main(int argc, char* argv[])
         ans = packet.compute();
 
     std::cout << "Answer : " << ans << std::endl;
-	return 0;
+    return 0;
 }

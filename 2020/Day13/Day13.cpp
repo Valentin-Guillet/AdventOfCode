@@ -25,15 +25,15 @@ long modular_inverse(long n, long p) {
 int main()
 {
     bool first_half = false;
-	long ans = 0;
+    long ans = 0;
     long min_depart;
     std::vector<std::pair<long, long>> buses;
 
     std::ifstream myfile ("input");
-	if (myfile.is_open()) {
+    if (myfile.is_open()) {
         std::string input;
 
-		getline(myfile, input);
+        getline(myfile, input);
         min_depart = std::stol(input);
         size_t index = 0;
         while (getline(myfile, input, ',')) {
@@ -42,8 +42,8 @@ int main()
             index++;
         }
 
-		myfile.close();
-	} else {
+        myfile.close();
+    } else {
         std::cout << "Unable to open file" << std::endl;
         return 1;
     }
@@ -82,5 +82,5 @@ int main()
     }
 
     std::cout << "Answer : " << ans << std::endl;
-	return 0;
+    return 0;
 }

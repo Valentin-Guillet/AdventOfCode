@@ -24,18 +24,18 @@ std::pair<int, int> find_indexes(std::vector<int> const& tab, int sum) {
 int main()
 {
     bool first_half = false;
-	int ans = 0;
+    int ans = 0;
     std::vector<int> tab;
 
     std::ifstream myfile ("input");
-	if (myfile.is_open()) {
+    if (myfile.is_open()) {
         std::string input;
 
         while (getline(myfile, input))
             tab.push_back(std::stoi(input));
 
-		myfile.close();
-	} else {
+        myfile.close();
+    } else {
         std::cout << "Unable to open file" << std::endl;
         return 1;
     }
@@ -56,5 +56,5 @@ int main()
     }
 
     std::cout << "Answer : " << ans << std::endl;
-	return 0;
+    return 0;
 }

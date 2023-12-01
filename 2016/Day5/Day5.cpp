@@ -11,8 +11,8 @@ using namespace std;
 int main()
 {
     bool first_half = true;
-	string input = "ojvtpuvg";
-	string ans = "________";
+    string input = "ojvtpuvg";
+    string ans = "________";
     cout << "Answer = " << ans << "\r" << flush;
 
     int index = 0;
@@ -29,6 +29,6 @@ int main()
         index++;
     }
 
-	cout << "Answer : " << ans << endl;
-	return 0;
+    cout << "Answer : " << ans << endl;
+    return 0;
 }

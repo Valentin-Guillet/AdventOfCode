@@ -202,7 +202,7 @@ void debug(ElfSet const& active, ElfSet const& inactive) {
 int main(int argc, char* argv[])
 {
     bool first_half = true;
-	int ans = 0;
+    int ans = 0;
 
     std::ifstream myfile("input");
     for (int i=1; i<argc; i++) {
@@ -215,7 +215,7 @@ int main(int argc, char* argv[])
     }
 
     ElfSet elves;
-	if (myfile.is_open()) {
+    if (myfile.is_open()) {
         std::string input;
 
         int x = 0;
@@ -227,8 +227,8 @@ int main(int argc, char* argv[])
             x++;
         }
 
-		myfile.close();
-	} else {
+        myfile.close();
+    } else {
         std::cout << "Unable to open file" << std::endl;
         return 1;
     }
@@ -252,5 +252,5 @@ int main(int argc, char* argv[])
     }
 
     std::cout << "Answer : " << ans << std::endl;
-	return 0;
+    return 0;
 }

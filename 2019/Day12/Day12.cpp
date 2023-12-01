@@ -103,17 +103,17 @@ int get_period(Moon moons[4], int i)
 int main(void)
 {
     bool first_half = false;
-	long long ans = 0;
-	Moon moons[4];
+    long long ans = 0;
+    Moon moons[4];
 
-	std::ifstream myfile ("input");
-	if (myfile.is_open()) {
+    std::ifstream myfile ("input");
+    if (myfile.is_open()) {
         std::string input;
 
         std::regex rgx("<x=(-?[0-9]+), y=(-?[0-9]+), z=(-?[0-9]+)>");
         std::smatch match;
         int i = 0;
-		while (getline(myfile, input)) {
+        while (getline(myfile, input)) {
             if (!std::regex_match(input, match, rgx)) {
                 std::cout << "Unable to parse input" << std::endl;
                 return -1;
@@ -125,8 +125,8 @@ int main(void)
             i++;
         }
 
-		myfile.close();
-	} else {
+        myfile.close();
+    } else {
         std::cout << "Unable to open file" << std::endl;
         return 1;
     }
@@ -156,6 +156,6 @@ int main(void)
         ans = ppcm(periodx, ppcm(periody, periodz));
     }
 
-	std::cout << "Answer : " << ans << std::endl;
-	return 0;
+    std::cout << "Answer : " << ans << std::endl;
+    return 0;
 }

@@ -72,7 +72,7 @@ Monkey build_monkey(std::vector<std::string> lines, bool first_half) {
 int main(int argc, char* argv[])
 {
     bool first_half = true;
-	long ans = 0;
+    long ans = 0;
 
     std::ifstream myfile("input");
     for (int i=1; i<argc; i++) {
@@ -85,7 +85,7 @@ int main(int argc, char* argv[])
     }
 
     std::vector<Monkey> monkeys;
-	if (myfile.is_open()) {
+    if (myfile.is_open()) {
         std::string input;
 
         std::vector<std::string> lines;
@@ -99,8 +99,8 @@ int main(int argc, char* argv[])
         }
         monkeys.push_back(build_monkey(lines, first_half));
 
-		myfile.close();
-	} else {
+        myfile.close();
+    } else {
         std::cout << "Unable to open file" << std::endl;
         return 1;
     }
@@ -135,5 +135,5 @@ int main(int argc, char* argv[])
     ans = nb_inspections[0] * nb_inspections[1];
 
     std::cout << "Answer : " << ans << std::endl;
-	return 0;
+    return 0;
 }

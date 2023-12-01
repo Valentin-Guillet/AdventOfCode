@@ -47,16 +47,16 @@ int get_pixel(int image[][HEIGHT][WIDTH], int nb_layers, int h, int w)
 int main(void)
 {
     bool first_half = false;
-	std::string input;
-	int ans = 0;
-	std::vector<int> tab;
+    std::string input;
+    int ans = 0;
+    std::vector<int> tab;
 
-	std::ifstream myfile ("input");
-	if (myfile.is_open()) {
-		getline(myfile, input);
+    std::ifstream myfile ("input");
+    if (myfile.is_open()) {
+        getline(myfile, input);
 
-		myfile.close();
-	} else {
+        myfile.close();
+    } else {
         std::cout << "Unable to open file" << std::endl;
         return 1;
     }
@@ -99,5 +99,5 @@ int main(void)
         }
     }
 
-	return 0;
+    return 0;
 }

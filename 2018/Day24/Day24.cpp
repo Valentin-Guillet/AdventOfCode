@@ -242,28 +242,28 @@ int main()
 {
     bool first_half = false;
     std::vector<Group*> groups;
-	int ans = 0;
+    int ans = 0;
 
     std::ifstream myfile ("input");
-	if (myfile.is_open()) {
+    if (myfile.is_open()) {
         std::string input;
 
         // Immune system
-		getline(myfile, input);
-		getline(myfile, input);
+        getline(myfile, input);
+        getline(myfile, input);
         while (!input.empty()) {
             groups.push_back(new Group(input, true));
             getline(myfile, input);
         }
 
         // Infection
-		getline(myfile, input);
+        getline(myfile, input);
         while (getline(myfile, input)) {
             groups.push_back(new Group(input, false));
         }
 
-		myfile.close();
-	} else {
+        myfile.close();
+    } else {
         std::cout << "Unable to open file" << std::endl;
         return 1;
     }
@@ -286,5 +286,5 @@ int main()
         delete g;
 
     std::cout << "Answer : " << ans << std::endl;
-	return 0;
+    return 0;
 }

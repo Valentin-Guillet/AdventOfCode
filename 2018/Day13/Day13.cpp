@@ -112,8 +112,8 @@ int main(void)
     Grid grid;
     CartMap cart_map;
 
-	std::ifstream myfile ("input");
-	if (myfile.is_open()) {
+    std::ifstream myfile ("input");
+    if (myfile.is_open()) {
         std::string input;
 
         int y = 0;
@@ -133,8 +133,8 @@ int main(void)
             y++;
         }
 
-		myfile.close();
-	} else {
+        myfile.close();
+    } else {
         std::cout << "Unable to open file" << std::endl;
         return 1;
     }
@@ -182,5 +182,5 @@ int main(void)
     cart_map.clear();
 
     std::cout << "Answer : " << ans << std::endl;
-	return 0;
+    return 0;
 }

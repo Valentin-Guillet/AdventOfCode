@@ -27,18 +27,18 @@ long count_set(std::vector<int> set) {
 int main()
 {
     bool first_half = false;
-	long ans = 0;
+    long ans = 0;
     std::vector<int> adapters = {0};
 
     std::ifstream myfile ("input");
-	if (myfile.is_open()) {
+    if (myfile.is_open()) {
         std::string input;
 
-		while (getline(myfile, input))
+        while (getline(myfile, input))
             adapters.push_back(std::stoi(input));
 
-		myfile.close();
-	} else {
+        myfile.close();
+    } else {
         std::cout << "Unable to open file" << std::endl;
         return 1;
     }
@@ -73,5 +73,5 @@ int main()
     }
 
     std::cout << "Answer : " << ans << std::endl;
-	return 0;
+    return 0;
 }

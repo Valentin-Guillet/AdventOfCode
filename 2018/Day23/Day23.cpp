@@ -42,18 +42,18 @@ std::ostream& operator<<(std::ostream& os, const Nanobot& bot) {
 int main()
 {
     bool first_half = false;
-	int ans = 0;
+    int ans = 0;
     std::vector<Nanobot> bots;
 
     std::ifstream myfile ("input");
-	if (myfile.is_open()) {
+    if (myfile.is_open()) {
         std::string input;
 
-		while (getline(myfile, input))
+        while (getline(myfile, input))
             bots.push_back(Nanobot(input));
 
-		myfile.close();
-	} else {
+        myfile.close();
+    } else {
         std::cout << "Unable to open file" << std::endl;
         return 1;
     }
@@ -67,5 +67,5 @@ int main()
     }
 
     std::cout << "Answer : " << ans << std::endl;
-	return 0;
+    return 0;
 }

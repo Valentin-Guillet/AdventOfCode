@@ -79,7 +79,7 @@ int count_speeds(int min_y, int max_y, int min_steps, int max_steps) {
 int main(int argc, char* argv[])
 {
     bool first_half = true;
-	int ans = 0;
+    int ans = 0;
     int min_x, max_x;
     int min_y, max_y;
 
@@ -93,10 +93,10 @@ int main(int argc, char* argv[])
             first_half = false;
     }
 
-	if (myfile.is_open()) {
+    if (myfile.is_open()) {
         std::string input;
 
-		getline(myfile, input);
+        getline(myfile, input);
         int index_eq = input.find("x=");
         int index_comma = input.find(",");
 
@@ -111,8 +111,8 @@ int main(int argc, char* argv[])
         min_y = std::stoi(range_y.substr(0, index_dots));
         max_y = std::stoi(range_y.substr(index_dots+2));
 
-		myfile.close();
-	} else {
+        myfile.close();
+    } else {
         std::cout << "Unable to open file" << std::endl;
         return 1;
     }
@@ -136,5 +136,5 @@ int main(int argc, char* argv[])
     }
 
     std::cout << "Answer : " << ans << std::endl;
-	return 0;
+    return 0;
 }

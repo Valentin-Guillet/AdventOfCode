@@ -107,17 +107,17 @@ string scramble(string instr, string password, bool unsramble) {
 int main()
 {
     bool first_half = false;
-	string input;
-	vector<string> tab;
+    string input;
+    vector<string> tab;
 
-	ifstream myfile ("input");
-	if (myfile.is_open())
-	{
-		while (getline(myfile, input))
+    ifstream myfile ("input");
+    if (myfile.is_open())
+    {
+        while (getline(myfile, input))
             tab.push_back(input);
 
-		myfile.close();
-	} else {
+        myfile.close();
+    } else {
         cout << "Unable to open file" << endl;
         return 1;
     }
@@ -130,5 +130,5 @@ int main()
         password = scramble(instr, password, !first_half);
 
     cout << "Answer : " << password << endl;
-	return 0;
+    return 0;
 }

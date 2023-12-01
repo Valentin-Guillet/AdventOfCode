@@ -78,11 +78,11 @@ break_out:
 int main(void)
 {
     bool first_half = false;
-	int ans = 0;
+    int ans = 0;
     Grid grid;
 
-	std::ifstream myfile ("input");
-	if (myfile.is_open()) {
+    std::ifstream myfile ("input");
+    if (myfile.is_open()) {
         std::string input;
 
         int y = 0;
@@ -92,8 +92,8 @@ int main(void)
             y++;
         }
 
-		myfile.close();
-	} else {
+        myfile.close();
+    } else {
         std::cout << "Unable to open file" << std::endl;
         return 1;
     }
@@ -108,5 +108,5 @@ int main(void)
     } while (!first_half && !elf_survived);
 
     std::cout << "Answer : " << ans << std::endl;
-	return 0;
+    return 0;
 }

@@ -39,7 +39,7 @@ void grow_count(std::unordered_map<std::string, char> const& rules, PairCounter&
 int main(int argc, char* argv[])
 {
     bool first_half = true;
-	long ans = 0;
+    long ans = 0;
     std::string polymer;
     std::unordered_map<std::string, char> rules;
 
@@ -53,7 +53,7 @@ int main(int argc, char* argv[])
             first_half = false;
     }
 
-	if (myfile.is_open()) {
+    if (myfile.is_open()) {
         std::string input;
 
         getline(myfile, polymer);
@@ -61,8 +61,8 @@ int main(int argc, char* argv[])
         while (getline(myfile, input))
             rules[input.substr(0, 2)] = input[6];
 
-		myfile.close();
-	} else {
+        myfile.close();
+    } else {
         std::cout << "Unable to open file" << std::endl;
         return 1;
     }
@@ -98,5 +98,5 @@ int main(int argc, char* argv[])
     ans = counts[most_c] - counts[least_c];
 
     std::cout << "Answer : " << ans << std::endl;
-	return 0;
+    return 0;
 }

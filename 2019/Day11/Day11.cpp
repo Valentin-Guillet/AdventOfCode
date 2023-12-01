@@ -178,18 +178,18 @@ void disp_map(std::unordered_set<std::pair<long, long>, pair_hash> surface, int 
 int main(void)
 {
     int ans;
-	std::unordered_map<long, long> tab;
+    std::unordered_map<long, long> tab;
 
-	std::ifstream myfile ("input");
-	if (myfile.is_open()) {
+    std::ifstream myfile ("input");
+    if (myfile.is_open()) {
         std::string input;
 
         int i = 0;
-		while (getline(myfile, input, ','))
+        while (getline(myfile, input, ','))
             tab[i++] = std::stol(input);
 
-		myfile.close();
-	} else {
+        myfile.close();
+    } else {
         std::cout << "Unable to open file";
         return 1;
     }
@@ -239,6 +239,6 @@ int main(void)
 
     ans = seen.size();
 
-	std::cout << "Answer : " << ans << std::endl;
-	return 0;
+    std::cout << "Answer : " << ans << std::endl;
+    return 0;
 }

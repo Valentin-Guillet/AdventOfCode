@@ -143,7 +143,7 @@ int shortest_path(Map const& map, Position source, Position target) {
 int main(int argc, char* argv[])
 {
     bool first_half = true;
-	int ans = 0;
+    int ans = 0;
 
     std::ifstream myfile("input");
     for (int i=1; i<argc; i++) {
@@ -156,16 +156,16 @@ int main(int argc, char* argv[])
     }
 
     std::vector<std::string> map;
-	if (myfile.is_open()) {
+    if (myfile.is_open()) {
         std::string input;
 
-		getline(myfile, input);
+        getline(myfile, input);
         while (getline(myfile, input))
             map.push_back(input.substr(1, input.size()-2));
         map.erase(map.end());
 
-		myfile.close();
-	} else {
+        myfile.close();
+    } else {
         std::cout << "Unable to open file" << std::endl;
         return 1;
     }
@@ -191,5 +191,5 @@ int main(int argc, char* argv[])
     }
 
     std::cout << "Answer : " << ans << std::endl;
-	return 0;
+    return 0;
 }

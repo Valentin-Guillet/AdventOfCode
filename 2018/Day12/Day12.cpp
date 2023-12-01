@@ -31,14 +31,14 @@ int main(void)
 {
     bool first_half = false;
     std::string state;
-	long ans = 0;
-	std::unordered_set<std::string> rules;
+    long ans = 0;
+    std::unordered_set<std::string> rules;
 
-	std::ifstream myfile ("input");
-	if (myfile.is_open())
-	{
+    std::ifstream myfile ("input");
+    if (myfile.is_open())
+    {
         std::string input;
-		getline(myfile, input);
+        getline(myfile, input);
         state = input.substr(15);
 
         getline(myfile, input);
@@ -47,8 +47,8 @@ int main(void)
                 rules.insert(input.substr(0, 5));
         }
 
-		myfile.close();
-	} else {
+        myfile.close();
+    } else {
         std::cout << "Unable to open file" << std::endl;
         return 1;
     }
@@ -74,6 +74,6 @@ int main(void)
 
     ans = compute(state, offset);
 
-	std::cout << "Answer : " << ans << std::endl;
-	return 0;
+    std::cout << "Answer : " << ans << std::endl;
+    return 0;
 }

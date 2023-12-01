@@ -53,18 +53,18 @@ ostream& operator<<(ostream& os, Range const& range) {
 int main()
 {
     bool first_half = false;
-	string input;
-	long ans = 0;
-	vector<Range> tab;
+    string input;
+    long ans = 0;
+    vector<Range> tab;
 
-	ifstream myfile ("input");
-	if (myfile.is_open())
-	{
-		while (getline(myfile, input))
+    ifstream myfile ("input");
+    if (myfile.is_open())
+    {
+        while (getline(myfile, input))
             tab.push_back(Range(input));
 
-		myfile.close();
-	} else {
+        myfile.close();
+    } else {
         cout << "Unable to open file" << endl;
         return 1;
     }
@@ -96,6 +96,6 @@ int main()
             ans += range.size();
     }
 
-	cout << "Answer : " << ans << endl;
-	return 0;
+    cout << "Answer : " << ans << endl;
+    return 0;
 }

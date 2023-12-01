@@ -25,16 +25,16 @@ string next_row(string input) {
 int main()
 {
     bool first_half = false;
-	string input;
-	int ans = 0;
+    string input;
+    int ans = 0;
     int nb_rows = (first_half ? 40 : 400000);
 
-	ifstream myfile ("input");
-	if (myfile.is_open())
-	{
-		getline(myfile, input);
-		myfile.close();
-	} else {
+    ifstream myfile ("input");
+    if (myfile.is_open())
+    {
+        getline(myfile, input);
+        myfile.close();
+    } else {
         cout << "Unable to open file" << endl;
         return 1;
     }
@@ -46,6 +46,6 @@ int main()
         ans += count(input.begin(), input.end(), '.');
     }
 
-	cout << "Answer : " << ans << endl;
-	return 0;
+    cout << "Answer : " << ans << endl;
+    return 0;
 }

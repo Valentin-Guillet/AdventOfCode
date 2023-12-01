@@ -30,8 +30,8 @@ string get_checksum(string data) {
 int main()
 {
     bool first_half = false;
-	string input = "10001001100000001";
-	string ans;
+    string input = "10001001100000001";
+    string ans;
 
     size_t length = (first_half ? 272 : 35651584);
 
@@ -47,6 +47,6 @@ int main()
 
     ans = checksum;
 
-	cout << "Answer : " << ans << endl;
-	return 0;
+    cout << "Answer : " << ans << endl;
+    return 0;
 }

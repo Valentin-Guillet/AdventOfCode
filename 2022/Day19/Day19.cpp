@@ -182,7 +182,7 @@ int get_max_geodes(Blueprint blueprint, int time_limit) {
 int main(int argc, char* argv[])
 {
     bool first_half = true;
-	int ans = 0;
+    int ans = 0;
 
     std::ifstream myfile("input");
     for (int i=1; i<argc; i++) {
@@ -195,14 +195,14 @@ int main(int argc, char* argv[])
     }
 
     std::vector<Blueprint> blueprints;
-	if (myfile.is_open()) {
+    if (myfile.is_open()) {
         std::string input;
 
-		while (getline(myfile, input))
+        while (getline(myfile, input))
             blueprints.push_back(Blueprint(input));
 
-		myfile.close();
-	} else {
+        myfile.close();
+    } else {
         std::cout << "Unable to open file" << std::endl;
         return 1;
     }
@@ -217,5 +217,5 @@ int main(int argc, char* argv[])
     }
 
     std::cout << "Answer : " << ans << std::endl;
-	return 0;
+    return 0;
 }

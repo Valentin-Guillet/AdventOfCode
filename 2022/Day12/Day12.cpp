@@ -43,7 +43,7 @@ std::vector<Position> get_neighbors(int height, int width, Position const& pos) 
 int main(int argc, char* argv[])
 {
     bool first_half = true;
-	int ans = 0;
+    int ans = 0;
 
     std::ifstream myfile("input");
     for (int i=1; i<argc; i++) {
@@ -57,7 +57,7 @@ int main(int argc, char* argv[])
 
     Grid grid;
     Position start, end;
-	if (myfile.is_open()) {
+    if (myfile.is_open()) {
         std::string input;
 
         std::vector<char> line;
@@ -79,8 +79,8 @@ int main(int argc, char* argv[])
             x++;
         }
 
-		myfile.close();
-	} else {
+        myfile.close();
+    } else {
         std::cout << "Unable to open file" << std::endl;
         return 1;
     }
@@ -127,5 +127,5 @@ int main(int argc, char* argv[])
     }
 
     std::cout << "Answer : " << ans << std::endl;
-	return 0;
+    return 0;
 }

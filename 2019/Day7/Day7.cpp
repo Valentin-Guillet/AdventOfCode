@@ -100,18 +100,18 @@ tuplet run_program(std::vector<int> tab, int pos, int nb_inputs, int phase, int 
 
 int main(void)
 {
-	std::string ans;
-	std::vector<int> tab;
+    std::string ans;
+    std::vector<int> tab;
 
-	std::ifstream myfile ("input");
-	if (myfile.is_open()) {
+    std::ifstream myfile ("input");
+    if (myfile.is_open()) {
         std::string input;
 
-		while (getline(myfile, input, ','))
+        while (getline(myfile, input, ','))
             tab.push_back(std::stoi(input));
 
-		myfile.close();
-	} else {
+        myfile.close();
+    } else {
         std::cout << "Unable to open file";
         return 1;
     }
@@ -151,5 +151,5 @@ int main(void)
 
     std::cout << "Max : " << max << std::endl;
     std::cout << "Answer : " << ans << std::endl;
-	return 0;
+    return 0;
 }

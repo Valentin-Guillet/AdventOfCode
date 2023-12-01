@@ -119,7 +119,7 @@ void cover_range_diagonally(std::vector<Interval>& intervals, Sensor sensor, int
 int main(int argc, char* argv[])
 {
     bool first_half = true;
-	long ans = 0;
+    long ans = 0;
 
     std::ifstream myfile("input");
     for (int i=1; i<argc; i++) {
@@ -133,14 +133,14 @@ int main(int argc, char* argv[])
 
     std::vector<Sensor> sensors;
     std::vector<Beacon> beacons;
-	if (myfile.is_open()) {
+    if (myfile.is_open()) {
         std::string input;
 
         while (getline(myfile, input))
             add_sensor_and_beacon(sensors, beacons, input);
 
-		myfile.close();
-	} else {
+        myfile.close();
+    } else {
         std::cout << "Unable to open file" << std::endl;
         return 1;
     }

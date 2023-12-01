@@ -27,7 +27,7 @@ long compute_lanterfish(long n) {
 int main(int argc, char* argv[])
 {
     bool first_half = true;
-	long ans = 0;
+    long ans = 0;
     std::vector<int> lanternfishes;
 
     std::ifstream myfile("input");
@@ -40,17 +40,17 @@ int main(int argc, char* argv[])
             first_half = false;
     }
 
-	if (myfile.is_open()) {
+    if (myfile.is_open()) {
         std::string input;
 
-		getline(myfile, input);
+        getline(myfile, input);
         std::istringstream iss(input);
         std::string s;
         while (getline(iss, s, ','))
             lanternfishes.push_back(std::stoi(s));
 
-		myfile.close();
-	} else {
+        myfile.close();
+    } else {
         std::cout << "Unable to open file" << std::endl;
         return 1;
     }
@@ -78,5 +78,5 @@ int main(int argc, char* argv[])
     }
 
     std::cout << "Answer : " << ans << std::endl;
-	return 0;
+    return 0;
 }

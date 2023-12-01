@@ -130,8 +130,8 @@ class Maze
 int main()
 {
     bool first_half = false;
-	int input = 1352;
-	int ans = 0;
+    int input = 1352;
+    int ans = 0;
 
     Maze maze(input);
 
@@ -141,6 +141,6 @@ int main()
         ans = maze.nb_cells(50);
     }
 
-	cout << "Answer : " << ans << endl;
-	return 0;
+    cout << "Answer : " << ans << endl;
+    return 0;
 }

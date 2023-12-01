@@ -70,11 +70,11 @@ std::pair<bool, Deck> play_game(Deck player_one, Deck player_two, bool recursive
 int main()
 {
     bool first_half = false;
-	int ans = 0;
+    int ans = 0;
     Deck player_one, player_two;
 
     std::ifstream myfile ("input");
-	if (myfile.is_open()) {
+    if (myfile.is_open()) {
         std::string input;
 
         getline(myfile, input);
@@ -88,8 +88,8 @@ int main()
         while (getline(myfile, input))
             player_two.push_back(std::stoi(input));
 
-		myfile.close();
-	} else {
+        myfile.close();
+    } else {
         std::cout << "Unable to open file" << std::endl;
         return 1;
     }
@@ -103,5 +103,5 @@ int main()
     }
 
     std::cout << "Answer : " << ans << std::endl;
-	return 0;
+    return 0;
 }

@@ -149,11 +149,11 @@ void debug(std::map<int, bool[25]>& tab) {
 int main(void)
 {
     bool first_half = false;
-	int ans = 0;
+    int ans = 0;
     std::map<int, bool[25]> tab;
 
-	std::ifstream myfile ("input");
-	if (myfile.is_open()) {
+    std::ifstream myfile ("input");
+    if (myfile.is_open()) {
         std::string input;
 
         int i = 0;
@@ -163,8 +163,8 @@ int main(void)
                 i++;
             }
         }
-		myfile.close();
-	} else {
+        myfile.close();
+    } else {
         std::cout << "Unable to open file" << std::endl;
         return 1;
     }
@@ -186,6 +186,6 @@ int main(void)
         ans = compute_biodiversity(tab);
     }
 
-	std::cout << "Answer : " << ans << std::endl;
-	return 0;
+    std::cout << "Answer : " << ans << std::endl;
+    return 0;
 }

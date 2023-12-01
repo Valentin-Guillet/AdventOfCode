@@ -87,11 +87,11 @@ Grid next(Grid const& grid) {
 int main()
 {
     bool first_half = false;
-	int ans = 0;
+    int ans = 0;
     Grid grid;
 
     std::ifstream myfile ("input");
-	if (myfile.is_open()) {
+    if (myfile.is_open()) {
         std::string input;
 
         int y = 0;
@@ -103,8 +103,8 @@ int main()
             ++y;
         }
 
-		myfile.close();
-	} else {
+        myfile.close();
+    } else {
         std::cout << "Unable to open file" << std::endl;
         return 1;
     }
@@ -115,5 +115,5 @@ int main()
     ans = grid.size();
 
     std::cout << "Answer : " << ans << std::endl;
-	return 0;
+    return 0;
 }

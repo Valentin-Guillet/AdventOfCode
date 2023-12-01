@@ -9,8 +9,8 @@ using namespace std;
 int main()
 {
     bool first_half = false;
-	int input = 3004953;
-	int ans;
+    int input = 3004953;
+    int ans;
 
     if (first_half) {
         int pwr = 1;
@@ -32,6 +32,6 @@ int main()
         }
     }
 
-	cout << "Answer : " << ans << endl;
-	return 0;
+    cout << "Answer : " << ans << endl;
+    return 0;
 }

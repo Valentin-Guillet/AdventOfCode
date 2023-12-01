@@ -46,16 +46,16 @@ std::vector<int> apply_phase2(std::vector<int> input)
 int main(void)
 {
     bool first_half = false;
-	std::string input;
+    std::string input;
     std::vector<int> tab;
     int ans = 0;
 
-	std::ifstream myfile ("input");
-	if (myfile.is_open()) {
-		getline(myfile, input);
+    std::ifstream myfile ("input");
+    if (myfile.is_open()) {
+        getline(myfile, input);
 
-		myfile.close();
-	} else {
+        myfile.close();
+    } else {
         std::cout << "Unable to open file" << std::endl;
         return 1;
     }
@@ -87,6 +87,6 @@ int main(void)
         ans = ans*10 + tab[i];
     }
 
-	std::cout << "Answer : " << ans << std::endl;
-	return 0;
+    std::cout << "Answer : " << ans << std::endl;
+    return 0;
 }

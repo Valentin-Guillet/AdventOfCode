@@ -24,7 +24,7 @@ long next(long reg2) {
 int main()
 {
     bool first_half = false;
-	long ans = 0;
+    long ans = 0;
     // An analysis of the program shows that it follows a procedure to generate numbers
     // in register 2, and once in a while, check if that number is equal to register 0 (the input)
     //
@@ -47,5 +47,5 @@ int main()
     }
 
     std::cout << "Answer : " << ans << std::endl;
-	return 0;
+    return 0;
 }

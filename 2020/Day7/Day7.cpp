@@ -45,23 +45,23 @@ struct Bag {
 int main()
 {
     bool first_half = false;
-	int ans = 0;
+    int ans = 0;
     std::vector<std::string> rules;
     std::unordered_map<std::string, Bag*> bags;
 
     std::ifstream myfile ("input");
-	if (myfile.is_open()) {
+    if (myfile.is_open()) {
         std::string input;
 
-		while (getline(myfile, input)) {
+        while (getline(myfile, input)) {
             rules.push_back(input);
             int index = input.find("bags contain");
             std::string name = input.substr(0, index-1);
             bags[name] = new Bag(bags, name);
         }
 
-		myfile.close();
-	} else {
+        myfile.close();
+    } else {
         std::cout << "Unable to open file" << std::endl;
         return 1;
     }
@@ -104,5 +104,5 @@ int main()
         delete bag;
 
     std::cout << "Answer : " << ans << std::endl;
-	return 0;
+    return 0;
 }

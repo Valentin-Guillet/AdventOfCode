@@ -45,10 +45,10 @@ struct Constellation {
 int main()
 {
     std::vector<Point> stars;
-	int ans = 0;
+    int ans = 0;
 
     std::ifstream myfile ("input");
-	if (myfile.is_open()) {
+    if (myfile.is_open()) {
         std::string input;
 
         while (getline(myfile, input)) {
@@ -65,8 +65,8 @@ int main()
             stars.push_back(Point(x, y, z, t));
         }
 
-		myfile.close();
-	} else {
+        myfile.close();
+    } else {
         std::cout << "Unable to open file" << std::endl;
         return 1;
     }
@@ -89,5 +89,5 @@ int main()
     ans = constellations.size();
 
     std::cout << "Answer : " << ans << std::endl;
-	return 0;
+    return 0;
 }

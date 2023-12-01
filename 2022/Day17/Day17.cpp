@@ -142,7 +142,7 @@ long create_rocks(std::vector<Rock> const& rocks, std::string movements, size_t 
 int main(int argc, char* argv[])
 {
     bool first_half = true;
-	long ans = 0;
+    long ans = 0;
 
     std::ifstream myfile("input");
     for (int i=1; i<argc; i++) {
@@ -155,12 +155,12 @@ int main(int argc, char* argv[])
     }
 
     std::string movements;
-	if (myfile.is_open()) {
+    if (myfile.is_open()) {
 
-		getline(myfile, movements);
+        getline(myfile, movements);
 
-		myfile.close();
-	} else {
+        myfile.close();
+    } else {
         std::cout << "Unable to open file" << std::endl;
         return 1;
     }
@@ -172,5 +172,5 @@ int main(int argc, char* argv[])
     ans = create_rocks(rocks, movements, nb_rocks);
 
     std::cout << "Answer : " << ans << std::endl;
-	return 0;
+    return 0;
 }

@@ -29,15 +29,15 @@ std::string remove(std::string input, char rem) {
 int main(void)
 {
     bool first_half = false;
-	std::string input;
-	int ans = 0;
+    std::string input;
+    int ans = 0;
 
-	std::ifstream myfile ("input");
-	if (myfile.is_open())
-	{
-		getline(myfile, input);
-		myfile.close();
-	} else {
+    std::ifstream myfile ("input");
+    if (myfile.is_open())
+    {
+        getline(myfile, input);
+        myfile.close();
+    } else {
         std::cout << "Unable to open file" << std::endl;
         return 1;
     }
@@ -61,6 +61,6 @@ int main(void)
         ans = min_size;
     }
 
-	std::cout << "Answer : " << ans << std::endl;
-	return 0;
+    std::cout << "Answer : " << ans << std::endl;
+    return 0;
 }

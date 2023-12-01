@@ -81,15 +81,15 @@ class CircularList
 int main(void)
 {
     bool first_half = false;
-	std::string input;
-	long ans = 0;
+    std::string input;
+    long ans = 0;
 
-	std::ifstream myfile ("input");
-	if (myfile.is_open())
-	{
-		getline(myfile, input);
-		myfile.close();
-	} else {
+    std::ifstream myfile ("input");
+    if (myfile.is_open())
+    {
+        getline(myfile, input);
+        myfile.close();
+    } else {
         std::cout << "Unable to open file" << std::endl;
         return 1;
     }
@@ -132,6 +132,6 @@ int main(void)
 
     ans = *std::max_element(scores.begin(), scores.end());
 
-	std::cout << "Answer : " << ans << std::endl;
-	return 0;
+    std::cout << "Answer : " << ans << std::endl;
+    return 0;
 }

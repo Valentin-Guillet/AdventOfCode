@@ -69,18 +69,18 @@ class Node {
 int main(void)
 {
     bool first_half = false;
-	int ans = 0;
-	std::queue<int> tab;
+    int ans = 0;
+    std::queue<int> tab;
 
-	std::ifstream myfile ("input");
-	if (myfile.is_open()) {
+    std::ifstream myfile ("input");
+    if (myfile.is_open()) {
         std::string input;
 
-		while (getline(myfile, input, ' '))
+        while (getline(myfile, input, ' '))
             tab.push(std::stoi(input));
 
-		myfile.close();
-	} else {
+        myfile.close();
+    } else {
         std::cout << "Unable to open file" << std::endl;
         return 1;
     }
@@ -97,6 +97,6 @@ int main(void)
 
     delete root;
 
-	std::cout << "Answer : " << ans << std::endl;
-	return 0;
+    std::cout << "Answer : " << ans << std::endl;
+    return 0;
 }

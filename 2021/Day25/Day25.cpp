@@ -66,7 +66,7 @@ void debug(Grid const& grid) {
 
 int main(int argc, char* argv[])
 {
-	int ans = 0;
+    int ans = 0;
     Grid grid;
 
     std::ifstream myfile("input");
@@ -76,7 +76,7 @@ int main(int argc, char* argv[])
             myfile = std::ifstream("test_input");
     }
 
-	if (myfile.is_open()) {
+    if (myfile.is_open()) {
         std::string input;
 
         while (getline(myfile, input)) {
@@ -92,8 +92,8 @@ int main(int argc, char* argv[])
             grid.push_back(line);
         }
 
-		myfile.close();
-	} else {
+        myfile.close();
+    } else {
         std::cout << "Unable to open file" << std::endl;
         return 1;
     }
@@ -103,5 +103,5 @@ int main(int argc, char* argv[])
     } while (next(grid));
 
     std::cout << "Answer : " << ans << std::endl;
-	return 0;
+    return 0;
 }

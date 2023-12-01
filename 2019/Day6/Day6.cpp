@@ -20,11 +20,11 @@ struct node {
 int main(void)
 {
     bool first_half = false;
-	int ans = 0;
-	std::vector<link> tab;
+    int ans = 0;
+    std::vector<link> tab;
 
-	std::ifstream myfile ("input");
-	if (myfile.is_open()) {
+    std::ifstream myfile ("input");
+    if (myfile.is_open()) {
         std::string input;
 
         while (getline(myfile, input)) {
@@ -35,8 +35,8 @@ int main(void)
             tab.push_back(my_link);
         }
 
-		myfile.close();
-	} else {
+        myfile.close();
+    } else {
         std::cout << "Unable to open file" << std::endl;
         return 1;
     }
@@ -89,5 +89,5 @@ int main(void)
     }
 
     std::cout << "Answer : " << ans << std::endl;
-	return 0;
+    return 0;
 }

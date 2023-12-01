@@ -86,22 +86,22 @@ void run_program(std::vector<int> tab, bool debug=false)
 
 int main(void)
 {
-	std::vector<int> tab;
+    std::vector<int> tab;
 
-	std::ifstream myfile ("input");
-	if (myfile.is_open()) {
+    std::ifstream myfile ("input");
+    if (myfile.is_open()) {
         std::string input;
 
-		while (getline(myfile, input, ','))
+        while (getline(myfile, input, ','))
             tab.push_back(std::stoi(input));
 
-		myfile.close();
-	} else {
+        myfile.close();
+    } else {
         std::cout << "Unable to open file";
         return 1;
     }
 
     run_program(tab, false);
 
-	return 0;
+    return 0;
 }

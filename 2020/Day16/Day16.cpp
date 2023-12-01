@@ -79,14 +79,14 @@ std::unordered_set<std::string> filter_valid(FieldMap const& fields, std::vector
 int main()
 {
     bool first_half = false;
-	long ans = 0;
+    long ans = 0;
 
     FieldMap fields;
     std::vector<int> my_ticket;
     std::vector<std::vector<int>> nearby_tickets;
 
     std::ifstream myfile ("input");
-	if (myfile.is_open()) {
+    if (myfile.is_open()) {
         std::string input;
 
         while (getline(myfile, input)) {
@@ -108,8 +108,8 @@ int main()
         while (getline(myfile, input))
             nearby_tickets.push_back(parse_values(input));
 
-		myfile.close();
-	} else {
+        myfile.close();
+    } else {
         std::cout << "Unable to open file" << std::endl;
         return 1;
     }
@@ -170,5 +170,5 @@ int main()
     }
 
     std::cout << "Answer : " << ans << std::endl;
-	return 0;
+    return 0;
 }

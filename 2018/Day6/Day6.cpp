@@ -74,11 +74,11 @@ int get_area(const std::vector<Point> points, size_t id) {
 int main(void)
 {
     bool first_half = false;
-	int ans = 0;
-	std::vector<Point> points;
+    int ans = 0;
+    std::vector<Point> points;
 
-	std::ifstream myfile ("input");
-	if (myfile.is_open()) {
+    std::ifstream myfile ("input");
+    if (myfile.is_open()) {
         std::string input;
 
         int i = 0;
@@ -89,8 +89,8 @@ int main(void)
             points.push_back({x, y, i++});
         }
 
-		myfile.close();
-	} else {
+        myfile.close();
+    } else {
         std::cout << "Unable to open file" << std::endl;
         return 1;
     }
@@ -118,6 +118,6 @@ int main(void)
         }
     }
 
-	std::cout << "Answer : " << ans << std::endl;
-	return 0;
+    std::cout << "Answer : " << ans << std::endl;
+    return 0;
 }

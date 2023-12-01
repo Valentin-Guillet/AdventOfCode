@@ -279,7 +279,7 @@ struct State {
 int main(int argc, char* argv[])
 {
     bool first_half = true;
-	int ans = 10000000;
+    int ans = 10000000;
     int hallway[11];
     int rooms[4][4];
 
@@ -293,11 +293,11 @@ int main(int argc, char* argv[])
             first_half = false;
     }
 
-	if (myfile.is_open()) {
+    if (myfile.is_open()) {
         std::string input;
 
-		getline(myfile, input);
-		getline(myfile, input);
+        getline(myfile, input);
+        getline(myfile, input);
         for (int i=1; i<12; i++) {
             if (input[i] == '.') hallway[i-1] = -1;
             else hallway[i-1] = input[i] - 'A';
@@ -314,8 +314,8 @@ int main(int argc, char* argv[])
             }
         }
 
-		myfile.close();
-	} else {
+        myfile.close();
+    } else {
         std::cout << "Unable to open file" << std::endl;
         return 1;
     }
@@ -356,5 +356,5 @@ int main(int argc, char* argv[])
     }
 
     std::cout << "Answer : " << ans << std::endl;
-	return 0;
+    return 0;
 }

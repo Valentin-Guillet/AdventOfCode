@@ -7,7 +7,7 @@
 int main()
 {
     bool first_half = false;
-	int ans = 0;
+    int ans = 0;
     std::vector<int> numbers = {16, 1, 0, 18, 12, 14, 19};
     std::unordered_map<int, size_t> indices;
 
@@ -34,5 +34,5 @@ int main()
     ans = numbers[n-1];
 
     std::cout << "Answer : " << ans << std::endl;
-	return 0;
+    return 0;
 }

@@ -5,21 +5,21 @@
 
 int main()
 {
-	long ans = 1;
+    long ans = 1;
     long card_public_key, door_public_key;
 
     std::ifstream myfile ("input");
-	if (myfile.is_open()) {
+    if (myfile.is_open()) {
         std::string input;
 
-		getline(myfile, input);
+        getline(myfile, input);
         card_public_key = std::stol(input);
 
-		getline(myfile, input);
+        getline(myfile, input);
         door_public_key = std::stol(input);
 
-		myfile.close();
-	} else {
+        myfile.close();
+    } else {
         std::cout << "Unable to open file" << std::endl;
         return 1;
     }
@@ -35,5 +35,5 @@ int main()
         ans = (ans * door_public_key) % 20201227;
 
     std::cout << "Answer : " << ans << std::endl;
-	return 0;
+    return 0;
 }

@@ -34,16 +34,16 @@ bool increase(int number)
 int main(void)
 {
     bool first_half = false;
-	std::string input;
-	int ans = 0;
-	std::vector<int> tab;
+    std::string input;
+    int ans = 0;
+    std::vector<int> tab;
 
-	std::ifstream myfile ("input");
-	if (myfile.is_open()) {
+    std::ifstream myfile ("input");
+    if (myfile.is_open()) {
         getline(myfile, input);
 
-		myfile.close();
-	} else {
+        myfile.close();
+    } else {
         std::cout << "Unable to open file" << std::endl;
         return 1;
     }
@@ -58,6 +58,6 @@ int main(void)
             ++ans;
     }
 
-	std::cout << "Answer : " << ans << std::endl;
-	return 0;
+    std::cout << "Answer : " << ans << std::endl;
+    return 0;
 }

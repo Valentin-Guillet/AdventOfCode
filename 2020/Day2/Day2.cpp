@@ -29,11 +29,11 @@ struct Password {
 int main()
 {
     bool first_half = false;
-	int ans = 0;
+    int ans = 0;
     std::vector<Password> tab;
 
     std::ifstream myfile ("input");
-	if (myfile.is_open()) {
+    if (myfile.is_open()) {
         std::string input;
 
         std::regex rgx("([0-9]+)-([0-9]+) ([a-z]): ([a-z]+)");
@@ -49,8 +49,8 @@ int main()
             tab.push_back(Password(limits, letter, pwd));
         }
 
-		myfile.close();
-	} else {
+        myfile.close();
+    } else {
         std::cout << "Unable to open file" << std::endl;
         return 1;
     }
@@ -59,5 +59,5 @@ int main()
         ans += pwd.is_valid(first_half);
 
     std::cout << "Answer : " << ans << std::endl;
-	return 0;
+    return 0;
 }

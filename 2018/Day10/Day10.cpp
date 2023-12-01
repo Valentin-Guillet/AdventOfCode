@@ -94,15 +94,15 @@ void display(const Grid& points) {
 
 int main(void)
 {
-	int ans = 0;
+    int ans = 0;
     Grid points;
 
-	std::ifstream myfile ("input");
-	if (myfile.is_open()) {
+    std::ifstream myfile ("input");
+    if (myfile.is_open()) {
         std::string input;
 
         int id = 0;
-		while (getline(myfile, input)) {
+        while (getline(myfile, input)) {
             int x = std::stoi(input.substr(10, 6));
             int y = std::stoi(input.substr(18, 6));
             int vx = std::stoi(input.substr(36, 2));
@@ -111,7 +111,7 @@ int main(void)
         }
 
         myfile.close();
-	} else {
+    } else {
         std::cout << "Unable to open file" << std::endl;
         return 1;
     }
@@ -123,6 +123,6 @@ int main(void)
 
     display(points);
 
-	std::cout << "Answer : " << ans << std::endl;
-	return 0;
+    std::cout << "Answer : " << ans << std::endl;
+    return 0;
 }

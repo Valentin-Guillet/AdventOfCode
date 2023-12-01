@@ -11,18 +11,18 @@ using namespace std;
 int main()
 {
     bool first_half = false;
-	string input;
-	int ans = 0;
-	vector<string> tab;
+    string input;
+    int ans = 0;
+    vector<string> tab;
 
-	ifstream myfile ("input");
-	if (myfile.is_open())
-	{
-		while (getline(myfile, input, ','))
+    ifstream myfile ("input");
+    if (myfile.is_open())
+    {
+        while (getline(myfile, input, ','))
             tab.push_back(input.substr(1));
 
-		myfile.close();
-	} else {
+        myfile.close();
+    } else {
         cout << "Unable to open file" << endl;
         return 1;
     }
@@ -54,6 +54,6 @@ int main()
 break_out:
     ans = abs(x) + abs(y);
 
-	cout << "Answer : " << ans << endl;
-	return 0;
+    cout << "Answer : " << ans << endl;
+    return 0;
 }

@@ -73,7 +73,7 @@ NbWins compute_wins(size_t id_player, int scores[2], int players[2]) {
 int main(int argc, char* argv[])
 {
     bool first_half = true;
-	long ans = 0;
+    long ans = 0;
     int players[2];
 
     std::ifstream myfile("input");
@@ -86,16 +86,16 @@ int main(int argc, char* argv[])
             first_half = false;
     }
 
-	if (myfile.is_open()) {
+    if (myfile.is_open()) {
         std::string input;
 
-		getline(myfile, input);
+        getline(myfile, input);
         players[0] = std::stoi(input.substr(28));
-		getline(myfile, input);
+        getline(myfile, input);
         players[1] = std::stoi(input.substr(28));
 
-		myfile.close();
-	} else {
+        myfile.close();
+    } else {
         std::cout << "Unable to open file" << std::endl;
         return 1;
     }
@@ -135,5 +135,5 @@ int main(int argc, char* argv[])
     }
 
     std::cout << "Answer : " << ans << std::endl;
-	return 0;
+    return 0;
 }

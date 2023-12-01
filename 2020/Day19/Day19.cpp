@@ -49,12 +49,12 @@ std::unordered_set<std::string> process(std::unordered_map<int, std::string> con
 int main()
 {
     bool first_half = false;
-	int ans = 0;
+    int ans = 0;
     std::unordered_map<int, std::string> rules;
     std::vector<std::string> messages;
 
     std::ifstream myfile ("input");
-	if (myfile.is_open()) {
+    if (myfile.is_open()) {
         std::string input;
 
         while (getline(myfile, input)) {
@@ -70,8 +70,8 @@ int main()
         while (getline(myfile, input))
             messages.push_back(input);
 
-		myfile.close();
-	} else {
+        myfile.close();
+    } else {
         std::cout << "Unable to open file" << std::endl;
         return 1;
     }
@@ -88,5 +88,5 @@ int main()
     }
 
     std::cout << "Answer : " << ans << std::endl;
-	return 0;
+    return 0;
 }

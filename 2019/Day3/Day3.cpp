@@ -101,19 +101,19 @@ std::vector<std::pair<int, int>> build_wire(std::string wire, map& grid, int id)
 int main(void)
 {
     bool first_half = false;
-	std::string wire1, wire2;
-	int ans = 0;
+    std::string wire1, wire2;
+    int ans = 0;
     std::vector<std::pair<int, int>> intersections;
     map grid;
 
-	std::ifstream myfile ("input");
-	if (myfile.is_open()) {
+    std::ifstream myfile ("input");
+    if (myfile.is_open()) {
 
-		getline(myfile, wire1);
-		getline(myfile, wire2);
+        getline(myfile, wire1);
+        getline(myfile, wire2);
 
-		myfile.close();
-	} else {
+        myfile.close();
+    } else {
         std::cout << "Unable to open file";
         return 1;
     }
@@ -134,6 +134,6 @@ int main(void)
         }
     }
 
-	std::cout << "Answer : " << ans << std::endl;
-	return 0;
+    std::cout << "Answer : " << ans << std::endl;
+    return 0;
 }

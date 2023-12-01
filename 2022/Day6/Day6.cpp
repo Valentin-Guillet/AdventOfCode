@@ -8,7 +8,7 @@
 int main(int argc, char* argv[])
 {
     bool first_half = true;
-	int ans = 0;
+    int ans = 0;
 
     std::ifstream myfile("input");
     for (int i=1; i<argc; i++) {
@@ -21,12 +21,12 @@ int main(int argc, char* argv[])
     }
 
     std::string input;
-	if (myfile.is_open()) {
+    if (myfile.is_open()) {
 
-		getline(myfile, input);
+        getline(myfile, input);
 
-		myfile.close();
-	} else {
+        myfile.close();
+    } else {
         std::cout << "Unable to open file" << std::endl;
         return 1;
     }
@@ -44,5 +44,5 @@ int main(int argc, char* argv[])
     }
 
     std::cout << "Answer : " << ans << std::endl;
-	return 0;
+    return 0;
 }

@@ -75,7 +75,7 @@ void debug(Board board) {
 int main(int argc, char* argv[])
 {
     bool first_half = true;
-	int ans = 0;
+    int ans = 0;
     std::queue<int> drawn;
     std::vector<Board> boards;
 
@@ -89,10 +89,10 @@ int main(int argc, char* argv[])
             first_half = false;
     }
 
-	if (myfile.is_open()) {
+    if (myfile.is_open()) {
         std::string input;
 
-		getline(myfile, input);
+        getline(myfile, input);
         std::istringstream iss(input);
         std::string s;
         while (getline(iss, s, ','))
@@ -110,8 +110,8 @@ int main(int argc, char* argv[])
             boards.push_back(Board(tab));
         }
 
-		myfile.close();
-	} else {
+        myfile.close();
+    } else {
         std::cout << "Unable to open file" << std::endl;
         return 1;
     }
@@ -139,5 +139,5 @@ int main(int argc, char* argv[])
     }
 
     std::cout << "Answer : " << ans << std::endl;
-	return 0;
+    return 0;
 }

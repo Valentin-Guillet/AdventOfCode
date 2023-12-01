@@ -169,18 +169,18 @@ int main(void)
 {
     bool first_half = false;
     int ans = 0;
-	std::unordered_map<long, long> tab;
+    std::unordered_map<long, long> tab;
 
-	std::ifstream myfile ("input");
-	if (myfile.is_open()) {
+    std::ifstream myfile ("input");
+    if (myfile.is_open()) {
         std::string input;
 
         int i = 0;
-		while (getline(myfile, input, ','))
+        while (getline(myfile, input, ','))
             tab[i++] = std::stol(input);
 
-		myfile.close();
-	} else {
+        myfile.close();
+    } else {
         std::cout << "Unable to open file";
         return 1;
     }
@@ -239,6 +239,6 @@ int main(void)
             idle_countdown--;
     }
 
-	std::cout << "Answer : " << ans << std::endl;
-	return 0;
+    std::cout << "Answer : " << ans << std::endl;
+    return 0;
 }

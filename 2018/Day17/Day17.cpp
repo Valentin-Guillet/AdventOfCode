@@ -151,7 +151,7 @@ void debug(const Grid& grid, const std::vector<Position> sources, int min_x, int
 int main()
 {
     bool first_half = false;
-	int ans = 0;
+    int ans = 0;
 
     Grid grid;
     grid[{500, 0}] = '|';
@@ -160,7 +160,7 @@ int main()
     int min_y = 10000, max_y = 0;
 
     std::ifstream myfile ("input");
-	if (myfile.is_open()) {
+    if (myfile.is_open()) {
         std::string input;
 
         while (getline(myfile, input)) {
@@ -204,8 +204,8 @@ int main()
 
         }
 
-		myfile.close();
-	} else {
+        myfile.close();
+    } else {
         std::cout << "Unable to open file" << std::endl;
         return 1;
     }

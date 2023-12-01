@@ -9,11 +9,11 @@
 int main()
 {
     bool first_half = false;
-	int ans = 0;
+    int ans = 0;
     std::vector<std::unordered_set<char>> groups;
 
     std::ifstream myfile ("input");
-	if (myfile.is_open()) {
+    if (myfile.is_open()) {
         std::string input;
 
         std::unordered_set<char> group;
@@ -54,8 +54,8 @@ int main()
         }
         groups.push_back(group);
 
-		myfile.close();
-	} else {
+        myfile.close();
+    } else {
         std::cout << "Unable to open file" << std::endl;
         return 1;
     }
@@ -64,5 +64,5 @@ int main()
         ans += group.size();
 
     std::cout << "Answer : " << ans << std::endl;
-	return 0;
+    return 0;
 }

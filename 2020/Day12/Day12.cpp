@@ -70,18 +70,18 @@ struct Ship {
 int main()
 {
     bool first_half = false;
-	int ans = 0;
+    int ans = 0;
     std::vector<std::string> instructions;
 
     std::ifstream myfile ("input");
-	if (myfile.is_open()) {
+    if (myfile.is_open()) {
         std::string input;
 
-		while (getline(myfile, input))
+        while (getline(myfile, input))
             instructions.push_back(input);
 
-		myfile.close();
-	} else {
+        myfile.close();
+    } else {
         std::cout << "Unable to open file" << std::endl;
         return 1;
     }
@@ -96,5 +96,5 @@ int main()
     ans = std::abs(ship.x) + std::abs(ship.y);
 
     std::cout << "Answer : " << ans << std::endl;
-	return 0;
+    return 0;
 }

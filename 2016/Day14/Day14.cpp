@@ -62,8 +62,8 @@ bool has_quintuple(string hash, char value) {
 int main()
 {
     bool first_half = false;
-	string input = "ngcjuoqr";
-	int ans = 0;
+    string input = "ngcjuoqr";
+    int ans = 0;
 
     MyHasher hasher(input, first_half);
 
@@ -87,6 +87,6 @@ int main()
     }
     ans = index-1;
 
-	cout << "Answer : " << ans << endl;
-	return 0;
+    cout << "Answer : " << ans << endl;
+    return 0;
 }

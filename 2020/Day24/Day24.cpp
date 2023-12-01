@@ -86,18 +86,18 @@ HexGrid next_gen(HexGrid const& hexes) {
 int main()
 {
     bool first_half = false;
-	int ans = 0;
+    int ans = 0;
     HexGrid hexes;
 
     std::ifstream myfile ("input");
-	if (myfile.is_open()) {
+    if (myfile.is_open()) {
         std::string input;
 
-		while (getline(myfile, input))
+        while (getline(myfile, input))
             add_hex(hexes, input);
 
-		myfile.close();
-	} else {
+        myfile.close();
+    } else {
         std::cout << "Unable to open file" << std::endl;
         return 1;
     }
@@ -109,5 +109,5 @@ int main()
     ans = hexes.size();
 
     std::cout << "Answer : " << ans << std::endl;
-	return 0;
+    return 0;
 }

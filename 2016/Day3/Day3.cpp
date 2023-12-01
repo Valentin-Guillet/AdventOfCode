@@ -11,19 +11,19 @@ using namespace std;
 int main()
 {
     bool first_half = false;
-	string input;
-	int ans = 0;
-	vector<tuple<int, int, int>> tab;
+    string input;
+    int ans = 0;
+    vector<tuple<int, int, int>> tab;
 
-	ifstream myfile ("input");
-	if (myfile.is_open())
-	{
+    ifstream myfile ("input");
+    if (myfile.is_open())
+    {
         int a, b, c;
         while (myfile >> a >> b >> c) {
             tab.push_back({a, b, c});
         }
-		myfile.close();
-	} else {
+        myfile.close();
+    } else {
         cout << "Unable to open file" << endl;
         return 1;
     }
@@ -50,6 +50,6 @@ int main()
         }
     }
 
-	cout << "Answer : " << ans << endl;
-	return 0;
+    cout << "Answer : " << ans << endl;
+    return 0;
 }

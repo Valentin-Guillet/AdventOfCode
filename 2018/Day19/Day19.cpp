@@ -101,21 +101,21 @@ class Program {
 int main()
 {
     bool first_half = false;
-	int ans = 0;
+    int ans = 0;
     std::string binding;
     std::vector<std::string> instrs;
 
     std::ifstream myfile ("input");
-	if (myfile.is_open()) {
+    if (myfile.is_open()) {
         std::string input;
 
-		getline(myfile, binding);
+        getline(myfile, binding);
         while (getline(myfile, input)) {
             instrs.push_back(input);
         }
 
-		myfile.close();
-	} else {
+        myfile.close();
+    } else {
         std::cout << "Unable to open file" << std::endl;
         return 1;
     }
@@ -140,5 +140,5 @@ int main()
     }
 
     std::cout << "Answer : " << ans << std::endl;
-	return 0;
+    return 0;
 }

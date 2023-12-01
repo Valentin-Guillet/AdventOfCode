@@ -77,18 +77,18 @@ class Computer {
 int main()
 {
     bool first_half = false;
-	string input;
-	int ans = 0;
-	vector<string> tab;
+    string input;
+    int ans = 0;
+    vector<string> tab;
 
-	ifstream myfile ("input");
-	if (myfile.is_open())
-	{
-		while (getline(myfile, input))
+    ifstream myfile ("input");
+    if (myfile.is_open())
+    {
+        while (getline(myfile, input))
             tab.push_back(input);
 
-		myfile.close();
-	} else {
+        myfile.close();
+    } else {
         cout << "Unable to open file" << endl;
         return 1;
     }
@@ -101,6 +101,6 @@ int main()
     computer.run();
     ans = computer.get('a');
 
-	cout << "Answer : " << ans << endl;
-	return 0;
+    cout << "Answer : " << ans << endl;
+    return 0;
 }

@@ -14,7 +14,7 @@ long get_power(int x, int y, int input) {
 int main(void)
 {
     bool first_half = false;
-	int input = 7989;
+    int input = 7989;
     std::string ans;
 
     std::vector<std::vector<long>> power;
@@ -87,5 +87,5 @@ int main(void)
         ans += "," + std::to_string(max_size);
 
     std::cout << "Answer : " << ans << std::endl;
-	return 0;
+    return 0;
 }

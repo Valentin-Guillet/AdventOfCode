@@ -105,22 +105,22 @@ int main(void)
     using namespace std::placeholders;
 
     bool first_half = false;
-	int ans = 0;
+    int ans = 0;
     int tab[SIZE][SIZE];
 
-	std::ifstream myfile ("input");
-	if (myfile.is_open()) {
+    std::ifstream myfile ("input");
+    if (myfile.is_open()) {
         std::string input;
 
         int j = 0;
-		while (getline(myfile, input)) {
+        while (getline(myfile, input)) {
             for (int i=0; i<SIZE; ++i)
                 tab[j][i] = (int) (input[i] == '#');
             j++;
         }
 
-		myfile.close();
-	} else {
+        myfile.close();
+    } else {
         std::cout << "Unable to open file" << std::endl;
         return 1;
     }
@@ -177,6 +177,6 @@ int main(void)
         ans = 100 * ansx + ansy;
     }
 
-	std::cout << "Answer : " << ans << std::endl;
-	return 0;
+    std::cout << "Answer : " << ans << std::endl;
+    return 0;
 }

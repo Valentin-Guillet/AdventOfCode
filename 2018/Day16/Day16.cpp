@@ -127,7 +127,7 @@ void validate(std::vector<int>& opcodes, Sample sample) {
 int main()
 {
     bool first_half = false;
-	int ans = 0;
+    int ans = 0;
     std::vector<Sample> samples;
     std::vector<Instr> program;
     std::array<std::vector<int>, 16> opcode_list;
@@ -137,7 +137,7 @@ int main()
     }
 
     std::ifstream myfile ("input");
-	if (myfile.is_open()) {
+    if (myfile.is_open()) {
         std::string input;
 
         while (getline(myfile, input)) {
@@ -154,8 +154,8 @@ int main()
             }
         }
 
-		myfile.close();
-	} else {
+        myfile.close();
+    } else {
         std::cout << "Unable to open file" << std::endl;
         return 1;
     }
@@ -207,5 +207,5 @@ int main()
     }
 
     std::cout << "Answer : " << ans << std::endl;
-	return 0;
+    return 0;
 }

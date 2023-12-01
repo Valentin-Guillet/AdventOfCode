@@ -126,7 +126,7 @@ long compute_volume(std::vector<Square> squares, size_t dim=3) {
 int main(int argc, char* argv[])
 {
     bool first_half = true;
-	long ans = 0;
+    long ans = 0;
     std::vector<Square> squares;
 
     std::ifstream myfile("input");
@@ -139,7 +139,7 @@ int main(int argc, char* argv[])
             first_half = false;
     }
 
-	if (myfile.is_open()) {
+    if (myfile.is_open()) {
         std::string input;
 
         int id = 0;
@@ -163,13 +163,13 @@ int main(int argc, char* argv[])
             id++;
         }
 
-		myfile.close();
-	} else {
+        myfile.close();
+    } else {
         std::cout << "Unable to open file" << std::endl;
         return 1;
     }
 
     ans = compute_volume(squares, 3);
     std::cout << "Answer : " << ans << std::endl;
-	return 0;
+    return 0;
 }

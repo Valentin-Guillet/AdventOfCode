@@ -148,7 +148,7 @@ int a_star(Grid& erosion, Position target) {
 int main()
 {
     bool first_half = false;
-	int ans = 0;
+    int ans = 0;
 
     int x_target = 14;
     int y_target = 778;
@@ -167,6 +167,6 @@ int main()
     }
 
     std::cout << "Answer : " << ans << std::endl;
-	return 0;
+    return 0;
 }
 

@@ -62,5 +62,5 @@ int main()
         delete node;
 
     std::cout << "Answer: " << ans << std::endl;
-	return 0;
+    return 0;
 }

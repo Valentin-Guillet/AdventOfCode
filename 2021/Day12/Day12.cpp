@@ -38,7 +38,7 @@ int count_paths(Links const& links, std::string curr_cave, Seen seen, bool twice
 int main(int argc, char* argv[])
 {
     bool first_half = true;
-	int ans = 0;
+    int ans = 0;
     Links links;
 
     std::ifstream myfile("input");
@@ -51,7 +51,7 @@ int main(int argc, char* argv[])
             first_half = false;
     }
 
-	if (myfile.is_open()) {
+    if (myfile.is_open()) {
         std::string input;
 
         while (getline(myfile, input)) {
@@ -64,8 +64,8 @@ int main(int argc, char* argv[])
                 links[end].push_back(start);
         }
 
-		myfile.close();
-	} else {
+        myfile.close();
+    } else {
         std::cout << "Unable to open file" << std::endl;
         return 1;
     }
@@ -73,5 +73,5 @@ int main(int argc, char* argv[])
     ans = count_paths(links, "start", {}, first_half);
 
     std::cout << "Answer : " << ans << std::endl;
-	return 0;
+    return 0;
 }

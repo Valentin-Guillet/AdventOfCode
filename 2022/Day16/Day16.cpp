@@ -134,7 +134,7 @@ int get_max_pressure(std::vector<Valve> const& valves, DistanceMap const& distan
 int main(int argc, char* argv[])
 {
     bool first_half = true;
-	int ans = 0;
+    int ans = 0;
 
     std::ifstream myfile("input");
     for (int i=1; i<argc; i++) {
@@ -147,14 +147,14 @@ int main(int argc, char* argv[])
     }
 
     std::vector<std::string> lines;
-	if (myfile.is_open()) {
+    if (myfile.is_open()) {
         std::string input;
 
         while (getline(myfile, input))
             lines.push_back(input);
 
-		myfile.close();
-	} else {
+        myfile.close();
+    } else {
         std::cout << "Unable to open file" << std::endl;
         return 1;
     }
@@ -181,5 +181,5 @@ int main(int argc, char* argv[])
     ans = get_max_pressure(non_empty_valves, distances, name_to_id["AA"], first_half);
 
     std::cout << "Answer : " << ans << std::endl;
-	return 0;
+    return 0;
 }
