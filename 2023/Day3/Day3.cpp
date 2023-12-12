@@ -99,7 +99,6 @@ int main(int argc, char* argv[])
 
     Engine engine;
     if (myfile.is_open()) {
-        std::string input;
         std::istream_iterator<std::string> file_iter(myfile), end;
         engine.assign(file_iter, end);
         myfile.close();
