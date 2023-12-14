@@ -10,7 +10,7 @@ int main(int argc, char* argv[])
     int ans = 0;
 
     std::ifstream myfile("input");
-    for (int i=1; i<argc; i++) {
+    for (int i = 1; i < argc; ++i) {
         std::string arg(argv[i]);
         if (arg == "-t" || arg == "--test")
             myfile = std::ifstream("test_input");
@@ -21,9 +21,7 @@ int main(int argc, char* argv[])
 
     if (myfile.is_open()) {
         std::string input;
-
         getline(myfile, input);
-
         myfile.close();
     } else {
         std::cout << "Unable to open file" << std::endl;

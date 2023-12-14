@@ -37,7 +37,7 @@ int main(int argc, char* argv[])
     long long ans = 1;
 
     std::ifstream myfile("input");
-    for (int i=1; i<argc; i++) {
+    for (int i = 1; i < argc; ++i) {
         std::string arg(argv[i]);
         if (arg == "-t" || arg == "--test")
             myfile = std::ifstream("test_input");
