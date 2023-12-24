@@ -1,0 +1,42 @@
+
+Input has a specific structure:
+- the tile is square
+- its has a size of 131, and nb_steps % 131 = 65 == floor(131 / 2),
+  i.e. on each side, it reaches the exact limit of a tile
+
+So the complete shape is a giant diamond with mostly full tiles, and a few incomplete ones
+on the diamond sides.
+
+We note `s = nb_steps`, `t = tile_size`, `n = floor(s / t)`:
+`n` is the number of tiles from the center tile to the farthest one on each side
+i.e.  ....^....  here, n = 4 (center row is composed of 9 tiles,
+      .../.\...               4 on each side + the central one)
+      ../...\..
+      ./.....\.
+      <...C...>
+      .\...../.
+      ..\.../..
+      ...\./...
+      ....v....
+
+/!\ Parity is important ! /!\
+- If `2 | n`, then the tiles on the sides (<>^v) are filled with the same parity as the central tile, i.e. the same parity as the number of steps `s`
+- Else, these side tiles are filled with the opposite parity of `s`
+
+
+So we have to count the number of complete tiles of each parity :
+- nb of tiles of same parity as the sides (<>^v):
+   `N_same = 1 + 2 + 3 + ... + n + (n+1) + n + ... + 3 + 2 + 1`
+   `       = 2 * sum_{k in [0; n]}(k) + n + 1`
+   `       = (n + 1)^2`
+
+- nb of tiles of opposite parity as the sides (<>^v):
+   `N_opp = 1 + 2 + 3 + ... + (n-1) + n + (n-1) + ... + 3 + 2 + 1`
+   `       = n^2`
+
+BUT we must count the slanted borders !
+On each border (NW, NE, SW, SE), we must add a number of "quarter" piece of the tile and remove another "quarter" piece
+As we count these quarter pieces for each border, this makes the opposite of a diamond shape and we can use this to count the numbers we are looking for.
+
+After writing some maths, and by noting `f` the function that counts the number of accessible garden plots, the final formula is:
+`N_tot = n (n + 1) [f(odd) + f(even)] + (n + 1) f(diamond_odd) - n f(diamond_even)`
