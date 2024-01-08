@@ -1,9 +1,9 @@
 
 #include <fstream>
 #include <iostream>
+#include <queue>
 #include <string>
 #include <unordered_map>
-#include <unordered_set>
 #include <vector>
 
 
@@ -30,7 +30,6 @@ using PosMap = std::unordered_map<Position, T, HashPosition>;
 using NodeId = int;
 using Graph = std::unordered_map<NodeId, std::unordered_map<NodeId, int>>;
 using SeenMask = unsigned long long int;
-using Memory = std::unordered_map<unsigned long long int, int>;
 
 PosMap<bool> get_neighs(const Grid& grid, Position pos, Position prev_pos) {
     PosMap<bool> neighbors;
@@ -103,31 +102,53 @@ Graph build_graph(const Grid& grid, Position start, Position target, PosMap<Node
     return graph;
 }
 
-int count_path_length(const Graph& graph, NodeId node, NodeId target, SeenMask seen, Memory& memory, int depth=0) {
-    unsigned long long seen_hash = (seen << 16) | node;
-    if (memory.contains(seen_hash))
-        return memory[seen_hash];
+void simplify_graph(Graph& graph, NodeId start) {
+    /* Given the particular shape of the graph, we can remove some edges to accelerate the search.
+     * Indeed, the graph looks like a grid, and so when reaching a node on the perimeter of this
+     * grid, the path cannot go "towards the start" (or it would have to cross itself in order to
+     * reach the target). In our case, the nodes on the perimeter are the nodes that have exactly
+     * 3 neighbors, so we can remove the edges between perimeter nodes that are in the "wrong"
+     * direction.
+     */
+    std::queue<NodeId> node_queue;
+    node_queue.push(start);
 
+    SeenMask seen = 0;
+    std::vector<std::pair<NodeId, NodeId>> edges_to_remove;
+    while (!node_queue.empty()) {
+        NodeId node = node_queue.front();
+        node_queue.pop();
+
+        if (seen & (1ULL << node))
+            continue;
+
+        seen |= (1ULL << node);
+        bool rm_source = (graph[node].size() == 3);
+        for (const auto& [neigh, _] : graph[node]) {
+            if (rm_source && !(seen & (1ULL << neigh)) && graph[neigh].size() == 3)
+                edges_to_remove.push_back({neigh, node});
+            node_queue.push(neigh);
+        }
+    }
+    for (auto [node1, node2] : edges_to_remove)
+        graph[node1].erase(node2);
+}
+
+int count_path_length(const Graph& graph, NodeId node, NodeId target, SeenMask seen = 0) {
     if (node == target)
         return 0;
 
-    int length = 0;
+    int max_length = 0;
     seen |= (1ULL << node);
-    for (auto [neigh, dist] : graph.at(node)) {
+    for (const auto& [neigh, dist] : graph.at(node)) {
         if (seen & (1ULL << neigh))
             continue;
 
-        int new_length = dist + count_path_length(graph, neigh, target, seen, memory, depth+1);
-        if (new_length > length)
-            length = new_length;
+        int length = dist + count_path_length(graph, neigh, target, seen);
+        if (length > max_length)
+            max_length = length;
     }
-    memory[seen_hash] = length;
-    return length;
-}
-
-int count_path_length(const Graph& graph, NodeId start, NodeId target) {
-    Memory memory;
-    return count_path_length(graph, start, target, {}, memory);
+    return max_length;
 }
 
 int main(int argc, char* argv[])
@@ -160,6 +181,8 @@ int main(int argc, char* argv[])
 
     PosMap<NodeId> node_id_map;
     Graph graph = build_graph(grid, start, target, node_id_map, first_half);
+    if (!first_half)
+        simplify_graph(graph, node_id_map[start]);
     ans = count_path_length(graph, node_id_map[start], node_id_map[target]);
 
     std::cout << "Answer : " << ans << std::endl;
