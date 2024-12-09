@@ -13,6 +13,15 @@ do
     cd ..
 done
 
+echo "Downloading inputs..."
+for i in {1..25}
+do
+	[ -d ./Day$i ] || continue
+    [ -f ./Day$i/input ] && continue
+    ../Day0/download_input.sh $i
+    echo "Day $i"
+done
+
 echo "Executing !"
 for i in {1..25}
 do

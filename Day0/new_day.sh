@@ -10,3 +10,5 @@ fi
 mkdir "Day$day"
 cp ../Day0/Day0.cpp "Day$day/Day$day.cpp"
 ln -s ../../Day0/Makefile "Day$day/Makefile"
+
+../Day0/download_input.sh Day$day
