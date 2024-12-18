@@ -10,14 +10,24 @@
 #define SOUTH 2
 #define WEST 3
 
+struct Pos {
+  int row, col, dir;
+};
+
+std::ostream& operator<<(std::ostream &os, const Pos &pos) {
+  os << '(' << pos.row << ", " << pos.col << ", ";
+  if (pos.dir == NORTH) os << 'N';
+  if (pos.dir == EAST) os << 'E';
+  if (pos.dir == SOUTH) os << 'S';
+  if (pos.dir == WEST) os << 'W';
+  os << ')';
+  return os;
+}
+
 struct Node {
   char value;
   bool seen = false;
   int distance = -1;
-};
-
-struct Pos {
-  int row, col, dir;
 };
 
 using Grid = std::vector<std::vector<std::vector<Node>>>;
@@ -59,21 +69,21 @@ int advance_pos(const Grid &grid, Pos &pos) {
     distance = (ddir == 0 ? 1 : 1001);
   }
 
-  if (!next_found)
+  if (!next_found) // Found no exit: dead end
     return -1;
 
   pos = only_pos;
   return distance;
 }
 
-int get_shortest_path(Grid &grid, int start_row, int start_col, int start_dir) {
-  grid[start_row][start_col][start_dir].distance = 0;
+int get_shortest_path(Grid &grid, int start_row, int start_col) {
+  grid[start_row][start_col][EAST].distance = 0;
 
   auto cmp = [&grid](Pos &left, Pos &right) {
     return grid[left.row][left.col][left.dir].distance > grid[right.row][right.col][right.dir].distance;
   };
   std::priority_queue<Pos, std::vector<Pos>, decltype(cmp)> border(cmp);
-  border.push(Pos{start_row, start_col, start_dir});
+  border.push(Pos{start_row, start_col, EAST});
 
   while (!border.empty()) {
     Pos curr_pos = border.top();
@@ -136,7 +146,7 @@ int main(int argc, char *argv[]) {
   }
 
   Grid grid;
-  int start_row, start_col, start_dir;
+  int start_row, start_col;
   if (myfile.is_open()) {
     std::string input;
     int row = 0;
@@ -162,8 +172,7 @@ int main(int argc, char *argv[]) {
     return 1;
   }
 
-  start_dir = EAST;
-  ans = get_shortest_path(grid, start_row, start_col, start_dir);
+  ans = get_shortest_path(grid, start_row, start_col);
 
   std::cout << "Answer : " << ans << std::endl;
   return 0;
