@@ -1,93 +1,139 @@
 
-#include <algorithm>
 #include <fstream>
 #include <iostream>
 #include <string>
-#include <unordered_set>
 #include <vector>
 
-struct Pos {
-  int row;
-  int col;
-  int drow;
-  int dcol;
+#define NORTH 0
+#define EAST 1
+#define SOUTH 2
+#define WEST 3
+
+struct Node {
+  char value;
+  bool seen = false;
   int distance = -1;
-  bool operator==(const Pos &other) const {
-    return (row == other.row && col == other.col &&
-        drow == other.drow && dcol == other.dcol);
-  }
 };
 
-struct pos_hash {
-  size_t operator()(const Pos &pos) const {
-    size_t hash = pos.row + 0x9e3779b9;
-    hash = (hash << 6) + (hash >> 2) + pos.col + 0x9e3779b9;
-    hash = (hash << 6) + (hash >> 2) + ((pos.drow + 1) << 4) + pos.dcol + 1 + 0x9e3779b9;
-    return hash;
-  }
+struct Pos {
+  int row, col, dir;
 };
 
 std::ostream& operator<<(std::ostream &os, const Pos &pos) {
-  os << "(" << pos.row << ", " << pos.col << ", ";
-  if (pos.drow == 1) os << "SOUTH, ";
-  else if (pos.drow == -1) os << "NORTH, ";
-  else if (pos.dcol == 1) os << "EAST, ";
-  else if (pos.dcol == -1) os << "WEST, ";
-  std::cout << pos.distance << ")";
+  os << '(' << pos.row << ", " << pos.col << ", ";
+  if (pos.dir == NORTH) os << 'N';
+  if (pos.dir == EAST) os << 'E';
+  if (pos.dir == SOUTH) os << 'S';
+  if (pos.dir == WEST) os << 'W';
+  os << ')';
   return os;
 }
 
-using Grid = std::vector<std::string>;
-using SeenSet = std::unordered_set<Pos, pos_hash>;
+using Grid = std::vector<std::vector<std::vector<Node>>>;
 
-std::vector<Pos> get_neighbors(const Grid &grid, const Pos &pos) {
-  std::vector<Pos> neighbors;
-
-  // Forward
-  int next_row = pos.row + pos.drow;
-  int next_col = pos.col + pos.dcol;
-  if (grid.at(next_row).at(next_col) != '#')
-    neighbors.push_back(Pos{next_row, next_col, pos.drow, pos.dcol, pos.distance + 1});
-
-  // Turn left
-  neighbors.push_back(Pos{pos.row, pos.col, -pos.dcol, pos.drow, pos.distance + 1000});
-
-  // Turn right
-  neighbors.push_back(Pos{pos.row, pos.col, pos.dcol, -pos.drow, pos.distance + 1000});
-  return neighbors;
+Pos get_next_pos(const Pos &pos) {
+  if (pos.dir == NORTH)
+    return Pos{pos.row - 1, pos.col, pos.dir};
+  if (pos.dir == EAST)
+    return Pos{pos.row, pos.col + 1, pos.dir};
+  if (pos.dir == SOUTH)
+    return Pos{pos.row + 1, pos.col, pos.dir};
+  return Pos{pos.row, pos.col - 1, pos.dir}; // WEST
 }
 
-int get_shortest_path(const Grid &grid, int start_row, int start_col) {
-  SeenSet seen;
-  seen.insert(Pos{start_row, start_col, 0, 1});
+int advance_pos(const Grid &grid, Pos &pos) {
+  // Consider exit as a node
+  if (grid[pos.row][pos.col][pos.dir].value == 'E')
+    return 0;
 
-  std::vector<Pos> border = {Pos{start_row, start_col, 0, 1, 0}};
+  bool next_found = false;
+  Pos only_pos;
+  int distance;
+  for (int ddir = 0; ddir < 4; ++ddir) {
+    if (ddir == 2)
+      continue;
+
+    Pos next_pos{pos.row, pos.col, (pos.dir + ddir) % 4};
+    next_pos = get_next_pos(next_pos);
+
+    const Node &node = grid.at(next_pos.row).at(next_pos.col).at(next_pos.dir);
+    if (node.value == '#' || node.seen)
+      continue;
+
+    if (next_found) // Found several exits: we're on a node
+      return 0;
+    next_found = true;
+
+    only_pos = next_pos;
+    distance = (ddir == 0 ? 1 : 1001);
+  }
+
+  if (!next_found)
+    return -1;
+
+  pos = only_pos;
+  return distance;
+}
+
+int get_shortest_path(Grid &grid, int start_row, int start_col, int start_dir) {
+  std::vector<Pos> border = { Pos{start_row, start_col, start_dir} };
+  grid[start_row][start_col][start_dir].distance = 0;
+
   while (!border.empty()) {
     std::vector<Pos>::iterator closest_pos_it;
     int min_dist = 1000000;
     for (auto it = border.begin(); it != border.end(); ++it) {
-      if (it->distance < min_dist) {
-        min_dist = it->distance;
+      if (grid[it->row][it->col][it->dir].distance < min_dist) {
+        min_dist = grid[it->row][it->col][it->dir].distance;
         closest_pos_it = it;
       }
     }
     Pos curr_pos = *closest_pos_it;
     border.erase(closest_pos_it);
 
-    if (grid.at(curr_pos.row).at(curr_pos.col) == 'E')
-      return curr_pos.distance;
+    Node &curr_node = grid[curr_pos.row][curr_pos.col][curr_pos.dir];
+    /* std::cout << "\nLooking at node " << curr_node.value << " at " << curr_pos << " with distance " << curr_node.distance << "\n"; */
 
-    seen.insert(curr_pos);
+    if (curr_node.value == 'E')
+      return curr_node.distance;
 
-    for (Pos neighbor : get_neighbors(grid, curr_pos)) {
-      if (seen.contains(neighbor))
+    curr_node.seen = true;
+
+    for (int ddir = 0; ddir < 4; ++ddir) {
+      if (ddir == 2) // No half-turn
         continue;
 
-      auto neigh_it = std::find(border.begin(), border.end(), neighbor);
-      if (neigh_it != border.end() && neighbor.distance < neigh_it->distance)
-        neigh_it->distance = neighbor.distance;
-      else if (neigh_it == border.end())
-        border.push_back(neighbor);
+      Pos pos{curr_pos.row, curr_pos.col, (curr_pos.dir + ddir) % 4};
+      /* std::cout << "  Pos = " << pos << "\n"; */
+      if (ddir != 0 && grid[pos.row][pos.col][pos.dir].seen)
+        continue;
+
+      pos = get_next_pos(pos);
+      /* std::cout << "    Next pos = " << pos << "\n"; */
+      if (grid[pos.row][pos.col][pos.dir].value == '#')
+        continue;
+
+      int dist_add = (ddir == 0 ? 0 : 1000);
+      int step = 1;
+      do {
+        /* std::cout << "    -> Advance to " << pos << " with added dist " << dist_add << " and step " << step << "\n"; */
+        dist_add += step;
+        step = advance_pos(grid, pos);
+      } while (step > 0);
+
+      if (step == -1) // Dead end or node already seen
+      {
+        /* std::cout << "    Dead end or already seen\n"; */
+        continue;
+      }
+
+      Node &next_node = grid[pos.row][pos.col][pos.dir];
+      if (next_node.distance == -1) {
+        next_node.distance = curr_node.distance + dist_add;
+        border.push_back(pos);
+      } else if (next_node.distance > curr_node.distance + dist_add) {
+        next_node.distance = curr_node.distance + dist_add;
+      }
     }
   }
 
@@ -109,12 +155,19 @@ int main(int argc, char *argv[]) {
   }
 
   Grid grid;
-  int start_row, start_col;
+  int start_row, start_col, start_dir;
   if (myfile.is_open()) {
     std::string input;
     int row = 0;
     while (getline(myfile, input)) {
-      grid.push_back(input);
+      std::vector<std::vector<Node>> column;
+      for (char c : input) {
+        std::vector<Node> directions;
+        for (int i = 0; i < 4; ++i)
+          directions.push_back(Node{c});
+        column.push_back(directions);
+      }
+      grid.push_back(column);
       size_t index = input.find('S');
       if (index != std::string::npos) {
         start_row = row;
@@ -128,7 +181,8 @@ int main(int argc, char *argv[]) {
     return 1;
   }
 
-  ans = get_shortest_path(grid, start_row, start_col);
+  start_dir = EAST;
+  ans = get_shortest_path(grid, start_row, start_col, start_dir);
 
   std::cout << "Answer : " << ans << std::endl;
   return 0;
