@@ -1,4 +1,6 @@
 
+// TODO: try to use a priority queue: also add pos when updating distance, and ignore curr_pos if already seen (already the case)
+
 #include <fstream>
 #include <iostream>
 #include <string>
@@ -13,15 +15,15 @@ struct Pos {
   int row, col, dir;
 };
 
-std::ostream& operator<<(std::ostream &os, const Pos &pos) {
-  os << '(' << pos.row << ", " << pos.col << ", ";
-  if (pos.dir == NORTH) os << 'N';
-  if (pos.dir == EAST) os << 'E';
-  if (pos.dir == SOUTH) os << 'S';
-  if (pos.dir == WEST) os << 'W';
-  os << ')';
-  return os;
-}
+/* std::ostream& operator<<(std::ostream &os, const Pos &pos) { */
+/*   os << '(' << pos.row << ", " << pos.col << ", "; */
+/*   if (pos.dir == NORTH) os << 'N'; */
+/*   if (pos.dir == EAST) os << 'E'; */
+/*   if (pos.dir == SOUTH) os << 'S'; */
+/*   if (pos.dir == WEST) os << 'W'; */
+/*   os << ')'; */
+/*   return os; */
+/* } */
 
 struct Node {
   char value;
@@ -71,8 +73,7 @@ int advance_pos(const Grid &grid, Pos &pos) {
     Pos next_pos{pos.row, pos.col, (pos.dir + ddir) % 4};
     next_pos = get_next_pos(next_pos);
 
-    const Node &node = grid.at(next_pos.row).at(next_pos.col).at(next_pos.dir);
-    if (node.value == '#')
+    if (grid.at(next_pos.row).at(next_pos.col).at(next_pos.dir).value == '#')
       continue;
 
     if (next_found) // Found several exits: we're on a node
@@ -101,51 +102,47 @@ int get_shortest_path(Grid &grid, int start_row, int start_col) {
     if (curr_node.value == 'E')
       return curr_node.distance;
 
+    if (curr_node.seen)
+      continue;
+    curr_node.seen = true;
+
     for (int ddir = 0; ddir < 4; ++ddir) {
-      if (ddir == 2) // No half-turn
+      if (ddir == 2) // No U-turn
         continue;
 
-      Pos pos{curr_pos.row, curr_pos.col, (curr_pos.dir + ddir) % 4};
-      std::cout << "Pos = " << pos << "\n";
+      Pos pos = curr_pos;
+      int dist_add;
+      if (ddir != 0) { // Turn left or right
+        dist_add = 1000;
+        pos.dir = (pos.dir + ddir) % 4;
+
+      } else { // Go forward until next node
+        pos = get_next_pos(pos);
+
+        if (grid[pos.row][pos.col][pos.dir].value == '#')
+          continue;
+
+        dist_add = 0;
+        int step = 1;
+        do {
+          dist_add += step;
+          step = advance_pos(grid, pos);
+        } while (step > 0);
+
+        if (step == -1) // Dead end
+          continue;
+      }
+
       Node &node = grid[pos.row][pos.col][pos.dir];
-      if (node.seen) {
-        std::cout << "  => Node already seen !\n";
+      if (node.seen)
         continue;
-      }
 
-
-      Pos next_pos = get_next_pos(pos);
-      if (grid[next_pos.row][next_pos.col][next_pos.dir].value == '#') {
-        std::cout << "  => Next pos " << next_pos << " is a wall!\n";
-        continue;
-      }
-      std::cout << "  Marking pos " << pos << " as seen\n";
-      pos = next_pos;
-      node.seen = true;
-
-      int dist_add = (ddir == 0 ? 0 : 1000);
-      int step = 1;
-      do {
-        std::cout << "    -> Advance to " << pos << " with added dist " << dist_add << " and step " << step << "\n";
-        dist_add += step;
-        step = advance_pos(grid, pos);
-      } while (step > 0);
-
-      if (step == -1) { // Dead end
-        std::cout << "  -> Dead end!\n";
-        continue;
-      }
-
-      Node &next_node = grid[pos.row][pos.col][pos.dir];
-      if (next_node.seen && next_node.distance <= curr_node.distance + dist_add)
-        std::cout << "YOOOOOOOOOOOOOOOOOOOOOOO\n";
-
-      if (next_node.distance == -1) {
-        next_node.distance = curr_node.distance + dist_add;
-        std::cout << "  Adding " << pos << " with dist " << next_node.distance << " to the border\n";
+      if (node.distance == -1) {
+        node.distance = curr_node.distance + dist_add;
         border.push_back(pos);
-      } else if (next_node.distance > curr_node.distance + dist_add) {
-        next_node.distance = curr_node.distance + dist_add;
+
+      } else if (node.distance > curr_node.distance + dist_add) {
+        node.distance = curr_node.distance + dist_add;
       }
     }
   }
