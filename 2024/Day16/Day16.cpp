@@ -1,6 +1,7 @@
 
 #include <fstream>
 #include <iostream>
+#include <queue>
 #include <string>
 #include <vector>
 
@@ -18,16 +19,6 @@ struct Node {
 struct Pos {
   int row, col, dir;
 };
-
-std::ostream& operator<<(std::ostream &os, const Pos &pos) {
-  os << '(' << pos.row << ", " << pos.col << ", ";
-  if (pos.dir == NORTH) os << 'N';
-  if (pos.dir == EAST) os << 'E';
-  if (pos.dir == SOUTH) os << 'S';
-  if (pos.dir == WEST) os << 'W';
-  os << ')';
-  return os;
-}
 
 using Grid = std::vector<std::vector<std::vector<Node>>>;
 
@@ -76,23 +67,19 @@ int advance_pos(const Grid &grid, Pos &pos) {
 }
 
 int get_shortest_path(Grid &grid, int start_row, int start_col, int start_dir) {
-  std::vector<Pos> border = { Pos{start_row, start_col, start_dir} };
   grid[start_row][start_col][start_dir].distance = 0;
 
+  auto cmp = [&grid](Pos &left, Pos &right) {
+    return grid[left.row][left.col][left.dir].distance > grid[right.row][right.col][right.dir].distance;
+  };
+  std::priority_queue<Pos, std::vector<Pos>, decltype(cmp)> border(cmp);
+  border.push(Pos{start_row, start_col, start_dir});
+
   while (!border.empty()) {
-    std::vector<Pos>::iterator closest_pos_it;
-    int min_dist = 1000000;
-    for (auto it = border.begin(); it != border.end(); ++it) {
-      if (grid[it->row][it->col][it->dir].distance < min_dist) {
-        min_dist = grid[it->row][it->col][it->dir].distance;
-        closest_pos_it = it;
-      }
-    }
-    Pos curr_pos = *closest_pos_it;
-    border.erase(closest_pos_it);
+    Pos curr_pos = border.top();
+    border.pop();
 
     Node &curr_node = grid[curr_pos.row][curr_pos.col][curr_pos.dir];
-    /* std::cout << "\nLooking at node " << curr_node.value << " at " << curr_pos << " with distance " << curr_node.distance << "\n"; */
 
     if (curr_node.value == 'E')
       return curr_node.distance;
@@ -104,33 +91,27 @@ int get_shortest_path(Grid &grid, int start_row, int start_col, int start_dir) {
         continue;
 
       Pos pos{curr_pos.row, curr_pos.col, (curr_pos.dir + ddir) % 4};
-      /* std::cout << "  Pos = " << pos << "\n"; */
       if (ddir != 0 && grid[pos.row][pos.col][pos.dir].seen)
         continue;
 
       pos = get_next_pos(pos);
-      /* std::cout << "    Next pos = " << pos << "\n"; */
       if (grid[pos.row][pos.col][pos.dir].value == '#')
         continue;
 
       int dist_add = (ddir == 0 ? 0 : 1000);
       int step = 1;
       do {
-        /* std::cout << "    -> Advance to " << pos << " with added dist " << dist_add << " and step " << step << "\n"; */
         dist_add += step;
         step = advance_pos(grid, pos);
       } while (step > 0);
 
       if (step == -1) // Dead end or node already seen
-      {
-        /* std::cout << "    Dead end or already seen\n"; */
         continue;
-      }
 
       Node &next_node = grid[pos.row][pos.col][pos.dir];
       if (next_node.distance == -1) {
         next_node.distance = curr_node.distance + dist_add;
-        border.push_back(pos);
+        border.push(pos);
       } else if (next_node.distance > curr_node.distance + dist_add) {
         next_node.distance = curr_node.distance + dist_add;
       }
