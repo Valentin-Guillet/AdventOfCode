@@ -1,8 +1,8 @@
 
 #include <fstream>
 #include <iostream>
-#include <string>
 #include <queue>
+#include <string>
 #include <unordered_map>
 #include <unordered_set>
 #include <vector>
@@ -14,13 +14,13 @@
 
 struct Pos {
   int row, col, dir;
+  size_t hash() const { return (row << 20) + (col << 4) + dir; }
 
-  bool operator==(const Pos &other) const = default;
-};
-
-struct pos_hash {
-  size_t operator()(const Pos &pos) const {
-    return (pos.row << 20) + (pos.col << 4) + pos.dir;
+  void step() {
+    if (dir == NORTH) row--;
+    else if (dir == EAST) col++;
+    else if (dir == SOUTH) row++;
+    else if (dir == WEST) col--;
   }
 };
 
@@ -31,22 +31,11 @@ struct Node {
 };
 
 using Grid = std::vector<std::string>;
-using NodeMap = std::unordered_map<Pos, Node, pos_hash>;
+using NodeMap = std::unordered_map<size_t, Node>;
 
-Pos get_next_pos(const Pos &pos) {
-  if (pos.dir == NORTH)
-    return Pos{pos.row - 1, pos.col, pos.dir};
-  if (pos.dir == EAST)
-    return Pos{pos.row, pos.col + 1, pos.dir};
-  if (pos.dir == SOUTH)
-    return Pos{pos.row + 1, pos.col, pos.dir};
-  return Pos{pos.row, pos.col - 1, pos.dir}; // WEST
-}
-
-int advance_pos(const Grid &grid, NodeMap &nodes, Pos &pos, Pos &last_pos) {
-  // Consider start and exit as nodes
-  char value = grid[pos.row][pos.col];
-  if (value == 'E' || value == 'S')
+int advance_pos(const Grid &grid, NodeMap &nodes, Pos &pos, Pos &last_pos, bool mark_parents) {
+  // Consider exit as node
+  if (grid[pos.row][pos.col] == 'E')
     return 0;
 
   bool next_found = false;
@@ -57,7 +46,7 @@ int advance_pos(const Grid &grid, NodeMap &nodes, Pos &pos, Pos &last_pos) {
       continue;
 
     Pos next_pos{pos.row, pos.col, (pos.dir + ddir) % 4};
-    next_pos = get_next_pos(next_pos);
+    next_pos.step();
 
     if (grid[next_pos.row][next_pos.col] == '#')
       continue;
@@ -73,7 +62,8 @@ int advance_pos(const Grid &grid, NodeMap &nodes, Pos &pos, Pos &last_pos) {
   if (!next_found) // Found no exit: dead end
     return -1;
 
-  nodes[pos].parents.push_back(last_pos);
+  if (mark_parents)
+    nodes[pos.hash()].parents.push_back(last_pos);
   last_pos = pos;
   pos = only_pos;
   return distance;
@@ -81,10 +71,10 @@ int advance_pos(const Grid &grid, NodeMap &nodes, Pos &pos, Pos &last_pos) {
 
 int get_shortest_path(const Grid &grid, NodeMap &nodes, int start_row, int start_col, bool mark_parents = false) {
   Pos init_pos{start_row, start_col, EAST};
-  nodes[init_pos].distance = 0;
+  nodes[init_pos.hash()].distance = 0;
 
   auto cmp = [&nodes](Pos &left, Pos &right) {
-    return nodes[left].distance > nodes[right].distance;
+    return nodes[left.hash()].distance > nodes[right.hash()].distance;
   };
   std::priority_queue<Pos, std::vector<Pos>, decltype(cmp)> border(cmp);
   border.push(init_pos);
@@ -94,7 +84,7 @@ int get_shortest_path(const Grid &grid, NodeMap &nodes, int start_row, int start
     Pos curr_pos = border.top();
     border.pop();
 
-    Node &curr_node = nodes[curr_pos];
+    Node &curr_node = nodes[curr_pos.hash()];
     if (!mark_parents && grid[curr_pos.row][curr_pos.col] == 'E')
       return curr_node.distance;
 
@@ -117,11 +107,11 @@ int get_shortest_path(const Grid &grid, NodeMap &nodes, int start_row, int start
         pos.dir = (pos.dir + ddir) % 4;
 
       } else { // Go forward until next node
-        pos = get_next_pos(pos);
+        pos.step();
         if (grid[pos.row][pos.col] == '#')
           continue;
 
-        Node &node = nodes[pos];
+        Node &node = nodes[pos.hash()];
         if (node.seen)
           continue;
 
@@ -129,7 +119,7 @@ int get_shortest_path(const Grid &grid, NodeMap &nodes, int start_row, int start
         int step = 1;
         do {
           dist_add += step;
-          step = advance_pos(grid, nodes, pos, last_pos);
+          step = advance_pos(grid, nodes, pos, last_pos, mark_parents);
         } while (step > 0);
 
         if (step == -1) // Dead end
@@ -137,10 +127,10 @@ int get_shortest_path(const Grid &grid, NodeMap &nodes, int start_row, int start
 
         // Can't take a path between nodes twice
         Pos opposite_pos{last_pos.row, last_pos.col, (last_pos.dir + 2) % 4};
-        nodes[opposite_pos].seen = true;
+        nodes[opposite_pos.hash()].seen = true;
       }
 
-      Node &node = nodes[pos];
+      Node &node = nodes[pos.hash()];
       if (node.seen)
         continue;
 
@@ -158,7 +148,8 @@ int get_shortest_path(const Grid &grid, NodeMap &nodes, int start_row, int start
   return -1;
 }
 
-int count_tiles_shortest_path(const Grid &grid, NodeMap &nodes, int start_row, int start_col, int end_row, int end_col) {
+int count_tiles_shortest_path(const Grid &grid, NodeMap &nodes,
+                              int start_row, int start_col, int end_row, int end_col) {
   get_shortest_path(grid, nodes, start_row, start_col, true);
 
   std::unordered_set<size_t> seen_pos;
@@ -166,7 +157,7 @@ int count_tiles_shortest_path(const Grid &grid, NodeMap &nodes, int start_row, i
   int min_dist = 1000000000;
   for (int dir = 0; dir < 4; ++dir) {
     Pos pos{end_row, end_col, dir};
-    int dir_dist = nodes[pos].distance;
+    int dir_dist = nodes[pos.hash()].distance;
     if (dir_dist < min_dist) {
       path = {pos};
       min_dist = dir_dist;
@@ -180,7 +171,7 @@ int count_tiles_shortest_path(const Grid &grid, NodeMap &nodes, int start_row, i
     path.pop_back();
     seen_pos.insert((pos.row << 16) + pos.col);
 
-    for (Pos parent : nodes[pos].parents)
+    for (Pos parent : nodes[pos.hash()].parents)
       path.push_back(parent);
   }
 
@@ -230,7 +221,9 @@ int main(int argc, char *argv[]) {
   if (first_half)
     ans = get_shortest_path(grid, nodes, start_row, start_col);
   else
-    ans = count_tiles_shortest_path(grid, nodes, start_row, start_col, end_row, end_col);
+    ans = count_tiles_shortest_path(grid, nodes,
+                                    start_row, start_col,
+                                    end_row, end_col);
 
   std::cout << "Answer : " << ans << std::endl;
   return 0;
