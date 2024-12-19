@@ -4,6 +4,7 @@
 #include <fstream>
 #include <iostream>
 #include <string>
+#include <queue>
 #include <vector>
 
 #define NORTH 0
@@ -32,21 +33,6 @@ struct Node {
 };
 
 using Grid = std::vector<std::vector<std::vector<Node>>>;
-
-Pos get_shortest_dist(const Grid &grid, std::vector<Pos> &border) {
-  std::vector<Pos>::iterator shortest_dist_it;
-  int min_dist = 1000000;
-  for (auto it = border.begin(); it != border.end(); ++it) {
-    int dist = grid.at(it->row).at(it->col).at(it->dir).distance;
-    if (dist < min_dist) {
-      min_dist = dist;
-      shortest_dist_it = it;
-    }
-  }
-  Pos pos = *shortest_dist_it;
-  border.erase(shortest_dist_it);
-  return pos;
-}
 
 Pos get_next_pos(const Pos &pos) {
   if (pos.dir == NORTH)
@@ -94,9 +80,14 @@ int advance_pos(const Grid &grid, Pos &pos) {
 int get_shortest_path(Grid &grid, int start_row, int start_col) {
   grid[start_row][start_col][EAST].distance = 0;
 
-  std::vector<Pos> border = { Pos{start_row, start_col, EAST} };
+  auto cmp = [&](Pos &left, Pos &right) {
+    return grid[left.row][left.col][left.dir].distance > grid[right.row][right.col][right.dir].distance;
+  };
+  std::priority_queue<Pos, std::vector<Pos>, decltype(cmp)> border(cmp);
+  border.push(Pos{start_row, start_col, EAST});
   while (!border.empty()) {
-    Pos curr_pos = get_shortest_dist(grid, border);
+    Pos curr_pos = border.top();
+    border.pop();
 
     Node &curr_node = grid[curr_pos.row][curr_pos.col][curr_pos.dir];
     if (curr_node.value == 'E')
@@ -118,7 +109,6 @@ int get_shortest_path(Grid &grid, int start_row, int start_col) {
 
       } else { // Go forward until next node
         pos = get_next_pos(pos);
-
         if (grid[pos.row][pos.col][pos.dir].value == '#')
           continue;
 
@@ -137,12 +127,9 @@ int get_shortest_path(Grid &grid, int start_row, int start_col) {
       if (node.seen)
         continue;
 
-      if (node.distance == -1) {
+      if (node.distance == -1 || node.distance > curr_node.distance + dist_add) {
         node.distance = curr_node.distance + dist_add;
-        border.push_back(pos);
-
-      } else if (node.distance > curr_node.distance + dist_add) {
-        node.distance = curr_node.distance + dist_add;
+        border.push(pos);
       }
     }
   }
