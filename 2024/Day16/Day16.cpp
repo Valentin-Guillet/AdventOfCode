@@ -3,6 +3,7 @@
 #include <iostream>
 #include <string>
 #include <queue>
+#include <unordered_map>
 #include <unordered_set>
 #include <vector>
 
@@ -13,16 +14,24 @@
 
 struct Pos {
   int row, col, dir;
+
+  bool operator==(const Pos &other) const = default;
+};
+
+struct pos_hash {
+  size_t operator()(const Pos &pos) const {
+    return (pos.row << 20) + (pos.col << 4) + pos.dir;
+  }
 };
 
 struct Node {
-  char value;
+  std::vector<Pos> parents;
   bool seen = false;
   int distance = -1;
-  std::vector<Pos> parents = {};
 };
 
-using Grid = std::vector<std::vector<std::vector<Node>>>;
+using Grid = std::vector<std::string>;
+using NodeMap = std::unordered_map<Pos, Node, pos_hash>;
 
 Pos get_next_pos(const Pos &pos) {
   if (pos.dir == NORTH)
@@ -34,9 +43,9 @@ Pos get_next_pos(const Pos &pos) {
   return Pos{pos.row, pos.col - 1, pos.dir}; // WEST
 }
 
-int advance_pos(Grid &grid, Pos &pos, Pos &last_pos) {
+int advance_pos(const Grid &grid, NodeMap &nodes, Pos &pos, Pos &last_pos) {
   // Consider start and exit as nodes
-  char value = grid[pos.row][pos.col][pos.dir].value;
+  char value = grid[pos.row][pos.col];
   if (value == 'E' || value == 'S')
     return 0;
 
@@ -50,7 +59,7 @@ int advance_pos(Grid &grid, Pos &pos, Pos &last_pos) {
     Pos next_pos{pos.row, pos.col, (pos.dir + ddir) % 4};
     next_pos = get_next_pos(next_pos);
 
-    if (grid[next_pos.row][next_pos.col][next_pos.dir].value == '#')
+    if (grid[next_pos.row][next_pos.col] == '#')
       continue;
 
     if (next_found) // Found several exits: we're on a node
@@ -64,28 +73,29 @@ int advance_pos(Grid &grid, Pos &pos, Pos &last_pos) {
   if (!next_found) // Found no exit: dead end
     return -1;
 
-  grid[pos.row][pos.col][pos.dir].parents.push_back(last_pos);
+  nodes[pos].parents.push_back(last_pos);
   last_pos = pos;
   pos = only_pos;
   return distance;
 }
 
-int get_shortest_path(Grid &grid, int start_row, int start_col, bool mark_parents = false) {
-  grid[start_row][start_col][EAST].distance = 0;
+int get_shortest_path(const Grid &grid, NodeMap &nodes, int start_row, int start_col, bool mark_parents = false) {
+  Pos init_pos{start_row, start_col, EAST};
+  nodes[init_pos].distance = 0;
 
-  auto cmp = [&](Pos &left, Pos &right) {
-    return grid[left.row][left.col][left.dir].distance > grid[right.row][right.col][right.dir].distance;
+  auto cmp = [&nodes](Pos &left, Pos &right) {
+    return nodes[left].distance > nodes[right].distance;
   };
   std::priority_queue<Pos, std::vector<Pos>, decltype(cmp)> border(cmp);
-  border.push(Pos{start_row, start_col, EAST});
+  border.push(init_pos);
 
   int found_dist = -1;
   while (!border.empty()) {
     Pos curr_pos = border.top();
     border.pop();
 
-    Node &curr_node = grid[curr_pos.row][curr_pos.col][curr_pos.dir];
-    if (!mark_parents && curr_node.value == 'E')
+    Node &curr_node = nodes[curr_pos];
+    if (!mark_parents && grid[curr_pos.row][curr_pos.col] == 'E')
       return curr_node.distance;
 
     if (mark_parents && found_dist != -1 && curr_node.distance > found_dist)
@@ -108,21 +118,29 @@ int get_shortest_path(Grid &grid, int start_row, int start_col, bool mark_parent
 
       } else { // Go forward until next node
         pos = get_next_pos(pos);
-        if (grid[pos.row][pos.col][pos.dir].value == '#')
+        if (grid[pos.row][pos.col] == '#')
+          continue;
+
+        Node &node = nodes[pos];
+        if (node.seen)
           continue;
 
         dist_add = 0;
         int step = 1;
         do {
           dist_add += step;
-          step = advance_pos(grid, pos, last_pos);
+          step = advance_pos(grid, nodes, pos, last_pos);
         } while (step > 0);
 
         if (step == -1) // Dead end
           continue;
+
+        // Can't take a path between nodes twice
+        Pos opposite_pos{last_pos.row, last_pos.col, (last_pos.dir + 2) % 4};
+        nodes[opposite_pos].seen = true;
       }
 
-      Node &node = grid[pos.row][pos.col][pos.dir];
+      Node &node = nodes[pos];
       if (node.seen)
         continue;
 
@@ -140,19 +158,20 @@ int get_shortest_path(Grid &grid, int start_row, int start_col, bool mark_parent
   return -1;
 }
 
-int count_tiles_shortest_path(Grid &grid, int start_row, int start_col, int end_row, int end_col) {
-  get_shortest_path(grid, start_row, start_col, true);
+int count_tiles_shortest_path(const Grid &grid, NodeMap &nodes, int start_row, int start_col, int end_row, int end_col) {
+  get_shortest_path(grid, nodes, start_row, start_col, true);
 
   std::unordered_set<size_t> seen_pos;
   std::vector<Pos> path;
   int min_dist = 1000000000;
   for (int dir = 0; dir < 4; ++dir) {
-    int dir_dist = grid[end_row][end_col][dir].distance;
+    Pos pos{end_row, end_col, dir};
+    int dir_dist = nodes[pos].distance;
     if (dir_dist < min_dist) {
-      path = { Pos{end_row, end_col, dir} };
+      path = {pos};
       min_dist = dir_dist;
     } else if (dir_dist == min_dist) {
-      path.push_back(Pos{end_row, end_col, dir});
+      path.push_back(pos);
     }
   }
 
@@ -161,7 +180,7 @@ int count_tiles_shortest_path(Grid &grid, int start_row, int start_col, int end_
     path.pop_back();
     seen_pos.insert((pos.row << 16) + pos.col);
 
-    for (Pos parent : grid[pos.row][pos.col][pos.dir].parents)
+    for (Pos parent : nodes[pos].parents)
       path.push_back(parent);
   }
 
@@ -188,14 +207,7 @@ int main(int argc, char *argv[]) {
     std::string input;
     int row = 0;
     while (getline(myfile, input)) {
-      std::vector<std::vector<Node>> column;
-      for (char c : input) {
-        std::vector<Node> directions;
-        for (int i = 0; i < 4; ++i)
-          directions.push_back(Node{c});
-        column.push_back(directions);
-      }
-      grid.push_back(column);
+      grid.push_back(input);
       size_t index = input.find('S');
       if (index != std::string::npos) {
         start_row = row;
@@ -214,10 +226,11 @@ int main(int argc, char *argv[]) {
     return 1;
   }
 
+  NodeMap nodes;
   if (first_half)
-    ans = get_shortest_path(grid, start_row, start_col);
+    ans = get_shortest_path(grid, nodes, start_row, start_col);
   else
-    ans = count_tiles_shortest_path(grid, start_row, start_col, end_row, end_col);
+    ans = count_tiles_shortest_path(grid, nodes, start_row, start_col, end_row, end_col);
 
   std::cout << "Answer : " << ans << std::endl;
   return 0;
