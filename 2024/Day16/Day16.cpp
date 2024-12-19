@@ -1,6 +1,4 @@
 
-// TODO: try to use a priority queue: also add pos when updating distance, and ignore curr_pos if already seen (already the case)
-
 #include <fstream>
 #include <iostream>
 #include <string>
@@ -16,16 +14,6 @@
 struct Pos {
   int row, col, dir;
 };
-
-std::ostream& operator<<(std::ostream &os, const Pos &pos) {
-  os << '(' << pos.row << ", " << pos.col << ", ";
-  if (pos.dir == NORTH) os << 'N';
-  if (pos.dir == EAST) os << 'E';
-  if (pos.dir == SOUTH) os << 'S';
-  if (pos.dir == WEST) os << 'W';
-  os << ')';
-  return os;
-}
 
 struct Node {
   char value;
@@ -47,8 +35,9 @@ Pos get_next_pos(const Pos &pos) {
 }
 
 int advance_pos(Grid &grid, Pos &pos, Pos &last_pos) {
-  // Consider exit as a node
-  if (grid[pos.row][pos.col][pos.dir].value == 'E')
+  // Consider start and exit as nodes
+  char value = grid[pos.row][pos.col][pos.dir].value;
+  if (value == 'E' || value == 'S')
     return 0;
 
   bool next_found = false;
@@ -75,7 +64,6 @@ int advance_pos(Grid &grid, Pos &pos, Pos &last_pos) {
   if (!next_found) // Found no exit: dead end
     return -1;
 
-  std::cout << "( ADV ) Adding " << last_pos << " to parents of " << pos << "\n";
   grid[pos.row][pos.col][pos.dir].parents.push_back(last_pos);
   last_pos = pos;
   pos = only_pos;
@@ -142,12 +130,8 @@ int get_shortest_path(Grid &grid, int start_row, int start_col, bool mark_parent
         node.distance = curr_node.distance + dist_add;
         border.push(pos);
         if (mark_parents)
-        {
-          std::cout << "(CLEAR) Setting " << last_pos << " as unique parent of " << pos << "\n";
           node.parents = {last_pos};
-        }
       } else if (mark_parents && node.distance == curr_node.distance + dist_add) {
-        std::cout << "(EQUAL) Adding " << last_pos << " to parents of " << pos << "\n";
         node.parents.push_back(last_pos);
       }
     }
@@ -177,25 +161,8 @@ int count_tiles_shortest_path(Grid &grid, int start_row, int start_col, int end_
     path.pop_back();
     seen_pos.insert((pos.row << 16) + pos.col);
 
-    // std::cout << "Looking at " << pos << "\n";
-    std::cout << "Parents of " << pos << " are:\n";
-    for (Pos parent : grid[pos.row][pos.col][pos.dir].parents) {
-      std::cout << "  - " << parent << "\n";
+    for (Pos parent : grid[pos.row][pos.col][pos.dir].parents)
       path.push_back(parent);
-    }
-    std::cout << "\n";
-  }
-
-  for (int row = 0; row < (int)grid.size(); ++row) {
-    for (int col = 0; col < (int)grid[0].size(); ++col) {
-      if (grid[row][col][0].value == '#')
-        std::cout << '#';
-      else if (seen_pos.contains((row << 16) + col))
-        std::cout << 'O';
-      else
-        std::cout << '.';
-    }
-    std::cout << '\n';
   }
 
   return seen_pos.size();
