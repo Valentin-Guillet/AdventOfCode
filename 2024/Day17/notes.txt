@@ -1,0 +1,49 @@
+
+Register A: 51342988
+Register B: 0
+Register C: 0
+
+Program:
+[1] 2, 4 : reg_B <- reg_A
+[2] 1, 3 : reg_B <- (reg_B ^ 3) % 8
+[3] 7, 5 : reg_C <- (reg_A / 2**reg_B)
+[4] 4, 0 : reg_B <- (reg_B ^ reg_C)
+[5] 1, 3 : reg_B <- (reg_B ^ 3) % 8
+[6] 0, 3 : reg_A <- (reg_A / 8)
+[7] 5, 5 : print(reg_B % 8)
+[8] 3, 0 : if (reg_A > 0) jmp 0
+
+Let's write reg_A = an a{n-1} a{n-2} ... a0 in binary
+[1-2] reg_B gets the three lowest bits of A XOR with 3 = 0b11, so reg_B = a₂ã₁ã₀
+  [3] reg_C gets A shifted right by reg_B values, so reg_C = a_{B+2} a_{B+1} a_B
+[4-5] reg_B is XORed with the shifted version of A and with 3 = 0b11, which revert the XOR 3 of [2]
+      => reg_B = a₂a₁a₀ ^ a_{B+2} a_{B+1} a_B
+[6-7] reg_A is shifted by three, reg_B is printed
+  [8] Again until A is zero
+
+So if we want to have b₀ as first number of the output, we must have b0 = a₂a₁a₀ ^ a_{B+2} a_{B+1} a_B
+=> Must build the output in reverse order to remove the dependency
+
+First step:
+Last number is b₂b₁b₀ = a₂a₁a₀ ^ a_{a₂ã₁ã₀ + 2} a_{a₂ã₁ã₀ + 1} a_{a₂ã₁ã₀}
+                                 ^^^^^^^^^^^^^^ ^^^^^^^^^^^^^  ^^^^^^^^^^
+                                       x₂             x₁           x₀
+
+If a₂ã₁ã₀ ≥ 1, then x₂ = 0  so a₂ ^ x₂ = a₂
+If a₂ã₁ã₀ = 0, then x₂ = a₂ so a₂ ^ x₂ = 0 = a₂
+=> b₂ = a₂
+
+If a₂ã₁ã₀ ≥ 2, then x₁ = 0  so a₁ ^ x₁ = a₁
+If a₂ã₁ã₀ = 1, then x₁ = a₂ so a₁ ^ x₁ = a₁ ^ a₂
+If a₂ã₁ã₀ = 0, then x₁ = a₁ so a₁ ^ x₁ = 0
+
+If a₂ã₁ã₀ ≥ 3, then x₀ = 0  so a₀ ^ x₀ =  0 ^ a₀ = a₀
+If a₂ã₁ã₀ = 2, then x₀ = a₂ so a₀ ^ x₀ = a₂ ^ a₀
+If a₂ã₁ã₀ = 1, then x₀ = a₁ so a₀ ^ x₀ = a₁ ^ a₀
+If a₂ã₁ã₀ = 0, then x₀ = a₀ so a₀ ^ x₀ = a₀ ^ a₀ = 0
+
+If a₂ã₁ã₀ = n, then x_k = a_n so a_k ^ x_k = a_n ^ a_k
+=> b_k = a_n ^ a_k
+
+a₂a₁a₀ = b₂b₁b₀ ^ x₂x₁x₀
+       = b₂b₁b₀ ^ a_{n + 2} a_{n + 1} a_n
