@@ -1,0 +1,38 @@
+The gates act as a standard binary adder:
+we compute the carry, add the values of xn and yn and propagate the carry
+
+x00 XOR y00 -> z00
+
+x00 AND y00 -> gct
+y01 XOR x01 -> wnt
+wnt XOR gct -> z01
+
+wnt AND gct -> dnc
+x01 AND y01 -> gcq
+gcq OR dnc -> qcs
+y02 XOR x02 -> gwm
+qcs XOR gwm -> z02
+
+qcs AND gwm -> vhs
+y02 AND x02 -> vhv
+x03 XOR y03 -> ngv
+vhv OR vhs -> ktn
+ngv XOR ktn -> z03
+
+...
+
+gtb XOR hbj -> z22
+
+gtb AND hbj -> kjm
+y22 AND x22 -> ntn
+ntn OR kjm -> shg
+x23 XOR y23 -> dck
+fgn XOR shg -> z23
+
+...
+
+
+scd AND jts -> bjt
+y44 AND x44 -> knj
+
+knj OR bjt -> z45
