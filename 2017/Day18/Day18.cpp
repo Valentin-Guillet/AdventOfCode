@@ -1,6 +1,7 @@
 
 #include "iostream"
 #include "fstream"
+#include <array>
 #include <string>
 #include <regex>
 #include <vector>

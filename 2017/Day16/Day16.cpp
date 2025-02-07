@@ -4,6 +4,7 @@
 #include <string>
 #include <algorithm>
 #include <iterator>
+#include <vector>
 
 void disp(char tab[16]) {
     for (int i = 0; i < 16; ++i)
