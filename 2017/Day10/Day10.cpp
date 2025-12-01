@@ -4,7 +4,6 @@
 #include <string>
 #include <vector>
 #include <math.h>
-#include <iomanip>
 
 void reverse(int tab[512], int beg, int len) {
     int tmp;
