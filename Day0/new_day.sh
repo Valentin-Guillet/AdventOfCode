@@ -3,7 +3,7 @@ day=$1
 
 if [ -z $day ]
 then
-	day=`ls | egrep -o "[0-9]+" | sort -nr | head -1`
+	day=`ls | grep -E -o "[0-9]+" | sort -nr | head -1`
 	((day++))
 fi
 
